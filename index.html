@@ -10,13 +10,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .app { max-width: 480px; margin: 0 auto; padding: 0 12px 12px; }
 button { transition: transform 0.08s ease; }
 button:active:not(:disabled) { transform: scale(0.94); }
-
 .sync-badge { position: fixed; top: 8px; right: 8px; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 900; z-index: 999; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 4px; }
 .sync-badge.online { background: #dcfce7; color: #166534; }
 .sync-badge.offline { background: #fee2e2; color: #991b1b; }
 .sync-badge.saving { background: #fef3c7; color: #92400e; }
 .sync-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-
 .top-header { display: flex; align-items: center; gap: 8px; padding: 8px 12px; margin: 0 -12px; background: #ffffff; border-bottom: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 20; }
 .avatar-btn { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; font-weight: 800; font-size: 13px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; }
 .greeting-block { flex: 1; min-width: 0; }
@@ -33,196 +31,152 @@ button:active:not(:disabled) { transform: scale(0.94); }
 .card-header { padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; }
 .card-title { font-size: 12px; font-weight: 900; color: #1e293b; letter-spacing: 1.2px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
 .card-badge { background: #eff6ff; color: #2563eb; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 8px; }
-.card-badge.warn { background: #fef3c7; color: #92400e; }
 .card-badge.success { background: #dcfce7; color: #166534; }
 .card-badge.danger { background: #fee2e2; color: #991b1b; }
-
-.hour-target-card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; position: relative; }
+.hour-target-card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; }
 .hour-target-head { display: flex; align-items: center; justify-content: center; padding: 10px 14px 8px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; position: relative; }
-.hour-target-title { font-size: 12px; font-weight: 900; color: #64748b; letter-spacing: 1.2px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
-.hour-target-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: #e2e8f0; color: #64748b; font-size: 10px; display: flex; align-items: center; justify-content: center; transition: transform 0.25s, background 0.15s; flex-shrink: 0; cursor: pointer; border: none; font-family: inherit; padding: 0; }
+.hour-target-title { font-size: 12px; font-weight: 900; color: #64748b; letter-spacing: 1.2px; text-transform: uppercase; }
+.hour-target-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: #e2e8f0; color: #64748b; font-size: 10px; display: flex; align-items: center; justify-content: center; transition: transform 0.25s; cursor: pointer; border: none; padding: 0; }
 .hour-target-head.open .hour-target-toggle { transform: translateY(-50%) rotate(180deg); background: #bfdbfe; color: #1e40af; }
 .hour-target-nav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 12px; background: #ffffff; border-bottom: 1px solid #f1f5f9; }
-.ht-nav-arrow { width: 28px; height: 28px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 13px; font-weight: 900; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; }
-.ht-nav-arrow:active { background: #f1f5f9; }
+.ht-nav-arrow { width: 28px; height: 28px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 13px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
 .ht-nav-label { font-size: 13px; font-weight: 900; color: #1e293b; text-align: center; flex: 1; cursor: pointer; padding: 3px 8px; border-radius: 8px; }
-.ht-nav-label:active { background: #f1f5f9; }
 .ht-nav-label .ht-month { color: #1d4ed8; }
 .month-picker { background: #ffffff; border-bottom: 1px solid #e2e8f0; max-height: 260px; overflow-y: auto; }
 .month-picker-item { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; font-size: 13px; font-weight: 800; color: #1e293b; cursor: pointer; border-bottom: 1px solid #f1f5f9; }
-.month-picker-item:last-child { border-bottom: none; }
-.month-picker-item:active { background: #eff6ff; }
 .month-picker-item.active { background: #eff6ff; color: #1d4ed8; }
 .month-picker-item .mp-badge { font-size: 10px; font-weight: 800; color: #94a3b8; background: #f1f5f9; padding: 2px 8px; border-radius: 8px; }
-.month-picker-item.active .mp-badge { background: #dbeafe; color: #1e40af; }
-
 .hour-target-compact { display: flex; align-items: center; padding: 10px 14px 8px; gap: 8px; }
 .ht-value-wrap { display: flex; flex-direction: column; align-items: center; min-width: 84px; flex-shrink: 0; }
-.ht-value { font-size: 26px; font-weight: 900; color: #0f172a; font-variant-numeric: tabular-nums; letter-spacing: -1px; line-height: 1; display: inline-block; padding: 2px 8px; border-radius: 6px; cursor: pointer; border: 2px dashed transparent; transition: all 0.15s; }
-.ht-value:active { background: #f1f5f9; border-color: #cbd5e1; }
+.ht-value { font-size: 26px; font-weight: 900; color: #0f172a; letter-spacing: -1px; line-height: 1; display: inline-block; padding: 2px 8px; border-radius: 6px; cursor: pointer; border: 2px dashed transparent; }
 .ht-value.empty { color: #cbd5e1; }
-.ht-input { font-size: 26px; font-weight: 900; color: #0f172a; text-align: center; padding: 2px 8px; border: 2px solid #3b82f6; border-radius: 6px; background: #eff6ff; outline: none; width: 96px; font-family: inherit; font-variant-numeric: tabular-nums; letter-spacing: -1px; line-height: 1; }
+.ht-input { font-size: 26px; font-weight: 900; color: #0f172a; text-align: center; padding: 2px 8px; border: 2px solid #3b82f6; border-radius: 6px; background: #eff6ff; outline: none; width: 96px; letter-spacing: -1px; line-height: 1; }
 .ht-hint { font-size: 9.5px; color: #94a3b8; font-weight: 700; margin-top: 3px; }
 .ht-meta { display: flex; align-items: center; gap: 4px; flex: 1; justify-content: flex-end; }
 .ht-chip { background: #f8fafc; border-radius: 8px; padding: 5px 8px; text-align: center; min-width: 0; flex: 1; max-width: 72px; }
-.ht-chip .htc-lbl { font-size: 8.5px; font-weight: 800; color: #94a3b8; letter-spacing: 0.2px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ht-chip .htc-val { font-size: 14px; font-weight: 900; color: #0f172a; font-variant-numeric: tabular-nums; margin-top: 1px; letter-spacing: -0.3px; }
+.ht-chip .htc-lbl { font-size: 8.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; white-space: nowrap; }
+.ht-chip .htc-val { font-size: 14px; font-weight: 900; color: #0f172a; margin-top: 1px; }
 .ht-chip .htc-val.good { color: #16a34a; }
 .ht-chip .htc-val.warn { color: #ea580c; }
 .ht-chip .htc-val.bad { color: #dc2626; }
 .ht-chip .htc-val.empty { color: #cbd5e1; }
-
 .hour-target-weeks { padding: 8px 12px; background: #ffffff; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 4px; font-size: 11px; font-weight: 800; color: #1e293b; line-height: 1.6; border-top: 1px solid #f1f5f9; }
 .htw-item { display: inline-flex; align-items: baseline; gap: 3px; white-space: nowrap; }
 .htw-item .htw-lbl { font-size: 10.5px; color: #64748b; font-weight: 800; }
-.htw-item .htw-val { color: #2563eb; font-weight: 900; font-size: 12px; font-variant-numeric: tabular-nums; }
+.htw-item .htw-val { color: #2563eb; font-weight: 900; font-size: 12px; }
 .htw-item .htw-val.extra { color: #d97706; }
 .htw-sep { color: #cbd5e1; font-weight: 900; font-size: 12px; margin: 0 2px; }
-
-.weekly-hours-card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; }
-.weekly-hours-scroll { display: flex; padding: 10px 12px; gap: 0; overflow: hidden; width: 100%; position: relative; }
-.wh-item { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 2px; gap: 3px; position: relative; transition: transform 0.15s, opacity 0.15s; }
+.weekly-hours-card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; overflow: hidden; }
+.weekly-hours-scroll { display: flex; padding: 10px 12px; overflow: hidden; width: 100%; }
+.wh-item { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 2px; gap: 3px; position: relative; }
 .wh-item + .wh-item { border-left: 1px solid #e2e8f0; }
-.wh-name { font-size: 10.5px; font-weight: 900; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.3px; max-width: 100%; text-align: center; line-height: 1.05; }
-.wh-hours { font-size: 14px; font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: -0.3px; cursor: pointer; padding: 1px 4px; border-radius: 4px; }
+.wh-item.dragging { transform: scale(1.12); background: #eff6ff; border-radius: 8px; box-shadow: 0 6px 16px rgba(59,130,246,0.35); z-index: 10; }
+.wh-name { font-size: 10.5px; font-weight: 900; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; text-align: center; line-height: 1.05; }
+.wh-hours { font-size: 14px; font-weight: 900; cursor: pointer; padding: 1px 4px; border-radius: 4px; }
 .wh-hours.good { color: #16a34a; }
 .wh-hours.warn { color: #ea580c; }
 .wh-hours.danger { color: #dc2626; }
 .wh-hours.zero { color: #cbd5e1; }
 .wh-hours.receivable { color: #7c3aed; }
-.wh-hours-input { font-size: 14px; font-weight: 900; color: #7c3aed; background: #f3e8ff; border: 1.5px solid #9333ea; border-radius: 4px; outline: none; font-family: inherit; text-align: center; width: 48px; padding: 1px 2px; font-variant-numeric: tabular-nums; }
-
+.wh-hours-input { font-size: 14px; font-weight: 900; color: #7c3aed; background: #f3e8ff; border: 1.5px solid #9333ea; border-radius: 4px; outline: none; text-align: center; width: 48px; padding: 1px 2px; }
+.wh-name-input { font-size: 10.5px; font-weight: 900; color: #0f172a; background: #eff6ff; border: 1.5px solid #3b82f6; border-radius: 4px; outline: none; text-align: center; padding: 1px 2px; width: 90%; }
 .plan-header-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px 6px; gap: 8px; }
 .plan-header-title { font-size: 11.5px; font-weight: 900; color: #1e293b; letter-spacing: 1px; text-transform: uppercase; }
-.clear-btn { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 900; cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 4px; }
-.clear-btn:active { background: #fee2e2; }
+.clear-btn { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 900; cursor: pointer; }
 .plan-week-nav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 12px 10px; }
-.plan-week-arrow { width: 32px; height: 32px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 15px; font-weight: 900; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.plan-week-arrow:active { background: #f1f5f9; }
+.plan-week-arrow { width: 32px; height: 32px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 15px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .plan-week-label { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; cursor: pointer; flex: 1; min-width: 0; justify-content: center; }
-.plan-week-label:active { background: #eff6ff; }
-.plan-week-text { font-size: 12.5px; font-weight: 800; color: #1e293b; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
+.plan-week-text { font-size: 12.5px; font-weight: 800; color: #1e293b; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .plan-week-text .pwt-range { color: #64748b; font-weight: 700; }
 .plan-week-text .pwt-month { color: #1d4ed8; font-weight: 900; }
 .plan-week-cal { font-size: 14px; flex-shrink: 0; }
-
-.week-picker-modal { background: #ffffff; border-radius: 14px; width: 100%; max-width: 400px; max-height: 88vh; overflow-y: auto; margin: auto; padding: 18px; }
-.week-picker-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.week-picker-title { font-size: 16px; font-weight: 900; color: #0f172a; }
-.week-picker-close { width: 32px; height: 32px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; font-size: 14px; color: #475569; display: flex; align-items: center; justify-content: center; font-family: inherit; padding: 0; }
-.wp-year-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 12px; }
-.wp-year-label { font-size: 11px; font-weight: 900; color: #475569; letter-spacing: 0.5px; text-transform: uppercase; }
-.wp-year-val { font-size: 19px; font-weight: 900; color: #0f172a; font-variant-numeric: tabular-nums; }
-.wp-year-arrow { width: 32px; height: 32px; border-radius: 8px; background: #fff; border: 1px solid #e2e8f0; color: #475569; font-size: 15px; font-weight: 900; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; }
-.wp-year-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
-.wp-month-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
-.wp-month-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; font-size: 12px; font-weight: 900; color: #475569; cursor: pointer; font-family: inherit; }
-.wp-month-btn.active { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; }
-.wp-month-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-.wp-week-list { max-height: 220px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px; }
-.wp-week-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; }
-.wp-week-row.active { background: #eff6ff; border: 1.5px solid #3b82f6; }
-.wp-week-row:last-child { margin-bottom: 0; }
-.wp-week-row .wwr-title { font-size: 13px; font-weight: 800; color: #0f172a; }
-.wp-week-row .wwr-range { font-size: 11.5px; font-weight: 700; color: #64748b; margin-top: 1px; }
-.wp-week-row.active .wwr-title { color: #1d4ed8; }
-.wp-week-row .wwr-badge { font-size: 10px; font-weight: 900; background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 6px; }
-
-.plan-grid-wrap { padding: 0 6px 12px; touch-action: pan-y; }
+.plan-grid-wrap { padding: 0 6px 12px; }
 .plan-grid { display: grid; grid-template-columns: 52px repeat(7, minmax(0, 1fr)); background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; width: 100%; }
-.plan-grid > div { min-height: 28px; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; overflow: hidden; padding: 3px 1px; font-size: 11px; text-align: center; line-height: 1.15; min-width: 0; }
+.plan-grid > div { min-height: 28px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px 1px; font-size: 11px; text-align: center; line-height: 1.15; min-width: 0; }
 .plan-corner { background: #f1f5f9; border-right: 2px solid #64748b; border-bottom: 2px solid #64748b; font-size: 8px; font-weight: 900; color: #94a3b8; text-transform: uppercase; padding-left: 3px; min-height: 34px; }
-.plan-day-head { background: #f1f5f9; border-right: 1px solid #cbd5e1; border-bottom: 2px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 4px 0; min-height: 34px; font-size: 9px; font-weight: 900; color: #475569; line-height: 1.05; min-width: 0; }
-.plan-day-head .pdh-name { font-size: 9px; font-weight: 900; }
+.plan-day-head { background: #f1f5f9; border-right: 1px solid #cbd5e1; border-bottom: 2px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 4px 0; min-height: 34px; font-size: 9px; font-weight: 900; color: #475569; }
 .plan-day-head .pdh-num { font-size: 8px; font-weight: 700; color: #94a3b8; }
-.plan-name-cell { background: #fafbfc; border-right: 2px solid #64748b; border-bottom: 1px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px 1px; gap: 1px; min-height: 62px; text-align: center; line-height: 1.05; overflow: hidden; min-width: 0; }
-.plan-name-cell .pnc-name { font-size: 9.5px; font-weight: 900; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; letter-spacing: -0.3px; }
-.plan-name-cell .pnc-role { font-size: 7.5px; font-weight: 800; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-.pnc-name-input { font-size: 9.5px; font-weight: 900; color: #0f172a; background: #eff6ff; border: 1.5px solid #3b82f6; border-radius: 4px; outline: none; font-family: inherit; text-align: center; padding: 1px 2px; width: 96%; letter-spacing: -0.2px; }
-
-.plan-cell { border-right: 1px solid #cbd5e1; border-bottom: 1px solid #64748b; cursor: pointer; transition: filter 0.15s; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 0; min-height: 62px; gap: 0; font-size: 11px; font-weight: 900; line-height: 1.15; color: #0f172a; min-width: 0; }
-.plan-cell:active { filter: brightness(0.92); }
+.plan-name-cell { background: #fafbfc; border-right: 2px solid #64748b; border-bottom: 1px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px 1px; gap: 1px; min-height: 62px; text-align: center; line-height: 1.05; overflow: hidden; }
+.plan-name-cell .pnc-name { font-size: 9.5px; font-weight: 900; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.plan-name-cell .pnc-role { font-size: 7.5px; font-weight: 800; color: #64748b; white-space: nowrap; }
+.pnc-name-input { font-size: 9.5px; font-weight: 900; color: #0f172a; background: #eff6ff; border: 1.5px solid #3b82f6; border-radius: 4px; outline: none; text-align: center; padding: 1px 2px; width: 96%; }
+.plan-cell { border-right: 1px solid #cbd5e1; border-bottom: 1px solid #64748b; cursor: pointer; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 0; min-height: 62px; gap: 0; font-size: 11px; font-weight: 900; line-height: 1.15; color: #0f172a; min-width: 0; }
 .plan-cell.sabah { background: #ffedd5; color: #9a3412; }
 .plan-cell.aksam { background: #e0e7ff; color: #3730a3; }
 .plan-cell.tam { background: #fce7f3; color: #9d174d; }
-.plan-cell.izinli { background: #d1fae5; color: #065f46; font-size: 10px; font-weight: 900; letter-spacing: 0.4px; }
-.plan-cell.alacak-izinli { background: #ede9fe; color: #6b21a8; font-size: 9px; font-weight: 900; letter-spacing: 0.2px; }
+.plan-cell.izinli { background: #d1fae5; color: #065f46; font-size: 10px; }
+.plan-cell.alacak-izinli { background: #ede9fe; color: #6b21a8; font-size: 9px; }
 .plan-cell.gece { background: #ede9fe; color: #5b21b6; }
-.plan-cell.empty { color: #cbd5e1; font-size: 15px; font-weight: 400; }
 .plan-cell.has-error { animation: cellErrorPulse 1.4s ease-in-out infinite; }
 @keyframes cellErrorPulse { 0%, 100% { background: #fef2f2; box-shadow: inset 0 0 0 2px rgba(220,38,38,0.5); } 50% { background: #fecaca; box-shadow: inset 0 0 0 3px #dc2626, 0 0 8px rgba(220,38,38,0.5); } }
-.plan-cell .pc-time { font-size: 10.5px; font-weight: 900; line-height: 1.15; letter-spacing: -0.3px; white-space: nowrap; position: relative; z-index: 1; }
-.plan-cell .pc-divider { width: 72%; height: 1px; background: rgba(0,0,0,0.22); margin: 2.5px auto 2.5px; border-radius: 1px; }
+.plan-cell .pc-time { font-size: 10.5px; font-weight: 900; line-height: 1.15; white-space: nowrap; position: relative; z-index: 1; }
+.plan-cell .pc-divider { width: 72%; height: 1px; background: rgba(0,0,0,0.22); margin: 2.5px auto; border-radius: 1px; }
 .plan-cell .pc-meta { display: flex; align-items: center; justify-content: center; gap: 4px; line-height: 1; width: 100%; }
-.plan-cell .pc-net { font-size: 9.5px; font-weight: 800; color: #64748b; letter-spacing: -0.2px; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.plan-cell .pc-break-sep { font-size: 9px; font-weight: 800; color: #94a3b8; line-height: 1; }
-.plan-cell .pc-break { font-size: 9.5px; font-weight: 800; color: #64748b; letter-spacing: -0.2px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.plan-cell .pc-net { font-size: 9.5px; font-weight: 800; color: #64748b; }
+.plan-cell .pc-break-sep { font-size: 9px; font-weight: 800; color: #94a3b8; }
+.plan-cell .pc-break { font-size: 9.5px; font-weight: 800; color: #64748b; }
 .plan-cell.has-error .pc-net, .plan-cell.has-error .pc-break, .plan-cell.has-error .pc-break-sep { color: #991b1b; }
-.plan-cell.has-error .pc-divider { background: rgba(153,27,27,0.35); }
 .plan-cell .pc-ar { position: absolute; top: 2px; right: 3px; font-size: 9px; font-weight: 900; color: #7c3aed; background: #ede9fe; border-radius: 3px; padding: 0 3px; line-height: 1.4; z-index: 2; }
-
+.plan-cell.edit-hint { box-shadow: inset 0 0 0 2px #f59e0b, 0 0 8px rgba(245,158,11,0.4); z-index: 4; background: #fef3c7; }
+.plan-cell.edit-hint::after { content: '✏️'; position: absolute; top: 1px; right: 1px; font-size: 10px; opacity: 0.9; pointer-events: none; }
+.plan-cell-tooltip { position: fixed; background: #0f172a; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 800; white-space: nowrap; z-index: 500; box-shadow: 0 6px 16px rgba(0,0,0,0.3); pointer-events: none; }
 .plan-sum-label { background: #f1f5f9; border-right: 2px solid #64748b; border-top: 1px solid #64748b; font-size: 8.5px; font-weight: 900; color: #7c3aed; text-transform: uppercase; padding-left: 2px; min-height: 28px; }
 .plan-sum-cell { background: #faf5ff; border-right: 1px solid #cbd5e1; border-top: 1px solid #64748b; font-size: 11px; font-weight: 900; color: #7c3aed; min-height: 28px; }
 .plan-count-label { background: #f1f5f9; border-right: 2px solid #64748b; border-top: 1px solid #64748b; font-size: 8.5px; font-weight: 900; color: #475569; text-transform: uppercase; padding-left: 2px; min-height: 26px; }
 .plan-count-cell { background: #f8fafc; border-right: 1px solid #cbd5e1; border-top: 1px solid #64748b; font-size: 11px; font-weight: 900; color: #0f172a; min-height: 26px; padding: 2px 1px; }
-
 .warnings-card { padding: 0 14px 12px; }
-.warning-item { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 8px; margin-bottom: 6px; font-size: 12.5px; color: #78350f; font-weight: 700; line-height: 1.35; }
+.warning-item { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 8px; margin-bottom: 6px; font-size: 12.5px; color: #78350f; font-weight: 700; line-height: 1.35; cursor: pointer; }
 .warning-item.danger { background: #fee2e2; border-left-color: #dc2626; color: #991b1b; }
 .warning-item .w-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 .warning-item .w-content { flex: 1; min-width: 0; }
+.warning-item .w-go { font-size: 16px; color: #94a3b8; font-weight: 900; flex-shrink: 0; align-self: center; margin-left: 6px; }
+.warning-item.danger .w-go { color: #dc2626; }
 .warning-empty { font-size: 13px; color: #16a34a; font-weight: 800; padding: 10px; background: #f0fdf4; border-radius: 8px; text-align: center; }
-
 .modal-backdrop { position: fixed; inset: 0; background: rgba(15,23,42,0.5); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 12px; overflow-y: auto; }
 .modal { background: #ffffff; border-radius: 14px; padding: 20px; width: 100%; max-width: 400px; max-height: 92vh; overflow-y: auto; margin: auto; }
 .modal-icon { width: 52px; height: 52px; border-radius: 50%; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 12px; }
 .modal-title { font-size: 17px; font-weight: 800; color: #0f172a; text-align: center; margin-bottom: 6px; }
 .modal-desc { font-size: 13px; color: #64748b; font-weight: 600; text-align: center; line-height: 1.45; margin-bottom: 18px; }
 .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
-.modal-btn { flex: 1; padding: 12px; border-radius: 10px; border: none; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; }
+.modal-btn { flex: 1; padding: 12px; border-radius: 10px; border: none; font-size: 15px; font-weight: 800; cursor: pointer; }
 .modal-btn.cancel { background: #f1f5f9; color: #475569; }
 .modal-btn.confirm { background: #2563eb; color: #ffffff; }
 .modal-btn.danger { background: #dc2626; color: #ffffff; }
-
 .shift-modal { background: #ffffff; border-radius: 14px; width: 100%; max-width: 440px; min-height: 540px; max-height: 96vh; overflow: hidden; margin: auto; display: flex; flex-direction: column; position: relative; }
 .shift-modal-head { padding: 10px 50px 8px 50px; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; text-align: center; position: relative; }
 .shift-modal-title { font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 3px; }
 .shift-modal-sub { font-size: 12.5px; color: #64748b; font-weight: 700; }
-.shift-modal-close { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; color: #475569; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; padding: 0; font-family: inherit; }
-.shift-modal-delete { position: absolute; top: 10px; left: 10px; width: 34px; height: 34px; border-radius: 50%; background: #fee2e2; border: none; cursor: pointer; color: #dc2626; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; padding: 0; font-family: inherit; }
-.shift-chips-bar { display: flex; gap: 6px; padding: 8px 12px; border-bottom: 1px solid #e2e8f0; overflow-x: auto; flex-shrink: 0; scrollbar-width: none; justify-content: center; }
-.shift-chips-bar::-webkit-scrollbar { display: none; }
-.stc-btn { flex-shrink: 0; min-width: 72px; padding: 9px 6px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 10px; font-size: 11px; font-weight: 900; color: #475569; cursor: pointer; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 2px; position: relative; }
+.shift-modal-close { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; color: #475569; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; padding: 0; }
+.shift-modal-delete { position: absolute; top: 10px; left: 10px; width: 34px; height: 34px; border-radius: 50%; background: #fee2e2; border: none; cursor: pointer; color: #dc2626; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; padding: 0; }
+.shift-chips-bar { display: flex; gap: 6px; padding: 8px 12px; border-bottom: 1px solid #e2e8f0; overflow-x: auto; flex-shrink: 0; justify-content: center; }
+.stc-btn { flex-shrink: 0; min-width: 72px; padding: 9px 6px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 10px; font-size: 11px; font-weight: 900; color: #475569; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .stc-btn .stc-icon { font-size: 19px; }
 .stc-btn.active { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; }
 .stc-btn.izinli.active { border-color: #16a34a; background: #dcfce7; color: #166534; }
 .stc-btn.alacak-izinli.active { border-color: #9333ea; background: #ede9fe; color: #6b21a8; }
 .stc-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .shift-modal-body { overflow-y: auto; flex: 1; padding-bottom: 12px; }
-
 .picked-summary { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 14px; margin: 8px 14px 4px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .picked-item { display: flex; flex-direction: column; gap: 2px; }
-.picked-item .pi-lbl { font-size: 10px; font-weight: 800; color: #94a3b8; letter-spacing: 0.5px; text-transform: uppercase; }
-.picked-item .pi-val { font-size: 19px; font-weight: 900; color: #0f172a; font-variant-numeric: tabular-nums; }
+.picked-item .pi-lbl { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; }
+.picked-item .pi-val { font-size: 19px; font-weight: 900; color: #0f172a; }
 .picked-arrow { font-size: 19px; color: #cbd5e1; font-weight: 900; }
 .picked-summary.has-start .pi-val.start { color: #1d4ed8; }
 .picked-summary.has-end .pi-val.end { color: #16a34a; }
-
 .shift-section { padding: 6px 14px 8px; }
-.shift-section-title { font-size: 11.5px; font-weight: 900; color: #475569; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+.shift-section-title { font-size: 11.5px; font-weight: 900; color: #475569; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
 .hour-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .minute-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-.hour-btn, .minute-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 10px; font-weight: 900; color: #0f172a; cursor: pointer; font-family: inherit; font-variant-numeric: tabular-nums; }
+.hour-btn, .minute-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 10px; font-weight: 900; color: #0f172a; cursor: pointer; }
 .hour-btn { font-size: 16px; }
 .minute-btn { font-size: 17px; padding: 14px 4px; }
-.manual-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 0 14px 8px; padding: 11px; background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer; font-family: inherit; }
+.manual-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 0 14px 8px; padding: 11px; background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer; }
 .manual-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; padding: 0 14px; }
 .time-input-group { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 12px; display: flex; flex-direction: column; align-items: center; }
-.time-input-label { font-size: 10px; font-weight: 900; color: #64748b; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; text-align: center; }
-.time-input { width: 100%; border: none; outline: none; background: transparent; font-size: 19px; font-weight: 900; color: #0f172a; font-family: inherit; font-variant-numeric: tabular-nums; padding: 2px 0; text-align: center; }
-.manual-save-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 0 14px 8px; padding: 12px; background: #2563eb; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 900; cursor: pointer; font-family: inherit; }
-
-.alacak-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; margin: 6px 14px 6px; background: #f3e8ff; border: 1.5px solid #d8b4fe; border-radius: 10px; }
+.time-input-label { font-size: 10px; font-weight: 900; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+.time-input { width: 100%; border: none; outline: none; background: transparent; font-size: 19px; font-weight: 900; color: #0f172a; padding: 2px 0; text-align: center; }
+.manual-save-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 0 14px 8px; padding: 12px; background: #2563eb; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 900; cursor: pointer; }
+.alacak-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; margin: 6px 14px; background: #f3e8ff; border: 1.5px solid #d8b4fe; border-radius: 10px; }
 .alacak-toggle-row.disabled { background: #f1f5f9; border-color: #e2e8f0; opacity: 0.7; }
 .alacak-toggle-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .alacak-toggle-icon { font-size: 20px; flex-shrink: 0; }
@@ -236,10 +190,9 @@ button:active:not(:disabled) { transform: scale(0.94); }
 .alacak-switch:disabled { opacity: 0.5; cursor: not-allowed; }
 .alacak-hours-picker { padding: 0 14px 6px; }
 .alacak-quick-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 6px; }
-.alacak-quick-btn { padding: 12px 2px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 8px; font-size: 14px; font-weight: 900; color: #6b21a8; cursor: pointer; font-family: inherit; font-variant-numeric: tabular-nums; }
+.alacak-quick-btn { padding: 12px 2px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 8px; font-size: 14px; font-weight: 900; color: #6b21a8; cursor: pointer; }
 .alacak-quick-btn.active { border-color: #9333ea; background: #f3e8ff; }
 .alacak-quick-btn:disabled { opacity: 0.25; cursor: not-allowed; }
-
 .staff-list { margin-bottom: 14px; }
 .staff-row { display: flex; align-items: center; gap: 10px; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 6px; }
 .staff-row-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0; }
@@ -247,74 +200,93 @@ button:active:not(:disabled) { transform: scale(0.94); }
 .staff-row-name { font-size: 14px; font-weight: 800; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .staff-row-role { font-size: 11px; color: #64748b; font-weight: 700; margin-top: 1px; }
 .staff-row-actions { display: flex; gap: 4px; flex-shrink: 0; }
-.staff-row-btn { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; font-family: inherit; }
+.staff-row-btn { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 .staff-row-btn.edit { background: #dbeafe; color: #2563eb; }
 .staff-row-btn.del { background: #fee2e2; color: #dc2626; }
-
-.form-label { font-size: 11px; font-weight: 800; color: #475569; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 4px; display: block; }
-.form-input { width: 100%; padding: 11px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-weight: 700; color: #0f172a; background: #ffffff; font-family: inherit; margin-bottom: 10px; outline: none; }
-.form-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
-
+.form-label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 4px; display: block; }
+.form-input { width: 100%; padding: 11px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-weight: 700; color: #0f172a; background: #ffffff; margin-bottom: 10px; outline: none; }
+.chip-editor-list { display: flex; flex-direction: column; gap: 8px; }
+.chip-edit-row { display: flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 10px; }
+.chip-edit-icon { width: 38px; height: 38px; border-radius: 10px; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 21px; cursor: pointer; flex-shrink: 0; }
+.chip-edit-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.chip-edit-name { font-size: 14px; font-weight: 800; color: #0f172a; border: none; outline: none; background: transparent; padding: 0; width: 100%; }
+.chip-edit-hours { font-size: 11px; font-weight: 700; color: #64748b; }
+.chip-edit-times { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #64748b; font-weight: 700; }
+.chip-edit-time { border: 1px solid #cbd5e1; border-radius: 6px; padding: 3px 6px; font-size: 12px; font-weight: 800; color: #0f172a; background: #f8fafc; outline: none; width: 76px; }
+.chip-edit-del { width: 30px; height: 30px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .emoji-picker { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; padding: 8px; background: #f8fafc; border-radius: 10px; margin-top: 8px; }
-.emoji-pick-btn { padding: 6px 2px; border: none; background: transparent; font-size: 19px; cursor: pointer; border-radius: 6px; font-family: inherit; }
-
+.emoji-pick-btn { padding: 6px 2px; border: none; background: transparent; font-size: 19px; cursor: pointer; border-radius: 6px; }
+.add-chip-btn { width: 100%; padding: 12px; border: 2px dashed #cbd5e1; background: #ffffff; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer; margin-top: 10px; }
 .settings-page { position: fixed; inset: 0; background: #f1f5f9; z-index: 200; display: flex; flex-direction: column; max-width: 480px; margin: 0 auto; }
 .settings-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; }
 .settings-header-left { display: flex; align-items: center; gap: 8px; }
 .settings-header-icon { font-size: 19px; }
 .settings-title { font-size: 16px; font-weight: 900; color: #0f172a; }
-.settings-close { width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; font-size: 15px; color: #475569; display: flex; align-items: center; justify-content: center; font-family: inherit; padding: 0; }
-.settings-tabs-bar { display: flex; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0 8px; overflow-x: auto; flex-shrink: 0; scrollbar-width: none; }
-.settings-tab-btn { padding: 12px 14px; border: none; background: transparent; font-size: 13.5px; font-weight: 900; color: #64748b; cursor: pointer; font-family: inherit; border-bottom: 3px solid transparent; white-space: nowrap; }
+.settings-close { width: 36px; height: 36px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; font-size: 15px; color: #475569; display: flex; align-items: center; justify-content: center; padding: 0; }
+.settings-tabs-bar { display: flex; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0 8px; overflow-x: auto; flex-shrink: 0; }
+.settings-tab-btn { padding: 12px 14px; border: none; background: transparent; font-size: 13.5px; font-weight: 900; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
 .settings-tab-btn.active { color: #2563eb; border-bottom-color: #2563eb; }
 .settings-body { flex: 1; overflow-y: auto; padding: 16px; }
 .settings-section-title { font-size: 12px; font-weight: 900; color: #1e293b; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; margin-top: 12px; }
 .settings-hint { font-size: 12px; color: #64748b; font-weight: 600; line-height: 1.4; margin-top: 4px; margin-bottom: 12px; }
 .settings-input-group { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
-.settings-input-label { font-size: 11px; font-weight: 800; color: #475569; letter-spacing: .6px; text-transform: uppercase; margin-bottom: 6px; }
-.settings-input { width: 100%; border: none; outline: none; font-size: 16px; font-weight: 700; color: #0f172a; background: transparent; font-family: inherit; padding: 2px 0; }
-.save-settings-btn { width: 100%; padding: 14px; background: #2563eb; color: #ffffff; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; font-family: inherit; margin-top: 16px; box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
+.settings-input-label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 6px; }
+.settings-input { width: 100%; border: none; outline: none; font-size: 16px; font-weight: 700; color: #0f172a; background: transparent; padding: 2px 0; }
+.save-settings-btn { width: 100%; padding: 14px; background: #2563eb; color: #ffffff; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 16px; }
 .break-rule-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
 .break-rule-left { flex: 1; min-width: 0; font-size: 13px; font-weight: 800; color: #0f172a; line-height: 1.6; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
-.break-rule-left .brr-input { width: 58px; text-align: center; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 4px; font-size: 14px; font-weight: 900; color: #0f172a; background: #f8fafc; font-family: inherit; outline: none; }
+.break-rule-left .brr-input { width: 58px; text-align: center; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 6px 4px; font-size: 14px; font-weight: 900; color: #0f172a; background: #f8fafc; outline: none; }
 .break-rule-left .brr-unit { font-size: 12px; color: #64748b; font-weight: 800; }
-.break-rule-del { width: 36px; height: 36px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; font-family: inherit; flex-shrink: 0; }
-.add-rule-btn { width: 100%; padding: 14px; border: 2px dashed #cbd5e1; background: #ffffff; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer; font-family: inherit; margin-top: 4px; }
-
+.break-rule-del { width: 36px; height: 36px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.add-rule-btn { width: 100%; padding: 14px; border: 2px dashed #cbd5e1; background: #ffffff; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer; margin-top: 4px; }
 .color-rule-row { display: flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; margin-bottom: 8px; }
 .color-rule-times { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-.color-rule-times input { width: 68px; border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px 6px; font-size: 13px; font-weight: 800; color: #0f172a; background: #f8fafc; font-family: inherit; outline: none; text-align: center; }
+.color-rule-times input { width: 68px; border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px 6px; font-size: 13px; font-weight: 800; color: #0f172a; background: #f8fafc; outline: none; text-align: center; }
 .color-rule-times span { color: #94a3b8; font-weight: 900; font-size: 13px; }
-.color-rule-name { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-size: 14px; font-weight: 800; color: #0f172a; font-family: inherit; padding: 2px 4px; }
+.color-rule-name { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-size: 14px; font-weight: 800; color: #0f172a; padding: 2px 4px; }
 .color-rule-swatch { width: 34px; height: 34px; border-radius: 8px; border: 2px solid #e2e8f0; cursor: pointer; flex-shrink: 0; }
-.color-rule-del { width: 30px; height: 30px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; font-family: inherit; flex-shrink: 0; }
-
+.color-rule-del { width: 30px; height: 30px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .staff-color-row { display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
 .staff-color-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0; }
 .staff-color-name { flex: 1; min-width: 0; font-size: 14px; font-weight: 800; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .staff-color-pick { width: 36px; height: 36px; border-radius: 8px; border: 2px solid #e2e8f0; cursor: pointer; position: relative; overflow: hidden; padding: 0; }
 .staff-color-pick input[type="color"] { position: absolute; inset: -4px; width: calc(100% + 8px); height: calc(100% + 8px); border: none; cursor: pointer; padding: 0; background: transparent; }
 .staff-color-lbl { font-size: 9px; font-weight: 800; color: #94a3b8; text-align: center; margin-top: 2px; text-transform: uppercase; }
-
 .clear-staff-row { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; margin-bottom: 5px; }
 .clear-staff-row.selected { background: #eff6ff; border-color: #3b82f6; }
 .clear-staff-row .cs-check { width: 18px; height: 18px; border-radius: 5px; border: 2px solid #cbd5e1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 900; color: transparent; background: #fff; }
 .clear-staff-row.selected .cs-check { background: #3b82f6; border-color: #3b82f6; color: #fff; }
 .clear-staff-row .cs-name { font-size: 13px; font-weight: 800; color: #0f172a; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
 .clear-day-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 12px; }
-.clear-day-btn { padding: 10px 2px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 8px; font-size: 11px; font-weight: 900; color: #475569; cursor: pointer; font-family: inherit; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.clear-day-btn { padding: 10px 2px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 8px; font-size: 11px; font-weight: 900; color: #475569; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .clear-day-btn.active { border-color: #dc2626; background: #fef2f2; color: #dc2626; }
 .clear-day-btn .cdb-num { font-size: 9.5px; font-weight: 700; color: #94a3b8; }
 .clear-day-btn.active .cdb-num { color: #dc2626; }
-
-.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13.5px; font-weight: 800; z-index: 400; box-shadow: 0 4px 12px rgba(0,0,0,0.3); white-space: nowrap; max-width: 90vw; text-align: center; }
+.week-picker-modal { background: #ffffff; border-radius: 14px; width: 100%; max-width: 400px; max-height: 88vh; overflow-y: auto; margin: auto; padding: 18px; }
+.week-picker-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.week-picker-title { font-size: 16px; font-weight: 900; color: #0f172a; }
+.week-picker-close { width: 32px; height: 32px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; font-size: 14px; color: #475569; display: flex; align-items: center; justify-content: center; padding: 0; }
+.wp-year-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 12px; }
+.wp-year-label { font-size: 11px; font-weight: 900; color: #475569; text-transform: uppercase; }
+.wp-year-val { font-size: 19px; font-weight: 900; color: #0f172a; }
+.wp-year-arrow { width: 32px; height: 32px; border-radius: 8px; background: #fff; border: 1px solid #e2e8f0; color: #475569; font-size: 15px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.wp-year-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+.wp-month-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
+.wp-month-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; font-size: 12px; font-weight: 900; color: #475569; cursor: pointer; }
+.wp-month-btn.active { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; }
+.wp-month-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.wp-week-list { max-height: 220px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px; }
+.wp-week-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; }
+.wp-week-row.active { background: #eff6ff; border: 1.5px solid #3b82f6; }
+.wp-week-row .wwr-title { font-size: 13px; font-weight: 800; color: #0f172a; }
+.wp-week-row .wwr-range { font-size: 11.5px; font-weight: 700; color: #64748b; margin-top: 1px; }
+.wp-week-row .wwr-badge { font-size: 10px; font-weight: 900; background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 6px; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13.5px; font-weight: 800; z-index: 400; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 90vw; text-align: center; }
 .toast.success { background: #16a34a; }
 .toast.error { background: #dc2626; }
 .toast.info { background: #2563eb; }
 .toast.warn { background: #f59e0b; }
-
-.app-footer { text-align: center; padding: 22px 12px 14px; font-size: 11px; color: #94a3b8; font-weight: 600; line-height: 1.65; opacity: 0.7; user-select: none; }
+.app-footer { text-align: center; padding: 22px 12px 14px; font-size: 11px; color: #94a3b8; font-weight: 600; line-height: 1.65; opacity: 0.7; }
 .app-footer .footer-line { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .app-footer .heart { color: #ec4899; opacity: 0.7; animation: heartbeat 1.5s ease-in-out infinite; display: inline-block; }
 @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
@@ -357,9 +329,7 @@ window.__fb.setDoc = setDoc;
 window.__fb.onSnapshot = onSnapshot;
 window.__fb.signInAnonymously = signInAnonymously;
 window.__fb.onAuthStateChanged = onAuthStateChanged;
-window.dispatchEvent(new Event('fb-ready'));
 </script>
-
 <script>
 // ============ SABİT VERİLER ============
 const MANAGER = { initials: 'GK', fullName: 'Gülşah K.' };
@@ -368,35 +338,30 @@ manager: { label: 'Mağaza Müdürü', short: 'Müdür' },
 assistant: { label: 'Yönetici Yrd.', short: 'Yrd.' },
 ft: { label: 'FT Satış Danışmanı', short: 'FT' },
 pt: { label: 'PT Satış Danışmanı', short: 'PT' },
-support: { label: 'Destek Personeli', short: 'Destek' },
+support: { label: 'Destek Personeli', short: 'Destek' }
 };
 const RECEIVABLE_LEAVE_TYPE = 'alacak-izinli';
 const RECEIVABLE_LEAVE_HOURS = 7.5;
-
 const DEFAULT_CHIPS = [
 { id: 'chip_time', icon: '🕐', name: 'Saat Seç', type: 'time', start: '', end: '' },
 { id: 'chip_full', icon: '🌓', name: 'Tam Gün', type: 'full', start: '10:00', end: '22:00' },
-{ id: 'chip_off', icon: '🏖️', name: 'İzinli', type: 'izinli', start: '', end: '' },
-{ id: 'chip_ar', icon: '💰', name: 'Alacak İzni', type: RECEIVABLE_LEAVE_TYPE, start: '', end: '' },
+{ id: 'chip_off', icon: '🏖️', name: 'İzinli', type: 'izinli',start: '', end: '' },
+{ id: 'chip_ar', icon: '💰', name: 'Alacak İzni', type: RECEIVABLE_LEAVE_TYPE, start: '', end: '' }
 ];
-
 const DEFAULT_COLOR_RULES = [
 { start: '08:00', end: '12:00', color: '#ffedd5', name: 'Sabah' },
 { start: '12:00', end: '18:00', color: '#e0e7ff', name: 'Gündüz' },
 { start: '18:00', end: '22:00', color: '#fce7f3', name: 'Akşam' },
-{ start: '22:00', end: '06:00', color: '#ede9fe', name: 'Gece' },
+{ start: '22:00', end: '06:00', color: '#ede9fe', name: 'Gece' }
 ];
-
 const EMOJI_LIST = ['🕐','🌓','☀️','🌙','🌆','🏖️','⭐','🔥','💼','🎯','⚡','🍀','🎨','💎','🌟','🛒','📌','🎁','🚀','🏆','💰','🧡','💙','💚','💜'];
-
 const DEFAULT_STAFF_COLORS = {
 manager: { bg: '#fce7f3', text: '#9d174d' },
 assistant: { bg: '#d1fae5', text: '#065f46' },
 ft: { bg: '#dbeafe', text: '#1e40af' },
 pt: { bg: '#f3e8ff', text: '#6b21a8' },
-support: { bg: '#fed7aa', text: '#9a3412' },
+support: { bg: '#fed7aa', text: '#9a3412' }
 };
-
 const DEFAULT_SETTINGS = {
 storeName: 'Kadıköy Mağazası',
 weeklyLimitHours: 45,
@@ -410,7 +375,7 @@ breakRules: [
 { minHours: 0, maxHours: 4, breakMin: 15 },
 { minHours: 4, maxHours: 7.5, breakMin: 30 },
 { minHours: 7.5, maxHours: 11, breakMin: 60 },
-{ minHours: 11, maxHours: 14, breakMin: 120 },
+{ minHours: 11, maxHours: 14, breakMin: 120 }
  ],
 staff: [
 { id: 'gulsah', name: 'Gülşah K.', role: 'manager', title: 'Mağaza Müdürü', color: { bg: '#fce7f3', text: '#9d174d' } },
@@ -419,22 +384,22 @@ staff: [
 { id: 'kader', name: 'Kader S.', role: 'pt', title: 'PT Satış Danışmanı', color: { bg: '#f3e8ff', text: '#6b21a8' } },
 { id: 'seyma', name: 'Şeyma Y.', role: 'pt', title: 'PT Satış Danışmanı', color: { bg: '#f3e8ff', text: '#6b21a8' } },
 { id: 'tugba', name: 'Tuğba B.', role: 'pt', title: 'PT Satış Danışmanı', color: { bg: '#f3e8ff', text: '#6b21a8' } },
-{ id: 'ayse', name: 'Ayşe K.', role: 'pt', title: 'PT Satış Danışmanı', color: { bg: '#f3e8ff', text: '#6b21a8' } },
- ],
+{ id: 'ayse', name: 'Ayşe K.', role: 'pt', title: 'PT Satış Danışmanı', color: { bg: '#f3e8ff', text: '#6b21a8' } }
+ ]
 };
 
 // ============ STATE ============
 let data = {
 settings: JSON.parse(JSON.stringify(DEFAULT_SETTINGS)),
 weekPlan: {},
-manualExtra: {},
+manualExtra: {}
 };
 
-const todayD = new Date();
-const _tday = todayD.getDay();
+const _todayD = new Date();
+const _tday = _todayD.getDay();
 const _tdiff = _tday === 0 ? -6 : 1 - _tday;
-const _tmonday = new Date(todayD);
-_tmonday.setDate(todayD.getDate() + _tdiff);
+const _tmonday = new Date(_todayD);
+_tmonday.setDate(_todayD.getDate() + _tdiff);
 _tmonday.setHours(0,0,0,0);
 
 let state = {
@@ -461,36 +426,266 @@ clearSelectedStaff: [],
 clearSelectedDays: [],
 weekPickerOpen: false,
 weekPickerYear: _tmonday.getFullYear(),
-weekPickerMonth: _tmonday.getMonth(),
+weekPickerMonth: _tmonday.getMonth()
 };
 
 // ============ YARDIMCI FONKSİYONLAR ============
-function dateKey(d) { return ${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}; } function monthKey(d) { return ``${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}; } function fmtTime(d) { return ``${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}; } function fmtDateTR(d) { const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık']; const GUN = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi']; return ``${d.getDate()} ${AY[d.getMonth()]} ${d.getFullYear()}, ${GUN[d.getDay()]}; } function initials(name) { return name.split(' ').map(w =&gt; w[0]).join('').slice(0, 2).toUpperCase(); } function shortName(fullName) { if (!fullName) return ''; const parts = fullName.trim().split(/\s+/); if (parts.length === 1) return parts[0]; return ``${parts[0]} ${parts[parts.length-1].charAt(0).toUpperCase()}.; } function getWeekDatesForDate(date) { const d = new Date(date); const day = d.getDay(); const diff = day === 0 ? -6 : 1 - day; const monday = new Date(d); monday.setDate(d.getDate() + diff); monday.setHours(0,0,0,0); const arr = []; for (let i = 0; i &lt; 7; i++) { const x = new Date(monday); x.setDate(monday.getDate() + i); arr.push(x); } return arr; } function getCurrentWeekDates() { return getWeekDatesForDate(state.weekAnchorDate); } function toMin(hhmm) { if (!hhmm) return 0; const [h, m] = hhmm.split(':').map(Number); return h * 60 + (m || 0); } function isLeaveType(t) { return t === 'izinli' || t === RECEIVABLE_LEAVE_TYPE; } function shiftDurationMin(shift) { if (!shift || isLeaveType(shift.type)) return 0; if (!shift.start || !shift.end) return 0; return (toMin(shift.end) - toMin(shift.start) + 1440) % 1440; } function shiftHours(shift) { return shiftDurationMin(shift) / 60; } function getAutoBreak(grossHours) { const rules = (data.settings.breakRules || []).slice().sort((a,b) =&gt; a.minHours - b.minHours); if (!rules.length) return 0; for (const r of rules) { const min = typeof r.minHours === 'number' ? r.minHours : 0; const max = typeof r.maxHours === 'number' ? r.maxHours : Infinity; if (grossHours &gt;= min && grossHours &lt; max) return r.breakMin; } return rules[rules.length-1].breakMin; } function shiftNetHours(shift) { if (!shift || isLeaveType(shift.type)) return 0; const grossH = shiftHours(shift); if (grossH &lt;= 0) return 0; return Math.max(0, grossH - getAutoBreak(grossH) / 60); } function shiftAlacakHours(shift) { if (!shift || isLeaveType(shift.type)) return 0; return parseFloat(shift.alacakHours) || 0; } function fmtNetHoursShort(hours) { if (!hours || hours &lt;= 0) return '0'; const r = Math.round(hours * 100) / 100; if (Math.abs(r - Math.round(r)) &lt; 0.01) return String(Math.round(r)); return r.toFixed(2).replace(/0+$/, '').replace(/.latex
-/, '').replace('.', ','); } function isNightShift(start, end) { const s = toMin(start); const e = toMin(end); const dur = (e - s + 1440) % 1440; let nightMin = 0; for (let i = 0; i &lt; dur; i++) { const cur = (s + i) % 1440; if (cur &gt;= 20*60 || cur &lt; 6*60) nightMin++; } return nightMin &gt; dur / 2; } function getShiftColor(start, end) { if (!start || !end) return null; const mid = (toMin(start) + toMin(end)) / 2; const midNorm = ((mid % 1440) + 1440) % 1440; for (const r of (data.settings.colorRules || [])) { const rs = toMin(r.start); const re = toMin(r.end); if (rs &lt; re) { if (midNorm &gt;= rs && midNorm &lt; re) return r.color; } else { if (midNorm &gt;= rs || midNorm &lt; re) return r.color; } } return null; } function validateShift(shift) { const errors = []; if (!shift || isLeaveType(shift.type)) return errors; if (!shift.start || !shift.end) { errors.push('Başlangıç ve bitiş saati zorunlu'); return errors; } const grossH = shiftHours(shift); const netH = Math.max(0, grossH - getAutoBreak(grossH) / 60); if (netH &gt; 11) errors.push(`Günlük 11 saat sınırı aşılıyor (net 
+function dateKey(d) {
+return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function monthKey(d) {
+return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+}
+function fmtTime(d) {
+return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+}
+function fmtDateTR(d) {
+const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const GUN = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+return d.getDate() + ' ' + AY[d.getMonth()] + ' ' + d.getFullYear() + ', ' + GUN[d.getDay()];
+}
+function initials(name) { return name.split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase(); }
+function shortName(fullName) {
+if (!fullName) return '';
+const parts = fullName.trim().split(/\s+/);
+if (parts.length === 1) return parts[0];
+return parts[0] + ' ' + parts[parts.length-1].charAt(0).toUpperCase() + '.';
+}
+function getWeekDatesForDate(date) {
+const d = new Date(date);
+const day = d.getDay();
+const diff = day === 0 ? -6 : 1 - day;
+const monday = new Date(d);
+monday.setDate(d.getDate() + diff);
+monday.setHours(0,0,0,0);
+const arr = [];
+for (let i = 0; i < 7; i++) { const x = new Date(monday); x.setDate(monday.getDate() + i); arr.push(x); }
+return arr;
+}
+function getCurrentWeekDates() { return getWeekDatesForDate(state.weekAnchorDate); }
+function toMin(hhmm) { if (!hhmm) return 0; const p = hhmm.split(':'); return parseInt(p[0],10) * 60 + (parseInt(p[1],10) || 0); }
+function isLeaveType(t) { return t === 'izinli' || t === RECEIVABLE_LEAVE_TYPE; }
+function shiftDurationMin(shift) {
+if (!shift || isLeaveType(shift.type)) return 0;
+if (!shift.start || !shift.end) return 0;
+return (toMin(shift.end) - toMin(shift.start) + 1440) % 1440;
+}
+function shiftHours(shift) { return shiftDurationMin(shift) / 60; }
+function getAutoBreak(grossHours) {
+const rules = (data.settings.breakRules || []).slice().sort(function(a,b){return a.minHours - b.minHours;});
+if (!rules.length) return 0;
+for (let i = 0; i < rules.length; i++) {
+const r = rules[i];
+const min = typeof r.minHours === 'number' ? r.minHours : 0;
+const max = typeof r.maxHours === 'number' ? r.maxHours : Infinity;
+if (grossHours >= min && grossHours < max) return r.breakMin;
+}
+return rules[rules.length-1].breakMin;
+}
+function shiftNetHours(shift) {
+if (!shift || isLeaveType(shift.type)) return 0;
+const grossH = shiftHours(shift);
+if (grossH <= 0) return 0;
+return Math.max(0, grossH - getAutoBreak(grossH) / 60);
+}
+function shiftAlacakHours(shift) {
+if (!shift || isLeaveType(shift.type)) return 0;
+return parseFloat(shift.alacakHours) || 0;
+}
+function fmtNetHoursShort(hours) {
+if (!hours || hours <= 0) return '0';
+const r = Math.round(hours * 100) / 100;
+if (Math.abs(r - Math.round(r)) < 0.01) return String(Math.round(r));
+let s = r.toFixed(2);
+s = s.replace(/0+latex
+/, ''); s = s.replace(/\.
 
-{netH.toFixed(1)} sa)); if (isNightShift(shift.start, shift.end) && netH &gt; 7.5) errors.push(Gece çalışması 7.5 saati aşamaz (net latex
-{netH.toFixed(1)} sa)`); return errors; } function getStaffWeekHours(staffId) { if (!staffId) return 0; let totalH = 0; getCurrentWeekDates().forEach(d =&gt; { const s = (data.weekPlan[dateKey(d)] || {})[staffId]; if (s && s.type && !isLeaveType(s.type)) totalH += shiftNetHours(s); }); return totalH; } function validatePTWeek() { const warnings = []; data.settings.staff.filter(s =&gt; s.role === 'pt').forEach(s =&gt; { const h = getStaffWeekHours(s.id); const max = data.settings.ptMaxWeeklyHours || 30; if (h &gt; max) warnings.push({ staff: s.name, hours: h, max, staffId: s.id }); }); return warnings; } function getDayTotalHours(dk) { let total = 0; Object.values(data.weekPlan[dk] || {}).forEach(s =&gt; { if (s && s.type && !isLeaveType(s.type)) total += shiftNetHours(s); }); return total; } function getDayCounts(dk) { let total = 0; Object.values(data.weekPlan[dk] || {}).forEach(s =&gt; { if (s && s.type && !isLeaveType(s.type)) total++; }); return { total }; } function getMonthByOffset(monthOffset) { const now = new Date(); return new Date(now.getFullYear(), now.getMonth() + (monthOffset || 0), 1); } function getMonthTarget(monthOffset) { const mk = monthKey(getMonthByOffset(monthOffset)); const map = data.settings.monthlyTargetsByMonth || {}; return typeof map[mk] === 'number' ? map[mk] : 0; } function setMonthTarget(monthOffset, value) { const mk = monthKey(getMonthByOffset(monthOffset)); if (!data.settings.monthlyTargetsByMonth) data.settings.monthlyTargetsByMonth = {}; if (!value) delete data.settings.monthlyTargetsByMonth[mk]; else data.settings.monthlyTargetsByMonth[mk] = value; lsSave(); } function getTotalMonthHoursForMonth(monthOffset) { const mPrefix = monthKey(getMonthByOffset(monthOffset)); const list = data.settings.staff || []; let totalH = 0; Object.entries(data.weekPlan || {}).forEach(([dk, dayPlan]) =&gt; { if (!dk.startsWith(mPrefix)) return; list.forEach(s =&gt; { const sh = (dayPlan || {})[s.id]; if (sh && sh.type && !isLeaveType(sh.type)) totalH += shiftNetHours(sh); }); }); return totalH; } function getMonthWeekBuckets(monthOffset) { const first = getMonthByOffset(monthOffset); const year = first.getFullYear(), month = first.getMonth(); const daysInMonth = new Date(year, month + 1, 0).getDate(); const buckets = []; const firstDay = first.getDay(); const firstDayMB = firstDay === 0 ? 7 : firstDay; let currentDay = 1, weekNum = 1; const firstWeekDays = firstDayMB === 1 ? 7 : (8 - firstDayMB); const firstWeekEnd = Math.min(firstWeekDays, daysInMonth); buckets.push({ index: weekNum, startDay: 1, endDay: firstWeekEnd, days: firstWeekEnd, isExtra: false, isPartial: firstDayMB !== 1 }); currentDay = firstWeekEnd + 1; weekNum++; while (currentDay + 6 &lt;= daysInMonth) { buckets.push({ index: weekNum, startDay: currentDay, endDay: currentDay + 6, days: 7, isExtra: false, isPartial: false }); currentDay += 7; weekNum++; } if (currentDay &lt;= daysInMonth) { const rem = daysInMonth - currentDay + 1; buckets.push({ index: weekNum, startDay: currentDay, endDay: daysInMonth, days: rem, isExtra: true, isPartial: false }); } return { buckets, daysInMonth }; } function getManualExtra(staffId, monthOffset) { const mk = monthKey(getMonthByOffset(monthOffset)); return (data.manualExtra[staffId] || {})[mk] || 0; } function setManualExtra(staffId, monthOffset, hours) { const mk = monthKey(getMonthByOffset(monthOffset)); if (!data.manualExtra[staffId]) data.manualExtra[staffId] = {}; if (!hours) delete data.manualExtra[staffId][mk]; else data.manualExtra[staffId][mk] = hours; lsSave(); } function getWeeklyExtraDetails(staffId, monthOffset) { const so = data.settings.staff.find(s =&gt; s.id === staffId); if (!so || (so.role !== 'ft' && so.role !== 'manager')) return { total: 0, weeks: [] }; const weeklyLimit = data.settings.weeklyLimitHours || 45; const mPrefix = monthKey(getMonthByOffset(monthOffset)); const weekMap = {}; Object.entries(data.weekPlan || {}).forEach(([dk, dayPlan]) =&gt; { const sh = (dayPlan || {})[staffId]; if (!sh || !sh.type || isLeaveType(sh.type)) return; const [y, mo, d] = dk.split('-').map(Number); const dt = new Date(y, mo - 1, d); const day = dt.getDay(); const diff = day === 0 ? -6 : 1 - day; const mon = new Date(dt); mon.setDate(dt.getDate() + diff); const wk = dateKey(mon); weekMap[wk] = (weekMap[wk] || 0) + shiftNetHours(sh); }); const weeks = []; Object.entries(weekMap).forEach(([wk, hours]) =&gt; { if (!wk.startsWith(mPrefix)) return; const over = hours - weeklyLimit; if (over &gt; 0.01) { const [y, mo, d] = wk.split('-').map(Number); const mon = new Date(y, mo - 1, d); const sun = new Date(mon); sun.setDate(mon.getDate() + 6); const AY = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara']; weeks.push({ weekKey: wk, label: `
-
-{mon.getDate()} {sun.getDate()} ${AY[sun.getMonth()]}, over, total: hours });
+/, '');
+s = s.replace('.', ',');
+return s;
+}
+function isNightShift(start, end) {
+const s = toMin(start); const e = toMin(end);
+const dur = (e - s + 1440) % 1440;
+let nightMin = 0;
+for (let i = 0; i < dur; i++) { const cur = (s + i) % 1440; if (cur >= 2060 || cur < 660) nightMin++; }
+return nightMin > dur / 2;
+}
+function getShiftColor(start, end) {
+if (!start || !end) return null;
+const mid = (toMin(start) + toMin(end)) / 2;
+const midNorm = ((mid % 1440) + 1440) % 1440;
+const rules = data.settings.colorRules || [];
+for (let i = 0; i < rules.length; i++) {
+const r = rules[i];
+const rs = toMin(r.start); const re = toMin(r.end);
+if (rs < re) { if (midNorm >= rs && midNorm < re) return r.color; }
+else { if (midNorm >= rs || midNorm < re) return r.color; }
+}
+return null;
+}
+function validateShift(shift) {
+const errors = [];
+if (!shift || isLeaveType(shift.type)) return errors;
+if (!shift.start || !shift.end) { errors.push('Başlangıç ve bitiş saati zorunlu'); return errors; }
+const grossH = shiftHours(shift);
+const netH = Math.max(0, grossH - getAutoBreak(grossH) / 60);
+if (netH > 11) errors.push('Günlük 11 saat sınırı aşılıyor (net ' + netH.toFixed(1) + ' sa)');
+if (isNightShift(shift.start, shift.end) && netH > 7.5) errors.push('Gece çalışması 7.5 saati aşamaz (net ' + netH.toFixed(1) + ' sa)');
+return errors;
+}
+function getStaffWeekHours(staffId) {
+if (!staffId) return 0;
+let totalH = 0;
+getCurrentWeekDates().forEach(function(d){
+const s = (data.weekPlan[dateKey(d)] || {})[staffId];
+if (s && s.type && !isLeaveType(s.type)) totalH += shiftNetHours(s);
+});
+return totalH;
+}
+function validatePTWeek() {
+const warnings = [];
+data.settings.staff.filter(function(s){return s.role === 'pt';}).forEach(function(s){
+const h = getStaffWeekHours(s.id);
+const max = data.settings.ptMaxWeeklyHours || 30;
+if (h > max) warnings.push({ staff: s.name, hours: h, max: max, staffId: s.id });
+});
+return warnings;
+}
+function getDayTotalHours(dk) {
+let total = 0;
+Object.values(data.weekPlan[dk] || {}).forEach(function(s){
+if (s && s.type && !isLeaveType(s.type)) total += shiftNetHours(s);
+});
+return total;
+}
+function getDayCounts(dk) {
+let total = 0;
+Object.values(data.weekPlan[dk] || {}).forEach(function(s){
+if (s && s.type && !isLeaveType(s.type)) total++;
+});
+return { total: total };
+}
+function getMonthByOffset(monthOffset) {
+const now = new Date();
+return new Date(now.getFullYear(), now.getMonth() + (monthOffset || 0), 1);
+}
+function getMonthTarget(monthOffset) {
+const mk = monthKey(getMonthByOffset(monthOffset));
+const map = data.settings.monthlyTargetsByMonth || {};
+return typeof map[mk] === 'number' ? map[mk] : 0;
+}
+function setMonthTarget(monthOffset, value) {
+const mk = monthKey(getMonthByOffset(monthOffset));
+if (!data.settings.monthlyTargetsByMonth) data.settings.monthlyTargetsByMonth = {};
+if (!value) delete data.settings.monthlyTargetsByMonth[mk];
+else data.settings.monthlyTargetsByMonth[mk] = value;
+lsSave();
+}
+function getTotalMonthHoursForMonth(monthOffset) {
+const mPrefix = monthKey(getMonthByOffset(monthOffset));
+const list = data.settings.staff || [];
+let totalH = 0;
+Object.entries(data.weekPlan || {}).forEach(function(entry){
+const dk = entry[0]; const dayPlan = entry[1];
+if (dk.indexOf(mPrefix) !== 0) return;
+list.forEach(function(s){
+const sh = (dayPlan || {})[s.id];
+if (sh && sh.type && !isLeaveType(sh.type)) totalH += shiftNetHours(sh);
+});
+});
+return totalH;
+}
+function getMonthWeekBuckets(monthOffset) {
+const first = getMonthByOffset(monthOffset);
+const year = first.getFullYear(), month = first.getMonth();
+const daysInMonth = new Date(year, month + 1, 0).getDate();
+const buckets = [];
+const firstDay = first.getDay();
+const firstDayMB = firstDay === 0 ? 7 : firstDay;
+let currentDay = 1, weekNum = 1;
+const firstWeekDays = firstDayMB === 1 ? 7 : (8 - firstDayMB);
+const firstWeekEnd = Math.min(firstWeekDays, daysInMonth);
+buckets.push({ index: weekNum, startDay: 1, endDay: firstWeekEnd, days: firstWeekEnd, isExtra: false, isPartial: firstDayMB !== 1 });
+currentDay = firstWeekEnd + 1; weekNum++;
+while (currentDay + 6 <= daysInMonth) {
+buckets.push({ index: weekNum, startDay: currentDay, endDay: currentDay + 6, days: 7, isExtra: false, isPartial: false });
+currentDay += 7; weekNum++;
+}
+if (currentDay <= daysInMonth) {
+const rem = daysInMonth - currentDay + 1;
+buckets.push({ index: weekNum, startDay: currentDay, endDay: daysInMonth, days: rem, isExtra: true, isPartial: false });
+}
+return { buckets: buckets, daysInMonth: daysInMonth };
+}
+function getManualExtra(staffId, monthOffset) {
+const mk = monthKey(getMonthByOffset(monthOffset));
+return (data.manualExtra[staffId] || {})[mk] || 0;
+}
+function setManualExtra(staffId, monthOffset, hours) {
+const mk = monthKey(getMonthByOffset(monthOffset));
+if (!data.manualExtra[staffId]) data.manualExtra[staffId] = {};
+if (!hours) delete data.manualExtra[staffId][mk];
+else data.manualExtra[staffId][mk] = hours;
+lsSave();
+}
+function getWeeklyExtraDetails(staffId, monthOffset) {
+const so = data.settings.staff.find(function(s){return s.id === staffId;});
+if (!so || (so.role !== 'ft' && so.role !== 'manager')) return { total: 0, weeks: [] };
+const weeklyLimit = data.settings.weeklyLimitHours || 45;
+const mPrefix = monthKey(getMonthByOffset(monthOffset));
+const weekMap = {};
+Object.entries(data.weekPlan || {}).forEach(function(entry){
+const dk = entry[0]; const dayPlan = entry[1];
+const sh = (dayPlan || {})[staffId];
+if (!sh || !sh.type || isLeaveType(sh.type)) return;
+const p = dk.split('-').map(Number);
+const dt = new Date(p[0], p[1]-1, p[2]);
+const day = dt.getDay();
+const diff = day === 0 ? -6 : 1 - day;
+const mon = new Date(dt);
+mon.setDate(dt.getDate() + diff);
+const wk = dateKey(mon);
+weekMap[wk] = (weekMap[wk] || 0) + shiftNetHours(sh);
+});
+const weeks = [];
+Object.entries(weekMap).forEach(function(entry){
+const wk = entry[0]; const hours = entry[1];
+if (wk.indexOf(mPrefix) !== 0) return;
+const over = hours - weeklyLimit;
+if (over > 0.01) {
+const p = wk.split('-').map(Number);
+const mon = new Date(p[0], p[1]-1, p[2]);
+const sun = new Date(mon);
+sun.setDate(mon.getDate() + 6);
+const AY = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+weeks.push({ weekKey: wk, label: mon.getDate() + ' ' + AY[mon.getMonth()] + ' – ' + sun.getDate() + ' ' + AY[sun.getMonth()], over: over, total: hours });
 }
 });
-weeks.sort((a, b) => a.weekKey.localeCompare(b.weekKey));
-return { total: weeks.reduce((s, w) => s + w.over, 0), weeks };
+weeks.sort(function(a,b){return a.weekKey.localeCompare(b.weekKey);});
+let totalOver = 0;
+weeks.forEach(function(w){totalOver += w.over;});
+return { total: totalOver, weeks: weeks };
 }
 function getReceivableUsageDetails(staffId, monthOffset) {
 const mPrefix = monthKey(getMonthByOffset(monthOffset));
 const uses = [];
-Object.entries(data.weekPlan || {}).forEach(([dk, dayPlan]) => {
-if (!dk.startsWith(mPrefix)) return;
+Object.entries(data.weekPlan || {}).forEach(function(entry){
+const dk = entry[0]; const dayPlan = entry[1];
+if (dk.indexOf(mPrefix) !== 0) return;
 const sh = (dayPlan || {})[staffId];
 if (!sh) return;
 if (sh.type === RECEIVABLE_LEAVE_TYPE) uses.push({ dateKey: dk, hours: RECEIVABLE_LEAVE_HOURS });
 else if (!isLeaveType(sh.type) && shiftAlacakHours(sh) > 0) uses.push({ dateKey: dk, hours: shiftAlacakHours(sh) });
 });
-uses.sort((a, b) => a.dateKey.localeCompare(b.dateKey));
-return { total: uses.reduce((s, u) => s + u.hours, 0), uses };
+uses.sort(function(a,b){return a.dateKey.localeCompare(b.dateKey);});
+let total = 0;
+uses.forEach(function(u){total += u.hours;});
+return { total: total, uses: uses };
 }
-function getExtraHours(staffId, monthOffset) { return getWeeklyExtraDetails(staffId, monthOffset).total + getManualExtra(staffId, monthOffset); }
+function getExtraHours(staffId, monthOffset) {
+return getWeeklyExtraDetails(staffId, monthOffset).total + getManualExtra(staffId, monthOffset);
+}
 function getUsedReceivableHours(staffId, monthOffset) { return getReceivableUsageDetails(staffId, monthOffset).total; }
 function getNetReceivableHours(staffId, monthOffset) { return getExtraHours(staffId, monthOffset) - getUsedReceivableHours(staffId, monthOffset); }
 function getAvailableReceivableForWeek(staffId) {
@@ -506,7 +701,7 @@ if (r >= 0.9) return 'warn';
 return 'good';
 }
 function getStaffColor(staffId) {
-const s = data.settings.staff.find(x => x.id === staffId);
+const s = data.settings.staff.find(function(x){return x.id === staffId;});
 if (!s) return null;
 if (s.color && s.color.bg) return s.color;
 return DEFAULT_STAFF_COLORS[s.role] || DEFAULT_STAFF_COLORS.pt;
@@ -533,7 +728,7 @@ const endOfMonth = new Date(year, month, daysInMonth);
 while (mon <= endOfMonth) {
 const end = new Date(mon);
 end.setDate(mon.getDate() + 6);
-weeks.push({ start: new Date(mon), end });
+weeks.push({ start: new Date(mon), end: end });
 mon = new Date(mon);
 mon.setDate(mon.getDate() + 7);
 }
@@ -549,10 +744,10 @@ const FB_DOC_PATH = ['shared', 'state'];
 function initFirebase() {
 const fb = window.__fb;
 if (!fb) { setTimeout(initFirebase, 100); return; }
-fb.signInAnonymously(fb.auth).catch(err => {
+fb.signInAnonymously(fb.auth).catch(function(err){
 console.error('Anonim giriş hatası:', err);
 });
-fb.onAuthStateChanged(fb.auth, (user) => {
+fb.onAuthStateChanged(fb.auth, function(user){
 if (!user) return;
 _fbReady = true;
 fbSubscribe();
@@ -561,7 +756,7 @@ fbSubscribe();
 
 async function fbSubscribe() {
 const fb = window.__fb;
-const ref = fb.doc(fb.db, ...FB_DOC_PATH);
+const ref = fb.doc(fb.db, FB_DOC_PATH[0], FB_DOC_PATH[1]);
 try {
 const snap = await fb.getDoc(ref);
 if (snap.exists()) {
@@ -575,11 +770,11 @@ console.error('İlk okuma hatası:', e);
 render();
 return;
 }
-fb.onSnapshot(ref, (s) => {
+fb.onSnapshot(ref, function(s){
 if (!s.exists()) return;
 if (s.metadata.hasPendingWrites) return;
 applyRemote(s.data(), true);
-}, (err) => {
+}, function(err){
 console.error('Snapshot hatası:', err);
 });
 render();
@@ -608,10 +803,10 @@ const fb = window.__fb;
 if (!fb || !_fbReady) return;
 setSyncBadge('saving');
 try {
-await fb.setDoc(fb.doc(fb.db, ...FB_DOC_PATH), {
+await fb.setDoc(fb.doc(fb.db, FB_DOC_PATH[0], FB_DOC_PATH[1]), {
 settings: data.settings,
 weekPlan: data.weekPlan,
-manualExtra: data.manualExtra,
+manualExtra: data.manualExtra
 });
 setSyncBadge('online');
 } catch (e) {
@@ -623,7 +818,7 @@ setSyncBadge('offline');
 function lsSave() {
 if (_applyingRemote) return;
 clearTimeout(_saveTimer);
-_saveTimer = setTimeout(() => { if (_fbReady) fbSaveNow(); }, 400);
+_saveTimer = setTimeout(function(){ if (_fbReady) fbSaveNow(); }, 400);
 }
 
 function setSyncBadge(mode) {
@@ -648,21 +843,24 @@ const plan = [
 { nejla: S, hikmet: S, kader: A, seyma: A, tugba: I, ayse: S },
 { nejla: S, hikmet: A, kader: S, seyma: T, tugba: S, ayse: A },
 { nejla: A, hikmet: T, kader: A, seyma: T, tugba: S, ayse: A },
-{ nejla: I, hikmet: S, kader: A, seyma: I, tugba: A, ayse: S },
+{ nejla: I, hikmet: S, kader: A, seyma: I, tugba: A, ayse: S }
  ];
-weekDates.forEach((d, i) => {
+weekDates.forEach(function(d, i){
 const dk = dateKey(d);
 data.weekPlan[dk] = {};
-Object.keys(plan[i]).forEach(sid => { data.weekPlan[dk][sid] = Object.assign({}, plan[i][sid]); });
+Object.keys(plan[i]).forEach(function(sid){ data.weekPlan[dk][sid] = Object.assign({}, plan[i][sid]); });
 });
 }
-
+</script>
+<script>
 // ============ AKSİYONLAR ============
 function showToast(text, kind) {
 kind = kind || 'success';
-state.toast = { text, kind };
+state.toast = { text: text, kind: kind };
 render();
-setTimeout(() => { if (state.toast && state.toast.text === text) { state.toast = null; render(); } }, 2200);
+setTimeout(function(){
+if (state.toast && state.toast.text === text) { state.toast = null; render(); }
+}, 2200);
 }
 function saveHourTarget() {
 const input = document.getElementById('hourTargetInput');
@@ -704,16 +902,100 @@ state.weekAnchorDate = getFirstMondayOfMonth(state.selectedMonthOffset);
 }
 render();
 }
+
+// ============ SÜRÜKLE-BIRAK SIRALAMA ============
+function startDragSort() {
+const container = document.getElementById('weeklyHoursScroll');
+if (!container) return;
+const items = Array.from(container.querySelectorAll('[data-wh-staff]'));
+let dragIdx = -1;
+let dragged = null;
+
+const onDown = function(e, item, idx) {
+if (e.target.closest('[data-staff-name-cell]')) return;
+dragged = item;
+dragIdx = idx;
+item.classList.add('dragging');
+};
+const onMove = function(e) {
+if (!dragged) return;
+const x = e.touches ? e.touches[0].clientX : e.clientX;
+const y = e.touches ? e.touches[0].clientY : e.clientY;
+items.forEach(function(it){
+if (it === dragged) return;
+const r = it.getBoundingClientRect();
+it.classList.remove('drag-over-left', 'drag-over-right');
+});
+};
+const onUp = function(e) {
+if (!dragged) return;
+const x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+const y = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+let targetIdx = -1;
+let side = 'right';
+items.forEach(function(it, idx){
+const r = it.getBoundingClientRect();
+if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+targetIdx = idx;
+side = x < r.left + r.width / 2 ? 'left' : 'right';
+}
+});
+if (targetIdx >= 0 && targetIdx !== dragIdx) {
+const staffList = data.settings.staff;
+const movedId = items[dragIdx].dataset.whStaff;
+const fromIdx = staffList.findIndex(function(s){return s.id === movedId;});
+if (fromIdx >= 0) {
+const moved = staffList.splice(fromIdx, 1)[0];
+const targetId = items[targetIdx].dataset.whStaff;
+let toIdx = staffList.findIndex(function(s){return s.id === targetId;});
+if (toIdx < 0) toIdx = staffList.length;
+else if (side === 'right') toIdx = toIdx + 1;
+staffList.splice(toIdx, 0, moved);
+lsSave();
+showToast('↕️ Sıralama kaydedildi', 'info');
+}
+}
+items.forEach(function(it){ it.classList.remove('dragging', 'drag-over-left', 'drag-over-right'); });
+dragged = null;
+dragIdx = -1;
+render();
+};
+
+items.forEach(function(item, idx){
+let pressTimer = null;
+let isDragging = false;
+const startPress = function(e) {
+if (e.target.closest('input')) return;
+pressTimer = setTimeout(function(){
+isDragging = true;
+if (navigator.vibrate) navigator.vibrate(15);
+onDown(e, item, idx);
+}, 220);
+};
+const cancelPress = function(e) {
+if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+if (isDragging) { onUp(e); isDragging = false; }
+};
+item.addEventListener('touchstart', function(e){ startPress(e); }, { passive: true });
+item.addEventListener('touchmove', function(e){ if (isDragging) { e.preventDefault(); onMove(e); } }, { passive: false });
+item.addEventListener('touchend', function(e){ cancelPress(e); });
+item.addEventListener('mousedown', function(e){ e.preventDefault(); startPress(e); });
+item.addEventListener('mousemove', function(e){ if (isDragging) onMove(e); });
+item.addEventListener('mouseup', function(e){ cancelPress(e); });
+});
+}
+
+// ============ VARDİYA DÜZENLEME ============
 function openShiftEdit(staffId, dk) {
 const cur = (data.weekPlan[dk] || {})[staffId] || null;
-state.modal = { type: 'shiftEdit', staffId, dateKey: dk, activeChipId: 'chip_time',
+state.modal = { type: 'shiftEdit', staffId: staffId, dateKey: dk, activeChipId: 'chip_time',
 startHour: null, startMinute: null, endHour: null, endMinute: null,
 existing: cur, step: 'start-hour' };
 state.alacakToggleOn = false;
 state.alacakHours = 3;
 if (cur && !isLeaveType(cur.type)) {
-if (cur.start) { const [h, m] = cur.start.split(':'); state.modal.startHour = parseInt(h, 10); state.modal.startMinute = parseInt(m, 10); }
-if (cur.end) { const [h, m] = cur.end.split(':'); state.modal.endHour = parseInt(h, 10); state.modal.endMinute = parseInt(m, 10); }
+if (cur.start) { const p = cur.start.split(':'); state.modal.startHour = parseInt(p[0],10); state.modal.startMinute = parseInt(p[1],10); }
+if (cur.end) { const p = cur.end.split(':'); state.modal.endHour = parseInt(p[0],10); state.modal.endMinute = parseInt(p[1],10); }
 if (shiftAlacakHours(cur) > 0) { state.alacakToggleOn = true; state.alacakHours = shiftAlacakHours(cur); }
 }
 render();
@@ -721,18 +1003,118 @@ render();
 function autoSaveShift(force) {
 const m = state.modal; if (!m) return;
 if (m.startHour === null || m.startMinute === null || m.endHour === null || m.endMinute === null) return;
-const startStr = ${String(m.startHour).padStart(2,'0')}:$`{String(m.startMinute).padStart(2,'0')}`; const endStr =${String(m.endHour).padStart(2,'0')}:{startStr} - latex
-{endStr}`, 'success'); render(); } function saveShiftAsIzinli() { const m = state.modal; if (!m) return; if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {}; data.weekPlan[m.dateKey][m.staffId] = { type: 'izinli', start: '', end: '' }; lsSave(); state.modal = null; showToast('🏖️ İzinli kaydedildi', 'success'); render(); } function saveShiftAsAlacakIzinli() { const m = state.modal; if (!m) return; const avail = getAvailableReceivableForWeek(m.staffId); if (avail &lt; RECEIVABLE_LEAVE_HOURS) { showToast('Yetersiz alacak', 'error'); return; } if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {}; data.weekPlan[m.dateKey][m.staffId] = { type: RECEIVABLE_LEAVE_TYPE, start: '', end: '' }; lsSave(); state.modal = null; showToast('💰 Alacak izni (7,5 sa)', 'success'); render(); } function saveShiftAsFull(chip) { const m = state.modal; if (!m) return; const start = chip.start || '10:00'; const end = chip.end || '22:00'; if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {}; data.weekPlan[m.dateKey][m.staffId] = { type: 'tam', start, end }; lsSave(); state.modal = null; showToast(`✅ 
-
-{chip.name} kaydedildi, 'success'); render(); } function deleteShiftEdit() { const m = state.modal; if (!m) return; if (data.weekPlan[m.dateKey]) { delete data.weekPlan[m.dateKey][m.staffId]; if (Object.keys(data.weekPlan[m.dateKey]).length === 0) delete data.weekPlan[m.dateKey]; } lsSave(); state.modal = null; showToast('🗑️ Vardiya silindi', 'info'); render(); } function selectChip(chipId) { const m = state.modal; if (!m) return; const chip = data.settings.shiftChips.find(c =&gt; c.id === chipId); if (!chip) return; if (chip.type === 'full') return saveShiftAsFull(chip); if (chip.type === 'izinli') return saveShiftAsIzinli(); if (chip.type === RECEIVABLE_LEAVE_TYPE) { const avail = getAvailableReceivableForWeek(m.staffId); if (avail &lt; RECEIVABLE_LEAVE_HOURS) { showToast('Yetersiz alacak', 'error'); return; } return saveShiftAsAlacakIzinli(); } m.activeChipId = chipId; m.step = 'start-hour'; render(); } function pickHour(which, hour) { const m = state.modal; if (!m) return; if (which === 'start') { m.startHour = hour; m.startMinute = null; m.step = 'start-minute'; } else { m.endHour = hour; m.endMinute = null; m.step = 'end-minute'; } render(); } function pickMinute(which, minute) { const m = state.modal; if (!m) return; if (which === 'start') { m.startMinute = minute; m.step = 'end-hour'; render(); } else { m.endMinute = minute; setTimeout(() =&gt; autoSaveShift(false), 0); } } function goToManual() { const m = state.modal; if (!m) return; m.step = 'manual'; render(); } function toggleAlacak() { const m = state.modal; if (!m) return; const avail = getAvailableReceivableForWeek(m.staffId); if (!state.alacakToggleOn && avail &lt;= 0.01) { showToast('Kullanılabilir alacak yok', 'error'); return; } state.alacakToggleOn = !state.alacakToggleOn; render(); } function setAlacakHours(v) { state.alacakHours = v; render(); } function goToWarningCell(staffId, dateKey) { if (!staffId || !dateKey) return; const cell = document.querySelector(.plan-cell[data-staff="{dateKey}"]`);
-if (cell) cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+const startStr = String(m.startHour).padStart(2,'0') + ':' + String(m.startMinute).padStart(2,'0');
+const endStr = String(m.endHour).padStart(2,'0') + ':' + String(m.endMinute).padStart(2,'0');
+const durH = ((toMin(endStr) - toMin(startStr) + 1440) % 1440) / 60;
+let type = 'sabah';
+if (durH >= 10) type = 'tam';
+else if (isNightShift(startStr, endStr)) type = 'gece';
+else if (toMin(startStr) >= 12 * 60) type = 'aksam';
+const mData = { type: type, start: startStr, end: endStr };
+if (state.alacakToggleOn && state.alacakHours > 0) mData.alacakHours = state.alacakHours;
+const errors = validateShift(mData);
+if (errors.length > 0 && !force) {
+state.warnConfirm = { mData: mData, dateKey: m.dateKey, staffId: m.staffId, errors: errors };
+render(); return;
+}
+if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {};
+data.weekPlan[m.dateKey][m.staffId] = mData;
+lsSave();
+state.modal = null; state.warnConfirm = null;
+showToast('✅ ' + startStr + ' - ' + endStr, 'success');
+render();
+}
+function saveShiftAsIzinli() {
+const m = state.modal; if (!m) return;
+if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {};
+data.weekPlan[m.dateKey][m.staffId] = { type: 'izinli', start: '', end: '' };
+lsSave(); state.modal = null;
+showToast('🏖️ İzinli kaydedildi', 'success'); render();
+}
+function saveShiftAsAlacakIzinli() {
+const m = state.modal; if (!m) return;
+const avail = getAvailableReceivableForWeek(m.staffId);
+if (avail < RECEIVABLE_LEAVE_HOURS) { showToast('Yetersiz alacak', 'error'); return; }
+if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {};
+data.weekPlan[m.dateKey][m.staffId] = { type: RECEIVABLE_LEAVE_TYPE, start: '', end: '' };
+lsSave(); state.modal = null;
+showToast('💰 Alacak izni (7,5 sa)', 'success'); render();
+}
+function saveShiftAsFull(chip) {
+const m = state.modal; if (!m) return;
+const start = chip.start || '10:00';
+const end = chip.end || '22:00';
+if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {};
+data.weekPlan[m.dateKey][m.staffId] = { type: 'tam', start: start, end: end };
+lsSave(); state.modal = null;
+showToast('✅ ' + chip.name + ' kaydedildi', 'success'); render();
+}
+function deleteShiftEdit() {
+const m = state.modal; if (!m) return;
+if (data.weekPlan[m.dateKey]) {
+delete data.weekPlan[m.dateKey][m.staffId];
+if (Object.keys(data.weekPlan[m.dateKey]).length === 0) delete data.weekPlan[m.dateKey];
+}
+lsSave(); state.modal = null;
+showToast('🗑️ Vardiya silindi', 'info'); render();
+}
+function selectChip(chipId) {
+const m = state.modal; if (!m) return;
+const chip = data.settings.shiftChips.find(function(c){return c.id === chipId;});
+if (!chip) return;
+if (chip.type === 'full') { saveShiftAsFull(chip); return; }
+if (chip.type === 'izinli') { saveShiftAsIzinli(); return; }
+if (chip.type === RECEIVABLE_LEAVE_TYPE) {
+const avail = getAvailableReceivableForWeek(m.staffId);
+if (avail < RECEIVABLE_LEAVE_HOURS) { showToast('Yetersiz alacak', 'error'); return; }
+saveShiftAsAlacakIzinli(); return;
+}
+m.activeChipId = chipId;
+m.step = 'start-hour';
+render();
+}
+function pickHour(which, hour) {
+const m = state.modal; if (!m) return;
+if (which === 'start') { m.startHour = hour; m.startMinute = null; m.step = 'start-minute'; }
+else { m.endHour = hour; m.endMinute = null; m.step = 'end-minute'; }
+render();
+}
+function pickMinute(which, minute) {
+const m = state.modal; if (!m) return;
+if (which === 'start') { m.startMinute = minute; m.step = 'end-hour'; render(); }
+else { m.endMinute = minute; setTimeout(function(){ autoSaveShift(false); }, 0); }
+}
+function goToManual() { const m = state.modal; if (!m) return; m.step = 'manual'; render(); }
+function toggleAlacak() {
+const m = state.modal; if (!m) return;
+const avail = getAvailableReceivableForWeek(m.staffId);
+if (!state.alacakToggleOn && avail <= 0.01) { showToast('Kullanılabilir alacak yok', 'error'); return; }
+state.alacakToggleOn = !state.alacakToggleOn;
+render();
+}
+function setAlacakHours(v) { state.alacakHours = v; render(); }
+function goToWarningCell(staffId, dateKey) {
+if (!staffId || !dateKey) { showToast('Hedef gün bulunamadı', 'warn'); return; }
+document.querySelectorAll('.plan-cell.edit-hint').forEach(function(el){ el.classList.remove('edit-hint'); });
+const cell = document.querySelector('.plan-cell[data-staff="' + staffId + '"][data-date="' + dateKey + '"]');
+if (!cell) { showToast('Hedef gün bulunamadı', 'warn'); return; }
+cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
+cell.classList.add('edit-hint');
+const rect = cell.getBoundingClientRect();
+const tooltip = document.createElement('div');
+tooltip.className = 'plan-cell-tooltip';
+tooltip.textContent = '✏️ Düzenlemek için tıkla';
+tooltip.style.left = Math.max(8, rect.left + rect.width / 2 - 80) + 'px';
+tooltip.style.top = Math.max(60, rect.top - 40) + 'px';
+document.body.appendChild(tooltip);
+setTimeout(function(){ tooltip.remove(); }, 3500);
 }
 
-// ============ PERSONEL ============
+// ============ PERSONEL YÖNETİMİ ============
 function openStaffManager() { state.modal = { type: 'staffManager' }; render(); }
 function openStaffForm(staffId) {
 if (staffId) {
-const st = data.settings.staff.find(s => s.id === staffId);
+const st = data.settings.staff.find(function(s){return s.id === staffId;});
 state.editingStaff = Object.assign({}, st, { color: st.color ? Object.assign({}, st.color) : null });
 } else {
 state.editingStaff = { id: 'staff_' + Date.now(), name: '', role: 'pt', title: '', color: Object.assign({}, DEFAULT_STAFF_COLORS.pt) };
@@ -744,7 +1126,7 @@ function saveStaffForm() {
 const st = state.editingStaff;
 if (!st || !st.name.trim()) { showToast('İsim girin', 'error'); return; }
 if (!st.title || !st.title.trim()) st.title = (ROLES[st.role] && ROLES[st.role].label) || 'Personel';
-const idx = data.settings.staff.findIndex(s => s.id === st.id);
+const idx = data.settings.staff.findIndex(function(s){return s.id === st.id;});
 if (idx >= 0) data.settings.staff[idx] = st;
 else data.settings.staff.push(st);
 lsSave();
@@ -755,8 +1137,10 @@ render();
 }
 function deleteStaff(staffId) {
 if (!confirm('Bu personeli silmek istediğinize emin misiniz?')) return;
-data.settings.staff = data.settings.staff.filter(s => s.id !== staffId);
-Object.keys(data.weekPlan).forEach(dk => { if (data.weekPlan[dk][staffId]) delete data.weekPlan[dk][staffId]; });
+data.settings.staff = data.settings.staff.filter(function(s){return s.id !== staffId;});
+Object.keys(data.weekPlan).forEach(function(dk){
+if (data.weekPlan[dk][staffId]) delete data.weekPlan[dk][staffId];
+});
 lsSave();
 showToast('🗑️ Personel silindi', 'info');
 render();
@@ -771,7 +1155,7 @@ state.chipEditEmojiTarget = null;
 render();
 }
 
-// ============ TEMİZLE ============
+// ============ SIFIRLA ============
 function openClearMenu() { state.clearMenuOpen = true; state.clearSelectedStaff = []; state.clearSelectedDays = []; render(); }
 function closeClearMenu() { state.clearMenuOpen = false; render(); }
 function toggleClearStaff(id) {
@@ -787,7 +1171,7 @@ else state.clearSelectedDays.push(i);
 render();
 }
 function selectAllClearStaff() {
-const all = data.settings.staff.map(s => s.id);
+const all = data.settings.staff.map(function(s){return s.id;});
 state.clearSelectedStaff = state.clearSelectedStaff.length === all.length ? [] : all;
 render();
 }
@@ -800,15 +1184,17 @@ if (!state.clearSelectedStaff.length) { showToast('Personel seç', 'warn'); retu
 if (!state.clearSelectedDays.length) { showToast('Gün seç', 'warn'); return; }
 const weekDates = getCurrentWeekDates();
 let count = 0;
-state.clearSelectedDays.forEach(i => {
+state.clearSelectedDays.forEach(function(i){
 const dk = dateKey(weekDates[i]);
 if (!data.weekPlan[dk]) return;
-state.clearSelectedStaff.forEach(sid => { if (data.weekPlan[dk][sid]) { delete data.weekPlan[dk][sid]; count++; } });
+state.clearSelectedStaff.forEach(function(sid){
+if (data.weekPlan[dk][sid]) { delete data.weekPlan[dk][sid]; count++; }
+});
 if (!Object.keys(data.weekPlan[dk]).length) delete data.weekPlan[dk];
 });
 lsSave();
 state.clearMenuOpen = false;
-showToast(🗑️ ${count} vardiya silindi`, 'info');
+showToast('🗑️ ' + count + ' vardiya silindi', 'info');
 render();
 }
 
@@ -829,35 +1215,50 @@ state.selectedMonthOffset = (start.getFullYear() - new Date().getFullYear()) * 1
 state.weekPickerOpen = false;
 render();
 }
-
+</script>
+<script>
 // ============ RENDER ============
 function render() {
 const app = document.getElementById('app');
 if (!app) return;
-app.innerHTML = &lt;div class="sync-badge${_fbReady ? 'online' : 'saving'}" id="syncBadge"><span class="dot"></span> {renderHeader()}
-{renderHourTargetCard()}
-{renderWeekPlan()}
-{renderWarnings()}
-{state.showSettings ? renderSettingsPage() : ''}
-{state.modal && state.modal.type === 'staffManager' ? renderStaffManagerModal() : ''}
-{state.chipEditEmojiTarget !== null ? renderEmojiPicker() : ''}
-{renderWarnConfirmModal()}
-{state.weekPickerOpen ? renderWeekPickerModal() : ''}
-${state.toast ? renderToast() : ''};
+app.innerHTML =
+'<div class="sync-badge ' + (_fbReady ? 'online' : 'saving') + '" id="syncBadge"><span class="dot"></span> ' + (_fbReady ? 'CANLI' : 'BAĞLANIYOR') + '</div>' +
+renderHeader() +
+renderDateTimeBar() +
+renderHourTargetCard() +
+renderWeeklyHoursCard() +
+renderWeekPlan() +
+renderReceivableCard() +
+renderWarnings() +
+renderFooter() +
+(state.showSettings ? renderSettingsPage() : '') +
+(state.modal && state.modal.type === 'shiftEdit' ? renderShiftEditModal() : '') +
+(state.modal && state.modal.type === 'staffManager' ? renderStaffManagerModal() : '') +
+(state.modal && state.modal.type === 'staffForm' ? renderStaffFormModal() : '') +
+(state.chipEditEmojiTarget !== null ? renderEmojiPicker() : '') +
+renderReceivableDetailModal() +
+renderWarnConfirmModal() +
+(state.clearMenuOpen ? renderClearModal() : '') +
+(state.weekPickerOpen ? renderWeekPickerModal() : '') +
+(state.toast ? renderToast() : '');
 bindEvents();
 if (state.showSettings) renderSettingsContent();
+startDragSort();
 }
 
 function renderHeader() {
-return <div class="top-header"&gt; &lt;button class="avatar-btn"&gt;${MANAGER.initials}</button>
-<div class="greeting-block">
-<div class="greeting-hi">{data.settings.storeName}</div>
-</div>
-<button class="icon-btn add-staff" id="addStaffBtn">＋</button>
-<button class="icon-btn latex
-{state.showSettings ? 'settings-active' : ''}" id="settingsBtn"&gt;⚙️&lt;/button&gt; &lt;/div>`; } function renderDateTimeBar() { return `<div class="datetime-bar"&gt;&lt;span&gt;
-
-{fmtDateTR(state.now)}</span><span class="dt-sep">•</span><span class="dt-clock">${fmtTime(state.now)}&lt;/span&gt;&lt;/div>;
+return '<div class="top-header">' +
+'<button class="avatar-btn">' + MANAGER.initials + '</button>' +
+'<div class="greeting-block">' +
+'<div class="greeting-hi">' + MANAGER.fullName + ' 👋</div>' +
+'<div class="greeting-sub"><span class="live-dot"></span>' + data.settings.storeName + '</div>' +
+'</div>' +
+'<button class="icon-btn add-staff" id="addStaffBtn">＋</button>' +
+'<button class="icon-btn ' + (state.showSettings ? 'settings-active' : '') + '" id="settingsBtn">⚙️</button>' +
+'</div>';
+}
+function renderDateTimeBar() {
+return '<div class="datetime-bar"><span>' + fmtDateTR(state.now) + '</span><span class="dt-sep">•</span><span class="dt-clock">' + fmtTime(state.now) + '</span></div>';
 }
 
 function renderHourTargetCard() {
@@ -878,58 +1279,110 @@ else oranCls = 'bad';
 }
 const isEditing = state.editingHourTarget;
 const hasTarget = monthTarget > 0;
-const targetDisplay = isEditing
-? <input class="ht-input" id="hourTargetInput" type="tel" inputmode="numeric" value="${monthTarget || ''}" placeholder="0" />:<span class="ht-value {hasTarget ? monthTarget : '—'}</span>; const weekLineHtml = buckets.map(b =&gt; { let label; if (b.isExtra) label =Kalan {b.days}g); else label ={label}</span><span class="htw-val {hours}</span></span>; }).join('&lt;span class="htw-sep"&gt;·&lt;/span&gt;'); const monthPickerHtml = state.showMonthPicker ?
-<div class="month-picker">
-latex
-{Array.from({ length: 12 }, (_, i) =&gt; { const offset = -i; const d = new Date(new Date().getFullYear(), new Date().getMonth() + offset, 1); const isActive = offset === monthOffset; return `<div class="month-picker-item 
+let targetDisplay;
+if (isEditing) {
+targetDisplay = '<input class="ht-input" id="hourTargetInput" type="tel" inputmode="numeric" value="' + (monthTarget || '') + '" placeholder="0" />';
+} else {
+targetDisplay = '<span class="ht-value ' + (hasTarget ? '' : 'empty') + '" id="hourTargetDisplay">' + (hasTarget ? monthTarget : '—') + '</span>';
+}
+const weekLineHtml = buckets.map(function(b){
+let label;
+if (b.isExtra) label = 'Kalan ' + b.days + ' Gün';
+else if (b.isPartial) label = '1. Hafta (' + b.days + 'g)';
+else label = b.index + '. Hafta';
+const hours = monthTarget > 0 ? Math.round(monthTarget * (b.days / daysInMonth)) : 0;
+return '<span class="htw-item"><span class="htw-lbl">' + label + '</span><span class="htw-val ' + (b.isExtra ? 'extra' : '') + '">' + hours + '</span></span>';
+}).join('<span class="htw-sep">·</span>');
 
-{isActive ? 'active' : ''}" data-month-offset="{AY[d.getMonth()]} {isActive ? '<span class="mp-badge">Aktif</span>' : ''}
-</div>; }).join('')} &lt;/div> : '';
-return <div class="hour-target-card"&gt; &lt;div class="hour-target-head ${state.showMonthPicker ? 'open' : ''}">
-<div class="hour-target-title">🎯 SAAT HEDEFİ</div>
-<button class="hour-target-toggle" id="monthPickerToggle">▼</button>
-</div>
-${monthPickerHtml} &lt;div class="hour-target-nav"&gt; &lt;button class="ht-nav-arrow" data-ht-month-shift="-1"&gt;‹&lt;/button&gt; &lt;div class="ht-nav-label" id="htNavLabel"&gt;&lt;span class="ht-month"&gt;${AY[targetDate.getMonth()].toUpperCase()} ${targetDate.getFullYear()}&lt;/span&gt;&lt;/div&gt; &lt;button class="ht-nav-arrow" data-ht-month-shift="1"&gt;›&lt;/button&gt; &lt;/div&gt; &lt;div class="hour-target-compact"&gt; &lt;div class="ht-value-wrap"&gt; ${targetDisplay}
-${!isEditing ?<div class="ht-hint">latex
-{hasTarget ? 'çift tıkla' : 'çift tıkla → hedef gir'}&lt;/div>` : ''} &lt;/div&gt; &lt;div class="ht-meta"&gt; &lt;div class="ht-chip"&gt;&lt;div class="htc-lbl"&gt;Kullanılan&lt;/div&gt;&lt;div class="htc-val 
+let monthPickerHtml = '';
+if (state.showMonthPicker) {
+const items = [];
+for (let i = 0; i < 12; i++) {
+const offset = -i;
+const d = new Date(new Date().getFullYear(), new Date().getMonth() + offset, 1);
+const isActive = offset === monthOffset;
+items.push('<div class="month-picker-item ' + (isActive ? 'active' : '') + '" data-month-offset="' + offset + '">' +
+'<span>' + AY[d.getMonth()] + ' ' + d.getFullYear() + '</span>' +
+(isActive ? '<span class="mp-badge">Aktif</span>' : '') +
+'</div>');
+}
+monthPickerHtml = '<div class="month-picker">' + items.join('') + '</div>';
+}
 
-{monthUsed > 0 ? '' : 'empty'}">{monthTarget > 0 ? oranCls : 'empty'}">{monthTarget > 0 ? oranCls : 'empty'}">{weekLineHtml}</div>
-</div>`;
+return '<div class="hour-target-card">' +
+'<div class="hour-target-head ' + (state.showMonthPicker ? 'open' : '') + '">' +
+'<div class="hour-target-title">🎯 SAAT HEDEFİ</div>' +
+'<button class="hour-target-toggle" id="monthPickerToggle">▼</button>' +
+'</div>' +
+monthPickerHtml +
+'<div class="hour-target-nav">' +
+'<button class="ht-nav-arrow" data-ht-month-shift="-1">‹</button>' +
+'<div class="ht-nav-label" id="htNavLabel"><span class="ht-month">' + AY[targetDate.getMonth()].toUpperCase() + ' ' + targetDate.getFullYear() + '</span></div>' +
+'<button class="ht-nav-arrow" data-ht-month-shift="1">›</button>' +
+'</div>' +
+'<div class="hour-target-compact">' +
+'<div class="ht-value-wrap">' + targetDisplay +
+(!isEditing ? '<div class="ht-hint">' + (hasTarget ? 'çift tıkla' : 'çift tıkla → hedef gir') + '</div>' : '') +
+'</div>' +
+'<div class="ht-meta">' +
+'<div class="ht-chip"><div class="htc-lbl">Kullanılan</div><div class="htc-val ' + (monthUsed > 0 ? '' : 'empty') + '">' + (monthUsed > 0 ? monthUsed.toFixed(0) : '—') + '</div></div>' +
+'<div class="ht-chip"><div class="htc-lbl">Kalan</div><div class="htc-val ' + (monthTarget > 0 ? oranCls : 'empty') + '">' + (monthTarget > 0 ? monthRemaining.toFixed(0) : '—') + '</div></div>' +
+'<div class="ht-chip"><div class="htc-lbl">Gerçekleşen</div><div class="htc-val ' + (monthTarget > 0 ? oranCls : 'empty') + '">' + (monthTarget > 0 ? '%' + oran.toFixed(0) : '—') + '</div></div>' +
+'</div>' +
+'</div>' +
+'<div class="hour-target-weeks">' + weekLineHtml + '</div>' +
+'</div>';
 }
 
 function renderWeeklyHoursCard() {
-const items = data.settings.staff.map(s => {
+const items = data.settings.staff.map(function(s){
 const hours = getStaffWeekHours(s.id);
 const limit = s.role === 'pt' ? (data.settings.ptMaxWeeklyHours || 30) : (data.settings.weeklyLimitHours || 45);
 const cls = getWeekHoursColorClass(hours, limit);
 const isEditingName = state.editingStaffNameId === s.id;
-const nameHtml = isEditingName
-? <input class="wh-name-input" id="staffNameInlineInput" type="text" value="${s.name}" />:<span class="wh-name" data-staff-name-cell="${s.id}"&gt;${shortName(s.name)}</span>; return<div class="wh-item">${nameHtml}&lt;span class="wh-hours ${cls}">${hours.toFixed(1)}&lt;/span&gt;&lt;/div>;
+let nameHtml;
+if (isEditingName) nameHtml = '<input class="wh-name-input" id="staffNameInlineInput" type="text" value="' + s.name + '" />';
+else nameHtml = '<span class="wh-name" data-staff-name-cell="' + s.id + '">' + shortName(s.name) + '</span>';
+return '<div class="wh-item" data-wh-staff="' + s.id + '">' + nameHtml + '<span class="wh-hours ' + cls + '">' + hours.toFixed(1) + '</span></div>';
 }).join('');
-return <div class="weekly-hours-card"&gt; &lt;div class="card-header" style="padding: 8px 14px 4px;"&gt; &lt;div class="card-title" style="font-size: 11px;"&gt;👥 Haftalık Çalışma&lt;/div&gt; &lt;/div&gt; &lt;div class="weekly-hours-scroll" id="weeklyHoursScroll"&gt;${items}</div>
-</div>`;
+return '<div class="weekly-hours-card">' +
+'<div class="card-header" style="padding: 8px 14px 4px; display:flex; align-items:center; justify-content:space-between;">' +
+'<div class="card-title" style="font-size: 11px;">👥 Haftalık Çalışma</div>' +
+'<span style="font-size:10px;font-weight:800;color:#94a3b8;">basılı tut → sırala</span>' +
+'</div>' +
+'<div class="weekly-hours-scroll" id="weeklyHoursScroll">' + items + '</div>' +
+'</div>';
 }
 
 function renderReceivableCard() {
 const monthOffset = state.selectedMonthOffset || 0;
-const items = data.settings.staff.map(s => {
+const items = data.settings.staff.map(function(s){
 const net = getNetReceivableHours(s.id, monthOffset);
 const hasHours = Math.abs(net) > 0.01;
 const isEditingName = state.editingStaffNameId === s.id;
 const isEditingHours = state.editingReceivableStaffId === s.id;
-const nameHtml = isEditingName
-? <input class="wh-name-input" id="staffNameInlineInput" type="text" value="${s.name}" />:<span class="wh-name" data-staff-name-cell="{shortName(s.name)}</span>; const cls = net &gt; 0.01 ? 'receivable' : (net &lt; -0.01 ? 'danger' : 'zero'); const hoursHtml = isEditingHours ?:<span class="wh-hours ${cls}" data-receivable-hours-cell="${s.id}">${fmtNetHoursShort(net)}&lt;/span>;
-return <div class="wh-item" data-receivable-staff="${s.id}" style="cursor:${hasHours ? 'pointer' : 'default'};"&gt;${nameHtml}${hoursHtml}&lt;/div>;
+let nameHtml;
+if (isEditingName) nameHtml = '<input class="wh-name-input" id="staffNameInlineInput" type="text" value="' + s.name + '" />';
+else nameHtml = '<span class="wh-name" data-staff-name-cell="' + s.id + '">' + shortName(s.name) + '</span>';
+const cls = net > 0.01 ? 'receivable' : (net < -0.01 ? 'danger' : 'zero');
+let hoursHtml;
+if (isEditingHours) hoursHtml = '<input class="wh-hours-input" id="manualExtraInput" type="tel" inputmode="decimal" value="' + fmtNetHoursShort(net) + '" />';
+else hoursHtml = '<span class="wh-hours ' + cls + '" data-receivable-hours-cell="' + s.id + '">' + fmtNetHoursShort(net) + '</span>';
+return '<div class="wh-item" data-receivable-staff="' + s.id + '" style="cursor:' + (hasHours ? 'pointer' : 'default') + ';">' + nameHtml + hoursHtml + '</div>';
 }).join('');
-return <div class="weekly-hours-card"&gt; &lt;div class="card-header" style="padding: 8px 14px 4px;"&gt; &lt;div class="card-title" style="font-size: 11px;"&gt;💰 Alacak Saatler&lt;/div&gt; &lt;/div&gt; &lt;div class="weekly-hours-scroll"&gt;${items}</div>
-</div>`;
+return '<div class="weekly-hours-card">' +
+'<div class="card-header" style="padding: 8px 14px 4px; display:flex; align-items:center; justify-content:space-between;">' +
+'<div class="card-title" style="font-size: 11px;">💰 Alacak Saatler</div>' +
+'<span style="font-size:10px;font-weight:800;color:#94a3b8;">çift tıkla → düzenle</span>' +
+'</div>' +
+'<div class="weekly-hours-scroll">' + items + '</div>' +
+'</div>';
 }
 
 function renderReceivableDetailModal() {
 const sid = state.receivableDetailStaffId;
 if (!sid) return '';
-const staff = data.settings.staff.find(s => s.id === sid);
+const staff = data.settings.staff.find(function(s){return s.id === sid;});
 if (!staff) return '';
 const monthOffset = state.selectedMonthOffset || 0;
 const earned = getWeeklyExtraDetails(sid, monthOffset);
@@ -938,52 +1391,81 @@ const used = getReceivableUsageDetails(sid, monthOffset);
 const net = (earned.total + manual) - used.total;
 const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 const target = getMonthByOffset(monthOffset);
-const monthLabel = ``${AY[target.getMonth()]} latex
-{target.getFullYear()}`; const earnedRows = earned.weeks.length === 0 ? '&lt;div style="font-size:12px;color:#94a3b8;font-weight:700;padding:4px 0;"&gt;Bu ay otomatik kazanılan alacak yok&lt;/div&gt;' : earned.weeks.map(w =&gt; `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"&gt;&lt;span style="font-size:13px;font-weight:800;color:#1e293b;"&gt;
-
-{w.label} haftası</span><span style="font-size:13px;font-weight:900;color:#16a34a;">+latex
-{fmtNetHoursShort(w.over)} sa&lt;/span&gt;&lt;/div>`).join(''); const manualRow = manual &gt; 0 ? `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"&gt;&lt;span style="font-size:13px;font-weight:800;color:#1e293b;"&gt;Manuel eklenen&lt;/span&gt;&lt;span style="font-size:13px;font-weight:900;color:#16a34a;"&gt;+
-
-{fmtNetHoursShort(manual)} sa</span></div>: ''; const usedRows = used.uses.length === 0 ? '&lt;div style="font-size:12px;color:#94a3b8;font-weight:700;padding:4px 0;"&gt;Bu ay alacak kullanımı yok&lt;/div&gt;' : used.uses.map(u =&gt; { const [y, mo, d] = u.dateKey.split('-').map(Number); const dt = new Date(y, mo - 1, d); const GUN = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt']; const AY_K = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara']; return<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">{AY_K[mo-1]} latex
-{GUN[dt.getDay()]}&lt;/span&gt;&lt;span style="font-size:13px;font-weight:900;color:#dc2626;"&gt;−
-
-{fmtNetHoursShort(u.hours)} sa</span></div>; }).join(''); return<div class="modal-backdrop" data-close-receivable-detail="1"><div class="modal" onclick="event.stopPropagation()" style="max-width:390px;">
-<div class="modal-icon">💰</div>
-<div class="modal-title">{monthLabel} — Net alacak: <b>latex
-{fmtNetHoursShort(net)} saat&lt;/b&gt;&lt;/div&gt; &lt;div style="font-size:11px;font-weight:900;color:#16a34a;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;"&gt;Kazanılan (
-
-{fmtNetHoursShort(earned.total + manual)} sa)</div>
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:4px 12px;margin-bottom:12px;">{manualRow}</div>
-<div style="font-size:11px;font-weight:900;color:#dc2626;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;">Kullanılan (latex
-{fmtNetHoursShort(used.total)} sa)&lt;/div&gt; &lt;div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:4px 12px;"&gt;
-
-{usedRows}</div>
-<div class="modal-actions"><button class="modal-btn cancel" data-close-receivable-detail="1" style="width:100%;">Kapat</button></div>
-</div></div>`;
+const monthLabel = AY[target.getMonth()] + ' ' + target.getFullYear();
+let earnedRows;
+if (earned.weeks.length === 0) earnedRows = '<div style="font-size:12px;color:#94a3b8;font-weight:700;padding:4px 0;">Bu ay otomatik kazanılan alacak yok</div>';
+else earnedRows = earned.weeks.map(function(w){
+return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">' + w.label + ' haftası</span><span style="font-size:13px;font-weight:900;color:#16a34a;">+' + fmtNetHoursShort(w.over) + ' sa</span></div>';
+}).join('');
+const manualRow = manual > 0 ? '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">Manuel eklenen</span><span style="font-size:13px;font-weight:900;color:#16a34a;">+' + fmtNetHoursShort(manual) + ' sa</span></div>' : '';
+let usedRows;
+if (used.uses.length === 0) usedRows = '<div style="font-size:12px;color:#94a3b8;font-weight:700;padding:4px 0;">Bu ay alacak kullanımı yok</div>';
+else usedRows = used.uses.map(function(u){
+const p = u.dateKey.split('-').map(Number);
+const dt = new Date(p[0], p[1]-1, p[2]);
+const GUN = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
+const AY_K = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">' + p[2] + ' ' + AY_K[p[1]-1] + ' ' + GUN[dt.getDay()] + '</span><span style="font-size:13px;font-weight:900;color:#dc2626;">−' + fmtNetHoursShort(u.hours) + ' sa</span></div>';
+}).join('');
+return '<div class="modal-backdrop" data-close-receivable-detail="1"><div class="modal" onclick="event.stopPropagation()" style="max-width:390px;">' +
+'<div class="modal-icon">💰</div>' +
+'<div class="modal-title">' + shortName(staff.name) + '</div>' +
+'<div class="modal-desc">' + monthLabel + ' — Net alacak: <b>' + fmtNetHoursShort(net) + ' saat</b></div>' +
+'<div style="font-size:11px;font-weight:900;color:#16a34a;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;">Kazanılan (' + fmtNetHoursShort(earned.total + manual) + ' sa)</div>' +
+'<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:4px 12px;margin-bottom:12px;">' + earnedRows + manualRow + '</div>' +
+'<div style="font-size:11px;font-weight:900;color:#dc2626;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;">Kullanılan (' + fmtNetHoursShort(used.total) + ' sa)</div>' +
+'<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:4px 12px;">' + usedRows + '</div>' +
+'<div class="modal-actions"><button class="modal-btn cancel" data-close-receivable-detail="1" style="width:100%;">Kapat</button></div>' +
+'</div></div>';
 }
 
 function renderWarnConfirmModal() {
 if (!state.warnConfirm) return '';
-return <div class="modal-backdrop" style="z-index:300;"&gt;&lt;div class="modal" onclick="event.stopPropagation()" style="max-width:360px;"&gt; &lt;div class="modal-icon" style="background:#fef3c7;"&gt;⚠️&lt;/div&gt; &lt;div class="modal-title"&gt;Kanuni Uyarılar&lt;/div&gt; &lt;div class="modal-desc"&gt;Bu vardiyada dikkat edilmesi gereken durumlar var. Yine de uygulanmalı mı?&lt;/div&gt; &lt;div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:10px 12px;"&gt; ${state.warnConfirm.errors.map(e => <div style="font-size:12.5px;color:#7f1d1d;font-weight:700;padding:3px 0;"&gt;⚠${e}</div>).join('')} &lt;/div&gt; &lt;div class="modal-actions"&gt; &lt;button class="modal-btn cancel" data-warn-edit="1"&gt;✏️ Düzenle&lt;/button&gt; &lt;button class="modal-btn confirm" data-warn-apply="1" style="background:#dc2626;"&gt;⚠️ Yine de Uygula&lt;/button&gt; &lt;/div&gt; &lt;/div&gt;&lt;/div>;
+const errs = state.warnConfirm.errors.map(function(e){
+return '<div style="font-size:12.5px;color:#7f1d1d;font-weight:700;padding:3px 0;">⚠ ' + e + '</div>';
+}).join('');
+return '<div class="modal-backdrop" style="z-index:300;"><div class="modal" onclick="event.stopPropagation()" style="max-width:360px;">' +
+'<div class="modal-icon" style="background:#fef3c7;">⚠️</div>' +
+'<div class="modal-title">Kanuni Uyarılar</div>' +
+'<div class="modal-desc">Bu vardiyada dikkat edilmesi gereken durumlar var. Yine de uygulanmalı mı?</div>' +
+'<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:10px 12px;">' + errs + '</div>' +
+'<div class="modal-actions">' +
+'<button class="modal-btn cancel" data-warn-edit="1">✏️ Düzenle</button>' +
+'<button class="modal-btn confirm" data-warn-apply="1" style="background:#dc2626;">⚠️ Yine de Uygula</button>' +
+'</div>' +
+'</div></div>';
 }
 
 function renderClearModal() {
 const weekDates = getCurrentWeekDates();
 const staff = data.settings.staff;
-const staffRows = staff.map(s => {
+const staffRows = staff.map(function(s){
 const sel = state.clearSelectedStaff.indexOf(s.id) >= 0;
-return <div class="clear-staff-row ${sel ? 'selected' : ''}" data-clear-staff="${s.id}"&gt; &lt;div class="cs-check"&gt;✓&lt;/div&gt;&lt;div class="cs-name"&gt;${shortName(s.name)}</div>
-</div>; }).join(''); const GUN_KISA = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz']; const dayBtns = weekDates.map((d, i) =&gt; { const sel = state.clearSelectedDays.indexOf(i) &gt;= 0; return<button class="clear-day-btn ${sel ? 'active' : ''}" data-clear-day="${i}"><span>${GUN_KISA[i]}&lt;/span&gt;&lt;span class="cdb-num"&gt;${d.getDate()}</span></button>; }).join(''); const allDaysActive = state.clearSelectedDays.length === 7; const allStaffActive = state.clearSelectedStaff.length === staff.length && staff.length &gt; 0; return<div class="modal-backdrop" data-close-clear="1"><div class="modal" onclick="event.stopPropagation()" style="max-width:420px;">
-<div class="modal-icon" style="background:#fef2f2;">🗑️</div>
-<div class="modal-title">Plan Sıfırla</div>
-<div class="modal-desc">Silinecek personel ve günleri seç</div>
-<div style="font-size:11px;font-weight:900;color:#475569;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;">
-<span>Personel (${state.clearSelectedStaff.length}/${staff.length})</span>
-<button data-clear-all-staff="1" style="background:none;border:none;color:#2563eb;font-weight:900;font-size:12px;cursor:pointer;font-family:inherit;">${allStaffActive ? 'Hiçbiri' : 'Tümü'}&lt;/button&gt; &lt;/div&gt; &lt;div style="max-height:260px;overflow-y:auto;margin-bottom:12px;"&gt;${staffRows}</div>
-<div style="font-size:11px;font-weight:900;color:#475569;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;">
-<span>Günler (${state.clearSelectedDays.length}/7)&lt;/span&gt; &lt;button data-clear-all-days="1" style="background:none;border:none;color:#2563eb;font-weight:900;font-size:12px;cursor:pointer;font-family:inherit;"&gt;${allDaysActive ? 'Hiçbiri' : 'Tümü'}</button>
-</div>
-<div class="clear-day-row">${dayBtns}&lt;/div&gt; &lt;div class="modal-actions"&gt; &lt;button class="modal-btn cancel" data-close-clear="1"&gt;İptal&lt;/button&gt; &lt;button class="modal-btn danger" data-apply-clear="1"&gt;🗑️ Sil&lt;/button&gt; &lt;/div&gt; &lt;/div&gt;&lt;/div>;
+return '<div class="clear-staff-row ' + (sel ? 'selected' : '') + '" data-clear-staff="' + s.id + '"><div class="cs-check">✓</div><div class="cs-name">' + shortName(s.name) + '</div></div>';
+}).join('');
+const GUN_KISA = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+const dayBtns = weekDates.map(function(d, i){
+const sel = state.clearSelectedDays.indexOf(i) >= 0;
+return '<button class="clear-day-btn ' + (sel ? 'active' : '') + '" data-clear-day="' + i + '"><span>' + GUN_KISA[i] + '</span><span class="cdb-num">' + d.getDate() + '</span></button>';
+}).join('');
+const allDaysActive = state.clearSelectedDays.length === 7;
+const allStaffActive = state.clearSelectedStaff.length === staff.length && staff.length > 0;
+return '<div class="modal-backdrop" data-close-clear="1"><div class="modal" onclick="event.stopPropagation()" style="max-width:420px;">' +
+'<div class="modal-icon" style="background:#fef2f2;">🗑️</div>' +
+'<div class="modal-title">Plan Sıfırla</div>' +
+'<div class="modal-desc">Silinecek personel ve günleri seç</div>' +
+'<div style="font-size:11px;font-weight:900;color:#475569;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;">' +
+'<span>Personel (' + state.clearSelectedStaff.length + '/' + staff.length + ')</span>' +
+'<button data-clear-all-staff="1" style="background:none;border:none;color:#2563eb;font-weight:900;font-size:12px;cursor:pointer;">' + (allStaffActive ? 'Hiçbiri' : 'Tümü') + '</button>' +
+'</div>' +
+'<div style="max-height:260px;overflow-y:auto;margin-bottom:12px;">' + staffRows + '</div>' +
+'<div style="font-size:11px;font-weight:900;color:#475569;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;">' +
+'<span>Günler (' + state.clearSelectedDays.length + '/7)</span>' +
+'<button data-clear-all-days="1" style="background:none;border:none;color:#2563eb;font-weight:900;font-size:12px;cursor:pointer;">' + (allDaysActive ? 'Hiçbiri' : 'Tümü') + '</button>' +
+'</div>' +
+'<div class="clear-day-row">' + dayBtns + '</div>' +
+'<div class="modal-actions"><button class="modal-btn cancel" data-close-clear="1">İptal</button><button class="modal-btn danger" data-apply-clear="1">🗑️ Sil</button></div>' +
+'</div></div>';
 }
 
 function renderWeekPickerModal() {
@@ -993,25 +1475,33 @@ const AY_KISA = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','
 const today = new Date();
 const maxYear = today.getFullYear() + 1;
 const minYear = today.getFullYear() - 5;
-const monthBtns = AY_KISA.map((name, i) => {
+const monthBtns = AY_KISA.map(function(name, i){
 const disabled = (year === maxYear && i > today.getMonth() + 6);
 const active = i === month;
-return <button class="wp-month-btn ${active ? 'active' : ''}" data-wp-month="${i}" ${disabled ? 'disabled' : ''}>${name}&lt;/button>;
+return '<button class="wp-month-btn ' + (active ? 'active' : '') + '" data-wp-month="' + i + '" ' + (disabled ? 'disabled' : '') + '>' + name + '</button>';
 }).join('');
 const weeks = getWeeksInMonth(year, month);
 const curWeekKey = dateKey(state.weekAnchorDate);
-const weekRows = weeks.map(w => {
+const weekRows = weeks.map(function(w){
 const key = dateKey(w.start);
 const isActive = key === curWeekKey;
-const range = ${w.start.getDate()} ${AY_KISA[w.start.getMonth()]} – ${w.end.getDate()} ${AY_KISA[w.end.getMonth()]};
-return <div class="wp-week-row ${isActive ? 'active' : ''}" data-wp-week="${key}"&gt; &lt;div&gt;&lt;div class="wwr-title"&gt;${w.start.getDate()} ${AY_KISA[w.start.getMonth()]} haftası&lt;/div&gt;&lt;div class="wwr-range"&gt;${range}</div></div>
-${isActive ? '&lt;span class="wwr-badge"&gt;Bu Hafta&lt;/span&gt;' : ''} &lt;/div>;
+const range = w.start.getDate() + ' ' + AY_KISA[w.start.getMonth()] + ' – ' + w.end.getDate() + ' ' + AY_KISA[w.end.getMonth()];
+return '<div class="wp-week-row ' + (isActive ? 'active' : '') + '" data-wp-week="' + key + '">' +
+'<div><div class="wwr-title">' + w.start.getDate() + ' ' + AY_KISA[w.start.getMonth()] + ' haftası</div><div class="wwr-range">' + range + '</div></div>' +
+(isActive ? '<span class="wwr-badge">Bu Hafta</span>' : '') +
+'</div>';
 }).join('');
-return <div class="modal-backdrop" data-close-week-picker="1"&gt;&lt;div class="week-picker-modal" onclick="event.stopPropagation()"&gt; &lt;div class="week-picker-head"&gt;&lt;div class="week-picker-title"&gt;📅 Hafta Seç&lt;/div&gt;&lt;button class="week-picker-close" data-close-week-picker="1"&gt;✕&lt;/button&gt;&lt;/div&gt; &lt;div class="wp-year-row"&gt; &lt;button class="wp-year-arrow" data-wp-year="-1" ${year <= minYear ? 'disabled' : ''}>‹</button>
-<div style="text-align:center;"><div class="wp-year-label">Yıl</div><div class="wp-year-val">${year}&lt;/div&gt;&lt;/div&gt; &lt;button class="wp-year-arrow" data-wp-year="1" ${year >= maxYear ? 'disabled' : ''}>›</button>
-</div>
-<div class="wp-month-grid">${monthBtns}&lt;/div&gt; &lt;div style="font-size:11px;font-weight:900;color:#475569;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;"&gt;Haftalar&lt;/div&gt; &lt;div class="wp-week-list"&gt;${weekRows}</div>
-</div></div>`;
+return '<div class="modal-backdrop" data-close-week-picker="1"><div class="week-picker-modal" onclick="event.stopPropagation()">' +
+'<div class="week-picker-head"><div class="week-picker-title">📅 Hafta Seç</div><button class="week-picker-close" data-close-week-picker="1">✕</button></div>' +
+'<div class="wp-year-row">' +
+'<button class="wp-year-arrow" data-wp-year="-1" ' + (year <= minYear ? 'disabled' : '') + '>‹</button>' +
+'<div style="text-align:center;"><div class="wp-year-label">Yıl</div><div class="wp-year-val">' + year + '</div></div>' +
+'<button class="wp-year-arrow" data-wp-year="1" ' + (year >= maxYear ? 'disabled' : '') + '>›</button>' +
+'</div>' +
+'<div class="wp-month-grid">' + monthBtns + '</div>' +
+'<div style="font-size:11px;font-weight:900;color:#475569;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;">Haftalar</div>' +
+'<div class="wp-week-list">' + weekRows + '</div>' +
+'</div></div>';
 }
 
 function renderWeekPlan() {
@@ -1019,24 +1509,35 @@ const weekDates = getCurrentWeekDates();
 const start = weekDates[0], end = weekDates[6];
 const AY_KISA = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
 const today = new Date();
-const todayMon = (() => { const d = new Date(today); const day = d.getDay(); const diff = day === 0 ? -6 : 1 - day; d.setDate(d.getDate() + diff); d.setHours(0,0,0,0); return d; })();
+const todayMon = (function(){
+const d = new Date(today); const day = d.getDay(); const diff = day === 0 ? -6 : 1 - day;
+d.setDate(d.getDate() + diff); d.setHours(0,0,0,0); return d;
+})();
 const anchor = new Date(state.weekAnchorDate); anchor.setHours(0,0,0,0);
 const diffWeeks = Math.round((anchor - todayMon) / (7 * 24 * 60 * 60 * 1000));
 let label = '';
 if (diffWeeks === 0) label = 'Bu Hafta';
 else if (diffWeeks === 1) label = 'Gelecek Hafta';
 else if (diffWeeks === -1) label = 'Geçen Hafta';
-else if (diffWeeks > 1) label = ${diffWeeks} Hafta Sonra`; else label = `$`{Math.abs(diffWeeks)} Hafta Önce`; const startStr =${start.getDate()} {end.getDate()} {end.getFullYear()}; return<div class="card">
-<div class="plan-header-row">
-<div class="plan-header-title">📅 HAFTALIK VARDIYA PLANI</div>
-<button class="clear-btn" id="openClearBtn">🗑️ Sıfırla</button>
-</div>
-<div class="plan-week-nav">
-<button class="plan-week-arrow" data-week-shift="-1">‹</button>
-<div class="plan-week-label" id="openWeekPicker">
-<span class="plan-week-cal">📅</span>
-<div class="plan-week-text"><span class="pwt-month">{startStr} – {renderPlanGrid()}
-</div>`;
+else if (diffWeeks > 1) label = diffWeeks + ' Hafta Sonra';
+else label = Math.abs(diffWeeks) + ' Hafta Önce';
+const startStr = start.getDate() + ' ' + AY_KISA[start.getMonth()];
+const endStr = end.getDate() + ' ' + AY_KISA[end.getMonth()] + ' ' + end.getFullYear();
+return '<div class="card">' +
+'<div class="plan-header-row">' +
+'<div class="plan-header-title">📅 HAFTALIK VARDIYA PLANI</div>' +
+'<button class="clear-btn" id="openClearBtn">🗑️ Sıfırla</button>' +
+'</div>' +
+'<div class="plan-week-nav">' +
+'<button class="plan-week-arrow" data-week-shift="-1">‹</button>' +
+'<div class="plan-week-label" id="openWeekPicker">' +
+'<span class="plan-week-cal">📅</span>' +
+'<div class="plan-week-text"><span class="pwt-month">' + label + '</span><span class="pwt-range"> · ' + startStr + ' – ' + endStr + '</span></div>' +
+'</div>' +
+'<button class="plan-week-arrow" data-week-shift="1">›</button>' +
+'</div>' +
+renderPlanGrid() +
+'</div>';
 }
 
 function renderPlanGrid() {
@@ -1044,116 +1545,225 @@ const weekDates = getCurrentWeekDates();
 const staff = data.settings.staff;
 const GUN_KISA = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
 let html = '<div class="plan-corner">👤</div>';
-weekDates.forEach((d, i) => { html += <div class="plan-day-head"&gt;&lt;span class="pdh-name"&gt;${GUN_KISA[i]}</span><span class="pdh-num">${d.getDate()}&lt;/span&gt;&lt;/div>; });
-staff.forEach(s => {
+weekDates.forEach(function(d, i){
+html += '<div class="plan-day-head"><span class="pdh-name">' + GUN_KISA[i] + '</span><span class="pdh-num">' + d.getDate() + '</span></div>';
+});
+staff.forEach(function(s){
 const sc = getStaffColor(s.id);
 const roleShort = (ROLES[s.role] && ROLES[s.role].short) || '';
 const isEditingName = state.editingStaffNameId === s.id;
-const nameHtml = isEditingName
-? <input class="pnc-name-input" id="staffNameInlineInput" type="text" value="${s.name}" />:<span class="pnc-name" data-staff-name-cell="${s.id}"&gt;${shortName(s.name)}</span>; const nameCellStyle = sc ?background:${sc.bg};color:${sc.text};: ''; html +=<div class="plan-name-cell" style="${nameCellStyle}"&gt;${nameHtml}<span class="pnc-role" style="color:${sc ? sc.text : '#64748b'};opacity:0.8;"&gt;${roleShort}</span></div>; weekDates.forEach(d =&gt; { const dk = dateKey(d); const plan = (data.weekPlan[dk] || {})[s.id]; let cellCls = 'plan-cell'; let content = '&lt;span class="pc-time"&gt;·&lt;/span&gt;'; let hasError = false; let customBg = null; if (plan && plan.type) { cellCls += ' ' + plan.type; if (plan.type === 'izinli') content = 'İZİN'; else if (plan.type === RECEIVABLE_LEAVE_TYPE) content = 'İZİN (A)'; else { const netH = shiftNetHours(plan); const grossH = shiftHours(plan); const breakMin = getAutoBreak(grossH); const alacakH = shiftAlacakHours(plan); customBg = getShiftColor(plan.start, plan.end); const aBadge = alacakH &gt; 0 ? '&lt;span class="pc-ar"&gt;a&lt;/span&gt;' : ''; content = ``${aBadge}&lt;span class="pc-time"&gt;${plan.start.replace(':','.')}<br>${plan.end.replace(':','.')}&lt;/span&gt;&lt;div class="pc-divider"&gt;&lt;/div&gt;&lt;div class="pc-meta"&gt;&lt;span class="pc-net"&gt;${fmtNetHoursShort(netH)}</span><span class="pc-break-sep">·</span><span class="pc-break">${breakMin}&lt;/span&gt;&lt;/div>;
+let nameHtml;
+if (isEditingName) nameHtml = '<input class="pnc-name-input" id="staffNameInlineInput" type="text" value="' + s.name + '" />';
+else nameHtml = '<span class="pnc-name" data-staff-name-cell="' + s.id + '">' + shortName(s.name) + '</span>';
+const nameCellStyle = sc ? 'background:' + sc.bg + ';color:' + sc.text + ';' : '';
+html += '<div class="plan-name-cell" style="' + nameCellStyle + '">' + nameHtml + '<span class="pnc-role" style="color:' + (sc ? sc.text : '#64748b') + ';opacity:0.8;">' + roleShort + '</span></div>';
+weekDates.forEach(function(d){
+const dk = dateKey(d);
+const plan = (data.weekPlan[dk] || {})[s.id];
+let cellCls = 'plan-cell';
+let content = '<span class="pc-time">·</span>';
+let hasError = false;
+let customBg = null;
+if (plan && plan.type) {
+cellCls += ' ' + plan.type;
+if (plan.type === 'izinli') content = 'İZİN';
+else if (plan.type === RECEIVABLE_LEAVE_TYPE) content = 'İZİN (A)';
+else {
+const netH = shiftNetHours(plan);
+const grossH = shiftHours(plan);
+const breakMin = getAutoBreak(grossH);
+const alacakH = shiftAlacakHours(plan);
+customBg = getShiftColor(plan.start, plan.end);
+const aBadge = alacakH > 0 ? '<span class="pc-ar">a</span>' : '';
+content = aBadge + '<span class="pc-time">' + plan.start.replace(':','.') + '<br>' + plan.end.replace(':','.') + '</span><div class="pc-divider"></div><div class="pc-meta"><span class="pc-net">' + fmtNetHoursShort(netH) + '</span><span class="pc-break-sep">·</span><span class="pc-break">' + breakMin + '</span></div>';
 hasError = validateShift(plan).length > 0;
 }
 }
 if (hasError) cellCls += ' has-error';
-const styleAttr = customBg ? style="background:${customBg};": ''; html +=<div class="${cellCls}" ${styleAttr} data-plan-cell="1" data-staff="${s.id}" data-date="${dk}">${content}&lt;/div>;
+const styleAttr = customBg ? 'style="background:' + customBg + ';"' : '';
+html += '<div class="' + cellCls + '" ' + styleAttr + ' data-plan-cell="1" data-staff="' + s.id + '" data-date="' + dk + '">' + content + '</div>';
 });
 });
 html += '<div class="plan-sum-label">Saat</div>';
-weekDates.forEach(d => { const h = getDayTotalHours(dateKey(d)); html += <div class="plan-sum-cell"&gt;${h > 0 ? h.toFixed(0) : '—'}</div>; }); html += '&lt;div class="plan-count-label"&gt;Kişi&lt;/div&gt;'; weekDates.forEach(d =&gt; { const c = getDayCounts(dateKey(d)); html +=<div class="plan-count-cell">${c.total}&lt;/div>; });
-return <div class="plan-grid-wrap"&gt;&lt;div class="plan-grid"&gt;${html}</div></div>`;
+weekDates.forEach(function(d){
+const h = getDayTotalHours(dateKey(d));
+html += '<div class="plan-sum-cell">' + (h > 0 ? h.toFixed(0) : '—') + '</div>';
+});
+html += '<div class="plan-count-label">Kişi</div>';
+weekDates.forEach(function(d){
+const c = getDayCounts(dateKey(d));
+html += '<div class="plan-count-cell">' + c.total + '</div>';
+});
+return '<div class="plan-grid-wrap"><div class="plan-grid">' + html + '</div></div>';
 }
 
 function renderWarnings() {
 const warnings = [];
 const weekDates = getCurrentWeekDates();
-const dkSet = new Set(weekDates.map(dateKey));
-Object.entries(data.weekPlan).forEach(([dk, dayPlan]) => {
-if (!dkSet.has(dk)) return;
-Object.entries(dayPlan).forEach(([staffId, s]) => {
+const dkSet = {};
+weekDates.forEach(function(d){ dkSet[dateKey(d)] = true; });
+Object.entries(data.weekPlan).forEach(function(entry){
+const dk = entry[0]; const dayPlan = entry[1];
+if (!dkSet[dk]) return;
+Object.entries(dayPlan).forEach(function(e2){
+const staffId = e2[0]; const s = e2[1];
 if (!s || isLeaveType(s.type)) return;
 const errs = validateShift(s);
 if (errs.length > 0) {
-const staff = data.settings.staff.find(x => x.id === staffId);
-errs.forEach(err => warnings.push({ text: ${staff ? staff.name : staffId}: $`{err}`, danger: true, staffId, dateKey: dk })); } }); }); validatePTWeek().forEach(w =&gt; { warnings.push({ text:${w.staff} PT haftalık {w.max} saat aşıldı!, danger: true, staffId: w.staffId, dateKey: null }); }); if (warnings.length === 0) { return<div class="card"><div class="card-header"><div class="card-title">⚠️ Uyarılar</div><span class="card-badge success">✓ Sorun yok</span></div><div class="warnings-card"><div class="warning-empty">Bu haftada kanuni uyarı yok</div></div></div>; } const items = warnings.map(w =&gt;<div class="warning-item {w.staffId || ''}" data-warning-date="{w.danger ? '🚫' : '⚠️'}</span><div class="w-content">{warnings.length}</span></div><div class="warnings-card">${items}&lt;/div&gt;&lt;/div>;
+const staff = data.settings.staff.find(function(x){return x.id === staffId;});
+errs.forEach(function(err){
+warnings.push({ text: (staff ? staff.name : staffId) + ': ' + err, danger: true, staffId: staffId, dateKey: dk });
+});
+}
+});
+});
+validatePTWeek().forEach(function(w){
+warnings.push({ text: w.staff + ' PT haftalık ' + w.hours.toFixed(1) + ' — max ' + w.max + ' saat aşıldı!', danger: true, staffId: w.staffId, dateKey: null });
+});
+if (warnings.length === 0) {
+return '<div class="card"><div class="card-header"><div class="card-title">⚠️ Uyarılar</div><span class="card-badge success">✓ Sorun yok</span></div><div class="warnings-card"><div class="warning-empty">Bu haftada kanuni uyarı yok</div></div></div>';
+}
+const items = warnings.map(function(w){
+return '<div class="warning-item ' + (w.danger ? 'danger' : '') + '" data-warning-staff="' + (w.staffId || '') + '" data-warning-date="' + (w.dateKey || '') + '"><span class="w-icon">' + (w.danger ? '🚫' : '⚠️') + '</span><div class="w-content">' + w.text + '</div><span class="w-go">›</span></div>';
+}).join('');
+return '<div class="card"><div class="card-header"><div class="card-title">⚠️ Uyarılar</div><span class="card-badge danger">' + warnings.length + '</span></div><div class="warnings-card">' + items + '</div></div>';
 }
 
 function renderFooter() {
-return <div class="app-footer"&gt; &lt;span class="footer-line"&gt;© 2026 hakangaykak.&lt;/span&gt; &lt;span class="footer-line"&gt;Gülşah için AŞKLA kodlanmıştır.&lt;/span&gt; &lt;span class="footer-line"&gt;Tüm hakları kalbimde saklıdır.&lt;/span&gt; &lt;span class="footer-line"&gt;&lt;span class="heart"&gt;❤️&lt;/span&gt;&lt;/span&gt; &lt;/div>;
+return '<div class="app-footer">' +
+'<span class="footer-line">© 2026 hakangaykak.</span>' +
+'<span class="footer-line">Gülşah için AŞKLA kodlanmıştır.</span>' +
+'<span class="footer-line">Tüm hakları kalbimde saklıdır.</span>' +
+'<span class="footer-line"><span class="heart">❤️</span></span>' +
+'</div>';
 }
 
 function renderShiftEditModal() {
 const m = state.modal;
-const staff = data.settings.staff.find(s => s.id === m.staffId);
-const [y, mo, d] = m.dateKey.split('-').map(Number);
-const dt = new Date(y, mo-1, d);
+const staff = data.settings.staff.find(function(s){return s.id === m.staffId;});
+const p = m.dateKey.split('-').map(Number);
+const dt = new Date(p[0], p[1]-1, p[2]);
 const GUN = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-const dateLabel = ${d} $`{AY[mo-1]} `${GUN[dt.getDay()]}`; const isExisting = !!m.existing; const avail = getAvailableReceivableForWeek(m.staffId); const chipsBar = data.settings.shiftChips.filter(c =&gt; c.type !== 'time').map(chip =&gt; { let cls = 'stc-btn'; if (chip.type === 'izinli') cls += ' izinli'; if (chip.type === RECEIVABLE_LEAVE_TYPE) cls += ' alacak-izinli'; if (m.activeChipId === chip.id) cls += ' active'; const disabled = chip.type === RECEIVABLE_LEAVE_TYPE && avail &lt; RECEIVABLE_LEAVE_HOURS; return `<button class="$`{cls}" data-chip-id="`${chip.id}" $`{disabled ? 'disabled' : ''}&gt;&lt;span class="stc-icon"&gt;`${chip.icon}&lt;/span&gt;&lt;span&gt;$`{chip.name}&lt;/span&gt;&lt;/button>`; }).join(''); const startHStr = m.startHour !== null ? String(m.startHour).padStart(2,'0') : '__'; const startMStr = m.startMinute !== null ? String(m.startMinute).padStart(2,'0') : '__'; const endHStr = m.endHour !== null ? String(m.endHour).padStart(2,'0') : '__'; const endMStr = m.endMinute !== null ? String(m.endMinute).padStart(2,'0') : '__'; const pickedSummary = `<div class="picked-summary `${m.startHour !== null ? 'has-start' : ''} $`{m.endHour !== null ? 'has-end' : ''}"&gt; &lt;div class="picked-item"&gt;&lt;span class="pi-lbl"&gt;Giriş&lt;/span&gt;&lt;span class="pi-val start"&gt;`${startHStr}:$`{startMStr}&lt;/span&gt;&lt;/div&gt; &lt;span class="picked-arrow"&gt;→&lt;/span&gt; &lt;div class="picked-item"&gt;&lt;span class="pi-lbl"&gt;Çıkış&lt;/span&gt;&lt;span class="pi-val end"&gt;`${endHStr}:$`{endMStr}&lt;/span&gt;&lt;/div&gt; &lt;/div>`; const startVal = m.startHour !== null && m.startMinute !== null ?${String(m.startHour).padStart(2,'0')}:{String(m.endHour).padStart(2,'0')}:latex
-{String(m.endMinute).padStart(2,'0')}` : ''; let body = ''; if (m.step === 'manual') { body = `
-
-{pickedSummary}<div class="shift-section"><div class="shift-section-title" style="justify-content:center;">✏️ Manuel Giriş</div></div>
-<div class="manual-input-row">
-<div class="time-input-group"><div class="time-input-label">Giriş</div><input class="time-input" type="time" id="manStart" value="{endVal}" /></div>
-</div>
-<button class="manual-save-btn" data-go-save-manual="1">💾 Kaydet</button>; body += renderAlacakToggle(avail); } else { if (m.step === 'start-hour') body ={[8,9,10,11,12,13,14,15,16,17,18,19].map(h => <button class="hour-btn" data-pick-hour="start" data-hour="${h}">${h}&lt;/button>).join('')}</div></div>; else if (m.step === 'start-minute') body ={[0,15,30,45].map(min => <button class="minute-btn" data-pick-minute="start" data-minute="${min}">:${String(min).padStart(2,'0')}&lt;/button>).join('')}</div></div>; else if (m.step === 'end-hour') body ={[11,12,13,14,15,16,17,18,19,20,21,22].map(h => <button class="hour-btn" data-pick-hour="end" data-hour="${h}">${h}&lt;/button>).join('')}</div></div>; else if (m.step === 'end-minute') body ={[0,15,30,45].map(min => <button class="minute-btn" data-pick-minute="end" data-minute="${min}">:${String(min).padStart(2,'0')}&lt;/button>).join('')}</div></div>; body += renderAlacakToggle(avail); body +=<button class="manual-btn" data-go-manual="1">✏️ Manuel Giriş</button>; } return<div class="modal-backdrop"><div class="shift-modal" onclick="event.stopPropagation()">
-<div class="shift-modal-head">
-{shortName((staff && staff.name) || '')}</div>
-<div class="shift-modal-sub">{chipsBar ? <div class="shift-chips-bar"&gt;${chipsBar}</div>: ''} &lt;div class="shift-modal-body"&gt;${body}</div>
-</div></div>`;
+const dateLabel = p[2] + ' ' + AY[p[1]-1] + ' ' + GUN[dt.getDay()];
+const isExisting = !!m.existing;
+const avail = getAvailableReceivableForWeek(m.staffId);
+const chipsBar = data.settings.shiftChips.filter(function(c){return c.type !== 'time';}).map(function(chip){
+let cls = 'stc-btn';
+if (chip.type === 'izinli') cls += ' izinli';
+if (chip.type === RECEIVABLE_LEAVE_TYPE) cls += ' alacak-izinli';
+if (m.activeChipId === chip.id) cls += ' active';
+const disabled = chip.type === RECEIVABLE_LEAVE_TYPE && avail < RECEIVABLE_LEAVE_HOURS;
+return '<button class="' + cls + '" data-chip-id="' + chip.id + '" ' + (disabled ? 'disabled' : '') + '><span class="stc-icon">' + chip.icon + '</span><span>' + chip.name + '</span></button>';
+}).join('');
+const startHStr = m.startHour !== null ? String(m.startHour).padStart(2,'0') : '';
+const startMStr = m.startMinute !== null ? String(m.startMinute).padStart(2,'0') : '';
+const endHStr = m.endHour !== null ? String(m.endHour).padStart(2,'0') : '';
+const endMStr = m.endMinute !== null ? String(m.endMinute).padStart(2,'0') : '';
+const pickedSummary = '<div class="picked-summary ' + (m.startHour !== null ? 'has-start' : '') + ' ' + (m.endHour !== null ? 'has-end' : '') + '">' +
+'<div class="picked-item"><span class="pi-lbl">Giriş</span><span class="pi-val start">' + startHStr + ':' + startMStr + '</span></div>' +
+'<span class="picked-arrow">→</span>' +
+'<div class="picked-item"><span class="pi-lbl">Çıkış</span><span class="pi-val end">' + endHStr + ':' + endMStr + '</span></div>' +
+'</div>';
+const startVal = (m.startHour !== null && m.startMinute !== null) ? String(m.startHour).padStart(2,'0') + ':' + String(m.startMinute).padStart(2,'0') : '';
+const endVal = (m.endHour !== null && m.endMinute !== null) ? String(m.endHour).padStart(2,'0') + ':' + String(m.endMinute).padStart(2,'0') : '';
+let body = '';
+if (m.step === 'manual') {
+body = pickedSummary +
+'<div class="shift-section"><div class="shift-section-title" style="justify-content:center;">✏️ Manuel Giriş</div></div>' +
+'<div class="manual-input-row">' +
+'<div class="time-input-group"><div class="time-input-label">Giriş</div><input class="time-input" type="time" id="manStart" value="' + startVal + '" /></div>' +
+'<div class="time-input-group"><div class="time-input-label">Çıkış</div><input class="time-input" type="time" id="manEnd" value="' + endVal + '" /></div>' +
+'</div>' +
+'<button class="manual-save-btn" data-go-save-manual="1">💾 Kaydet</button>';
+body += renderAlacakToggle(avail);
+} else {
+if (m.step === 'start-hour') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">GİRİŞ SAATİ</div><div class="hour-grid">' + [8,9,10,11,12,13,14,15,16,17,18,19].map(function(h){return '<button class="hour-btn" data-pick-hour="start" data-hour="' + h + '">' + h + '</button>';}).join('') + '</div></div>';
+else if (m.step === 'start-minute') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">GİRİŞ DAKİKASI</div><div class="minute-grid">' + [0,15,30,45].map(function(mi){return '<button class="minute-btn" data-pick-minute="start" data-minute="' + mi + '">:' + String(mi).padStart(2,'0') + '</button>';}).join('') + '</div></div>';
+else if (m.step === 'end-hour') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">ÇIKIŞ SAATİ</div><div class="hour-grid">' + [11,12,13,14,15,16,17,18,19,20,21,22].map(function(h){return '<button class="hour-btn" data-pick-hour="end" data-hour="' + h + '">' + h + '</button>';}).join('') + '</div></div>';
+else if (m.step === 'end-minute') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">ÇIKIŞ DAKİKASI</div><div class="minute-grid">' + [0,15,30,45].map(function(mi){return '<button class="minute-btn" data-pick-minute="end" data-minute="' + mi + '">:' + String(mi).padStart(2,'0') + '</button>';}).join('') + '</div></div>';
+body += renderAlacakToggle(avail);
+body += '<button class="manual-btn" data-go-manual="1">✏️ Manuel Giriş</button>';
+}
+return '<div class="modal-backdrop"><div class="shift-modal" onclick="event.stopPropagation()">' +
+'<div class="shift-modal-head">' +
+(isExisting ? '<button class="shift-modal-delete" data-modal-delete="1">🗑</button>' : '') +
+'<div class="shift-modal-title">' + shortName((staff && staff.name) || '') + '</div>' +
+'<div class="shift-modal-sub">' + dateLabel + '</div>' +
+'<button class="shift-modal-close" data-modal-cancel="1">✕</button>' +
+'</div>' +
+(chipsBar ? '<div class="shift-chips-bar">' + chipsBar + '</div>' : '') +
+'<div class="shift-modal-body">' + body + '</div>' +
+'</div></div>';
 }
 
 function renderAlacakToggle(avail) {
 const hasAlacak = avail > 0.01;
 const on = state.alacakToggleOn && hasAlacak;
-const quickBtns = [1,2,3,4,5,6,7].map(o => {
+const quickBtns = [1,2,3,4,5,6,7].map(function(o){
 const disabled = o > avail;
 const active = !disabled && Math.abs(state.alacakHours - o) < 0.01;
-return <button class="alacak-quick-btn ${active ? 'active' : ''}" data-alacak-quick="${o}" ${disabled ? 'disabled' : ''}>${o}&lt;/button>;
+return '<button class="alacak-quick-btn ' + (active ? 'active' : '') + '" data-alacak-quick="' + o + '" ' + (disabled ? 'disabled' : '') + '>' + o + '</button>';
 }).join('');
-return <div class="alacak-toggle-row ${hasAlacak ? '' : 'disabled'}">
-<div class="alacak-toggle-left"><span class="alacak-toggle-icon">💰</span>
-<div class="alacak-toggle-text"><span class="alacak-toggle-title">Alacak Saat Kullan</span><span class="alacak-toggle-sub">${hasAlacak ?Kullanılabilir: latex
-{fmtNetHoursShort(avail)} sa` : 'Alacak saati yok'}&lt;/span&gt;&lt;/div&gt; &lt;/div&gt; &lt;button class="alacak-switch 
-
-{on ? 'on' : ''}" data-toggle-alacak="1" {on ? <div class="alacak-hours-picker"&gt;&lt;div class="alacak-quick-row"&gt;${quickBtns}</div></div>: ''};
+return '<div class="alacak-toggle-row ' + (hasAlacak ? '' : 'disabled') + '">' +
+'<div class="alacak-toggle-left"><span class="alacak-toggle-icon">💰</span>' +
+'<div class="alacak-toggle-text"><span class="alacak-toggle-title">Alacak Saat Kullan</span><span class="alacak-toggle-sub">' + (hasAlacak ? 'Kullanılabilir: ' + fmtNetHoursShort(avail) + ' sa' : 'Alacak saati yok') + '</span></div>' +
+'</div>' +
+'<button class="alacak-switch ' + (on ? 'on' : '') + '" data-toggle-alacak="1" ' + (hasAlacak ? '' : 'disabled') + '></button>' +
+'</div>' +
+(on ? '<div class="alacak-hours-picker"><div class="alacak-quick-row">' + quickBtns + '</div></div>' : '');
 }
 
 function renderStaffManagerModal() {
-const items = data.settings.staff.map(s => {
+const items = data.settings.staff.map(function(s){
 const sc = getStaffColor(s.id);
-const avStyle = sc ? background:${sc.bg};color:{avStyle}">{s.name}</div><div class="staff-row-role">{s.id}">✏️</button><button class="staff-row-btn del" data-del-staff="latex
-{s.id}"&gt;🗑&lt;/button&gt;&lt;/div&gt;&lt;/div>`; }).join(''); return `<div class="modal-backdrop"&gt;&lt;div class="modal" onclick="event.stopPropagation()" style="max-width:420px;"&gt; &lt;div class="modal-icon"&gt;👥&lt;/div&gt;&lt;div class="modal-title"&gt;Personel Yönetimi&lt;/div&gt;&lt;div class="modal-desc"&gt;Personel ekle, düzenle veya sil&lt;/div&gt; &lt;div class="staff-list"&gt;
-
-{items}</div>
-<button class="modal-btn confirm" id="addStaffInListBtn" style="width:100%;">＋ Yeni Personel Ekle</button>
-<div class="modal-actions"><button class="modal-btn cancel" data-modal-cancel="1" style="width:100%;">Kapat</button></div>
-</div></div>`;
+const avStyle = sc ? 'background:' + sc.bg + ';color:' + sc.text + ';' : '';
+return '<div class="staff-row"><div class="staff-row-avatar" style="' + avStyle + '">' + initials(s.name) + '</div><div class="staff-row-info"><div class="staff-row-name">' + s.name + '</div><div class="staff-row-role">' + s.title + '</div></div><div class="staff-row-actions"><button class="staff-row-btn edit" data-edit-staff="' + s.id + '">✏️</button><button class="staff-row-btn del" data-del-staff="' + s.id + '">🗑</button></div></div>';
+}).join('');
+return '<div class="modal-backdrop"><div class="modal" onclick="event.stopPropagation()" style="max-width:420px;">' +
+'<div class="modal-icon">👥</div><div class="modal-title">Personel Yönetimi</div><div class="modal-desc">Personel ekle, düzenle veya sil</div>' +
+'<div class="staff-list">' + items + '</div>' +
+'<button class="modal-btn confirm" id="addStaffInListBtn" style="width:100%;">＋ Yeni Personel Ekle</button>' +
+'<div class="modal-actions"><button class="modal-btn cancel" data-modal-cancel="1" style="width:100%;">Kapat</button></div>' +
+'</div></div>';
 }
 
 function renderStaffFormModal() {
 const st = state.editingStaff;
 if (!st) return '';
-const isNew = !data.settings.staff.find(s => s.id === st.id);
-return <div class="modal-backdrop"&gt;&lt;div class="modal" onclick="event.stopPropagation()"&gt; &lt;div class="modal-icon"&gt;${isNew ? '➕' : '✏️'}</div>
-<div class="modal-title">${isNew ? 'Yeni Personel' : 'Personeli Düzenle'}&lt;/div&gt; &lt;div class="modal-desc"&gt;${isNew ? 'Yeni personel ekle' : st.name + ' bilgilerini düzenle'}</div>
-<label class="form-label">İsim Soyisim</label>
-<input class="form-input" id="staffNameInput" type="text" value="${st.name}" placeholder="Örn: Ayşe K." /&gt; &lt;label class="form-label"&gt;Ünvan / Pozisyon&lt;/label&gt; &lt;input class="form-input" id="staffTitleInput" type="text" value="${st.title || ''}" placeholder="Örn: Kıdemli Satış Danışmanı" />
-<div class="modal-actions"><button class="modal-btn cancel" data-modal-cancel="1">İptal</button><button class="modal-btn confirm" id="saveStaffFormBtn">Kaydet</button></div>
-</div></div>`;
+const isNew = !data.settings.staff.find(function(s){return s.id === st.id;});
+return '<div class="modal-backdrop"><div class="modal" onclick="event.stopPropagation()">' +
+'<div class="modal-icon">' + (isNew ? '➕' : '✏️') + '</div>' +
+'<div class="modal-title">' + (isNew ? 'Yeni Personel' : 'Personeli Düzenle') + '</div>' +
+'<div class="modal-desc">' + (isNew ? 'Yeni personel ekle' : st.name + ' bilgilerini düzenle') + '</div>' +
+'<label class="form-label">İsim Soyisim</label>' +
+'<input class="form-input" id="staffNameInput" type="text" value="' + st.name + '" placeholder="Örn: Ayşe K." />' +
+'<label class="form-label">Ünvan / Pozisyon</label>' +
+'<input class="form-input" id="staffTitleInput" type="text" value="' + (st.title || '') + '" placeholder="Örn: Kıdemli Satış Danışmanı" />' +
+'<div class="modal-actions"><button class="modal-btn cancel" data-modal-cancel="1">İptal</button><button class="modal-btn confirm" id="saveStaffFormBtn">Kaydet</button></div>' +
+'</div></div>';
 }
 
 function renderEmojiPicker() {
-return <div class="modal-backdrop" data-close-emoji="1"&gt;&lt;div class="modal" onclick="event.stopPropagation()" style="max-width:340px;"&gt; &lt;div class="modal-title" style="font-size:15px;margin-bottom:12px;"&gt;Simge Seç&lt;/div&gt; &lt;div class="emoji-picker"&gt;${EMOJI_LIST.map(e => <button class="emoji-pick-btn" data-emoji="${e}">${e}&lt;/button>).join('')}</div>
-<div class="modal-actions"><button class="modal-btn cancel" data-close-emoji="1" style="width:100%;">İptal</button></div>
-</div></div>`;
+return '<div class="modal-backdrop" data-close-emoji="1"><div class="modal" onclick="event.stopPropagation()" style="max-width:340px;">' +
+'<div class="modal-title" style="font-size:15px;margin-bottom:12px;">Simge Seç</div>' +
+'<div class="emoji-picker">' + EMOJI_LIST.map(function(e){return '<button class="emoji-pick-btn" data-emoji="' + e + '">' + e + '</button>';}).join('') + '</div>' +
+'<div class="modal-actions"><button class="modal-btn cancel" data-close-emoji="1" style="width:100%;">İptal</button></div>' +
+'</div></div>';
 }
 
 function renderSettingsPage() {
 const tabs = [
 { key: 'general', label: 'Genel' },
-{ key: 'breaks', label: 'Molalar' },
+{ key: 'chips', label: 'Vardiya Kartları' },
+{ key: 'colors', label: 'Renkler' },
+{ key: 'breaks', label: 'Molalar' }
  ];
-return <div class="settings-page"&gt; &lt;div class="settings-header"&gt;&lt;div class="settings-header-left"&gt;&lt;span class="settings-header-icon"&gt;⚙️&lt;/span&gt;&lt;span class="settings-title"&gt;Ayarlar&lt;/span&gt;&lt;/div&gt;&lt;button class="settings-close" data-close-settings="1"&gt;✕&lt;/button&gt;&lt;/div&gt; &lt;div class="settings-tabs-bar"&gt;${tabs.map(t => <button class="settings-tab-btn${state.settingsTab === t.key ? 'active' : ''}" data-settings-tab="{t.label}</button>).join('')}&lt;/div&gt; &lt;div class="settings-body" id="settingsContent"&gt;&lt;/div&gt; &lt;/div>;
+return '<div class="settings-page">' +
+'<div class="settings-header"><div class="settings-header-left"><span class="settings-header-icon">⚙️</span><span class="settings-title">Ayarlar</span></div><button class="settings-close" data-close-settings="1">✕</button></div>' +
+'<div class="settings-tabs-bar">' + tabs.map(function(t){return '<button class="settings-tab-btn ' + (state.settingsTab === t.key ? 'active' : '') + '" data-settings-tab="' + t.key + '">' + t.label + '</button>';}).join('') + '</div>' +
+'<div class="settings-body" id="settingsContent"></div>' +
+'</div>';
 }
 
 function renderSettingsContent() {
@@ -1161,7 +1771,9 @@ const content = document.getElementById('settingsContent');
 if (!content) return;
 const s = state.editingSettings;
 if (!s) return;
-if (state.settingsTab === 'breaks') content.innerHTML = renderSettingsBreaks(s);
+if (state.settingsTab === 'chips') content.innerHTML = renderSettingsChips(s);
+else if (state.settingsTab === 'colors') content.innerHTML = renderSettingsColors(s);
+else if (state.settingsTab === 'breaks') content.innerHTML = renderSettingsBreaks(s);
 else content.innerHTML = renderSettingsGeneral(s);
 bindSettingsEvents();
 }
@@ -1171,27 +1783,100 @@ const monthOffset = state.selectedMonthOffset || 0;
 const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 const targetDate = getMonthByOffset(monthOffset);
 const monthTarget = getMonthTarget(monthOffset);
-return &lt;div class="settings-section-title"&gt;Mağaza&lt;/div&gt; &lt;div class="settings-input-group"&gt;&lt;div class="settings-input-label"&gt;Mağaza Adı&lt;/div&gt;&lt;input class="settings-input" id="setStoreName" type="text" value="${s.storeName}" /></div>
-<div class="settings-section-title">Saat Hedefi</div>
-<div class="settings-input-group"><div class="settings-input-label">${AY[targetDate.getMonth()]} ${targetDate.getFullYear()} — Aylık Toplam Hedef</div><input class="settings-input" id="setMonthlyTarget" type="tel" inputmode="numeric" value="${monthTarget || ''}" placeholder="Örn: 180" /&gt;&lt;/div&gt; &lt;div class="settings-section-title"&gt;Çalışma Limitleri&lt;/div&gt; &lt;div class="settings-input-group"&gt;&lt;div class="settings-input-label"&gt;Haftalık Max (FT/Müdür)&lt;/div&gt;&lt;input class="settings-input" id="setWeeklyLimit" type="tel" value="${s.weeklyLimitHours}" /></div>
-<div class="settings-input-group"><div class="settings-input-label">Haftalık Max (PT)</div><input class="settings-input" id="setPTLimit" type="tel" value="${s.ptMaxWeeklyHours}" /&gt;&lt;/div&gt; &lt;div class="settings-input-group"&gt;&lt;div class="settings-input-label"&gt;Günlük Max (net saat)&lt;/div&gt;&lt;input class="settings-input" id="setDailyLimit" type="tel" value="${s.dailyLimitHours}" /></div>
-<div class="settings-input-group"><div class="settings-input-label">Gece Max (net saat)</div><input class="settings-input" id="setNightLimit" type="tel" value="${s.nightLimitHours}" /&gt;&lt;/div&gt; &lt;button class="save-settings-btn" id="saveGeneralBtn"&gt;Kaydet&lt;/button>;
+return '<div class="settings-section-title">Mağaza</div>' +
+'<div class="settings-input-group"><div class="settings-input-label">Mağaza Adı</div><input class="settings-input" id="setStoreName" type="text" value="' + s.storeName + '" /></div>' +
+'<div class="settings-section-title">Saat Hedefi</div>' +
+'<div class="settings-input-group"><div class="settings-input-label">' + AY[targetDate.getMonth()] + ' ' + targetDate.getFullYear() + ' — Aylık Toplam Hedef</div><input class="settings-input" id="setMonthlyTarget" type="tel" inputmode="numeric" value="' + (monthTarget || '') + '" placeholder="Örn: 180" /></div>' +
+'<div class="settings-section-title">Çalışma Limitleri</div>' +
+'<div class="settings-input-group"><div class="settings-input-label">Haftalık Max (FT/Müdür)</div><input class="settings-input" id="setWeeklyLimit" type="tel" value="' + s.weeklyLimitHours + '" /></div>' +
+'<div class="settings-input-group"><div class="settings-input-label">Haftalık Max (PT)</div><input class="settings-input" id="setPTLimit" type="tel" value="' + s.ptMaxWeeklyHours + '" /></div>' +
+'<div class="settings-input-group"><div class="settings-input-label">Günlük Max (net saat)</div><input class="settings-input" id="setDailyLimit" type="tel" value="' + s.dailyLimitHours + '" /></div>' +
+'<div class="settings-input-group"><div class="settings-input-label">Gece Max (net saat)</div><input class="settings-input" id="setNightLimit" type="tel" value="' + s.nightLimitHours + '" /></div>' +
+'<button class="save-settings-btn" id="saveGeneralBtn">Kaydet</button>';
+}
+
+function renderSettingsChips(s) {
+const chips = s.shiftChips || [];
+const items = chips.map(function(chip, i){
+const showTimes = chip.type === 'full';
+let subText = '';
+if (chip.type === 'time') subText = '🕐 Saat seçim ekranı açar';
+else if (chip.type === 'izinli') subText = '🏖️ İzinli kaydeder';
+else if (chip.type === RECEIVABLE_LEAVE_TYPE) subText = '💰 7,5 saat alacaktan düşer';
+return '<div class="chip-edit-row">' +
+'<div class="chip-edit-icon" data-chip-emoji="' + i + '">' + chip.icon + '</div>' +
+'<div class="chip-edit-info">' +
+'<input class="chip-edit-name" type="text" data-chip-name="' + i + '" value="' + chip.name + '" placeholder="İsim" />' +
+(showTimes ? '<div class="chip-edit-times"><input class="chip-edit-time" type="time" data-chip-start="' + i + '" value="' + chip.start + '" /><span>→</span><input class="chip-edit-time" type="time" data-chip-end="' + i + '" value="' + chip.end + '" /></div>' : '<span class="chip-edit-hours">' + subText + '</span>') +
+'</div>' +
+'<button class="chip-edit-del" data-chip-del="' + i + '">🗑</button>' +
+'</div>';
+}).join('');
+return '<div class="settings-section-title">Vardiya Kartları</div>' +
+'<div class="settings-hint">Vardiya düzenleme ekranındaki hızlı seçim kartları.</div>' +
+'<div class="chip-editor-list">' + items + '</div>' +
+'<button class="add-chip-btn" id="addChipBtn">＋ Yeni Kart Ekle</button>' +
+'<button class="save-settings-btn" id="saveChipsBtn">Kaydet</button>';
+}
+
+function renderSettingsColors(s) {
+const rules = s.colorRules || [];
+const staff = s.staff || [];
+const colorRuleItems = rules.map(function(r, i){
+return '<div class="color-rule-row">' +
+'<div class="color-rule-times"><input type="time" data-color-start="' + i + '" value="' + r.start + '" /><span>→</span><input type="time" data-color-end="' + i + '" value="' + r.end + '" /></div>' +
+'<input class="color-rule-name" type="text" data-color-name="' + i + '" value="' + (r.name || '') + '" placeholder="İsim" />' +
+'<div class="color-rule-swatch" data-color-swatch="' + i + '" style="background:' + r.color + ';"></div>' +
+'<button class="color-rule-del" data-color-del="' + i + '">🗑</button>' +
+'</div>';
+}).join('');
+const staffColorItems = staff.map(function(st){
+const sc = st.color || DEFAULT_STAFF_COLORS[st.role] || DEFAULT_STAFF_COLORS.pt;
+return '<div class="staff-color-row">' +
+'<div class="staff-color-avatar" style="background:' + sc.bg + ';color:' + sc.text + ';">' + initials(st.name) + '</div>' +
+'<div class="staff-color-name">' + shortName(st.name) + '</div>' +
+'<div style="display:flex;gap:10px;align-items:center;">' +
+'<div style="display:flex;flex-direction:column;align-items:center;"><div class="staff-color-pick" style="background:' + sc.bg + ';"><input type="color" data-staff-bg="' + st.id + '" value="' + sc.bg + '" /></div><div class="staff-color-lbl">Arka</div></div>' +
+'<div style="display:flex;flex-direction:column;align-items:center;"><div class="staff-color-pick" style="background:' + sc.text + ';"><input type="color" data-staff-text="' + st.id + '" value="' + sc.text + '" /></div><div class="staff-color-lbl">Yazı</div></div>' +
+'</div>' +
+'</div>';
+}).join('');
+return '<div class="settings-section-title">🎨 Vardiya Renkleri</div>' +
+'<div class="settings-hint">Saat aralıklarına göre vardiya hücre arka plan rengi.</div>' +
+colorRuleItems +
+'<button class="add-rule-btn" id="addColorRuleBtn">＋ Yeni Renk Kuralı</button>' +
+'<div class="settings-section-title" style="margin-top:20px;">👥 Personel Renkleri</div>' +
+'<div class="settings-hint">Her personel için isim hücresi ve çip rengi.</div>' +
+staffColorItems +
+'<button class="save-settings-btn" id="saveColorsBtn">Kaydet</button>';
 }
 
 function renderSettingsBreaks(s) {
-const rows = (s.breakRules || []).map((r, i) => <div class="break-rule-card"&gt; &lt;div class="break-rule-left"&gt; &lt;input class="brr-input" type="tel" data-break-min-h="${i}" value="${r.minHours}" /&gt; &lt;span class="brr-unit"&gt;—&lt;/span&gt; &lt;input class="brr-input" type="tel" data-break-max="${i}" value="${r.maxHours}" /&gt; &lt;span class="brr-unit"&gt;saat arası&lt;/span&gt; &lt;span style="margin:0 4px;"&gt;→&lt;/span&gt; &lt;input class="brr-input" type="tel" data-break-min="${i}" value="${r.breakMin}" /&gt; &lt;span class="brr-unit"&gt;dk mola&lt;/span&gt; &lt;/div&gt; &lt;button class="break-rule-del" data-break-del="${i}">🗑</button>
-</div>).join(''); return<div class="settings-section-title">Otomatik Mola Kuralları</div>
-<div class="settings-hint">Vardiya süresi hangi aralığa denk geliyorsa o mola uygulanır.</div>
-${rows} &lt;button class="add-rule-btn" id="addBreakRuleBtn"&gt;＋ Yeni Kural Ekle&lt;/button&gt; &lt;button class="save-settings-btn" id="saveBreaksBtn"&gt;Kaydet&lt;/button>;
+const rows = (s.breakRules || []).map(function(r, i){
+return '<div class="break-rule-card"><div class="break-rule-left">' +
+'<input class="brr-input" type="tel" data-break-min-h="' + i + '" value="' + r.minHours + '" />' +
+'<span class="brr-unit">—</span>' +
+'<input class="brr-input" type="tel" data-break-max="' + i + '" value="' + r.maxHours + '" />' +
+'<span class="brr-unit">saat arası</span>' +
+'<span style="margin:0 4px;">→</span>' +
+'<input class="brr-input" type="tel" data-break-min="' + i + '" value="' + r.breakMin + '" />' +
+'<span class="brr-unit">dk mola</span>' +
+'</div><button class="break-rule-del" data-break-del="' + i + '">🗑</button></div>';
+}).join('');
+return '<div class="settings-section-title">Otomatik Mola Kuralları</div>' +
+'<div class="settings-hint">Vardiya süresi hangi aralığa denk geliyorsa o mola uygulanır.</div>' +
+rows +
+'<button class="add-rule-btn" id="addBreakRuleBtn">＋ Yeni Kural Ekle</button>' +
+'<button class="save-settings-btn" id="saveBreaksBtn">Kaydet</button>';
 }
 
 function bindSettingsEvents() {
-document.querySelectorAll('[data-settings-tab]').forEach(el => { el.onclick = () => { state.settingsTab = el.dataset.settingsTab; render(); }; });
-document.querySelectorAll('[data-close-settings]').forEach(el => { el.onclick = () => { state.showSettings = false; state.editingSettings = null; render(); }; });
+document.querySelectorAll('[data-settings-tab]').forEach(function(el){ el.onclick = function(){ state.settingsTab = el.dataset.settingsTab; render(); }; });
+document.querySelectorAll('[data-close-settings]').forEach(function(el){ el.onclick = function(){ state.showSettings = false; state.editingSettings = null; render(); }; });
 const s = state.editingSettings;
 if (!s) return;
 const saveGen = document.getElementById('saveGeneralBtn');
-if (saveGen) saveGen.onclick = () => {
+if (saveGen) saveGen.onclick = function(){
 s.storeName = document.getElementById('setStoreName').value.trim() || 'Mağaza';
 const mtRaw = String(document.getElementById('setMonthlyTarget').value).trim();
 const mt = mtRaw === '' ? 0 : (parseInt(mtRaw.replace(/[^\d]/g, ''), 10) || 0);
@@ -1205,65 +1890,117 @@ lsSave();
 showToast('✅ Ayarlar kaydedildi', 'success');
 render();
 };
-document.querySelectorAll('[data-break-min-h]').forEach(el => { el.oninput = () => { s.breakRules[+el.dataset.breakMinH].minHours = parseFloat(el.value.replace(',','.')) || 0; }; });
-document.querySelectorAll('[data-break-max]').forEach(el => { el.oninput = () => { s.breakRules[+el.dataset.breakMax].maxHours = parseFloat(el.value.replace(',','.')) || 0; }; });
-document.querySelectorAll('[data-break-min]').forEach(el => { el.oninput = () => { s.breakRules[+el.dataset.breakMin].breakMin = parseInt(el.value) || 0; }; });
-document.querySelectorAll('[data-break-del]').forEach(el => { el.onclick = () => { s.breakRules.splice(+el.dataset.breakDel, 1); renderSettingsContent(); }; });
+document.querySelectorAll('[data-chip-name]').forEach(function(el){ el.oninput = function(){ const idx = parseInt(el.dataset.chipName, 10); if (s.shiftChips[idx]) s.shiftChips[idx].name = el.value; }; });
+document.querySelectorAll('[data-chip-emoji]').forEach(function(el){ el.onclick = function(){ state.chipEditEmojiTarget = parseInt(el.dataset.chipEmoji, 10); render(); }; });
+document.querySelectorAll('[data-chip-start]').forEach(function(el){ el.oninput = function(){ const idx = parseInt(el.dataset.chipStart, 10); if (s.shiftChips[idx]) s.shiftChips[idx].start = el.value; }; });
+document.querySelectorAll('[data-chip-end]').forEach(function(el){ el.oninput = function(){ const idx = parseInt(el.dataset.chipEnd, 10); if (s.shiftChips[idx]) s.shiftChips[idx].end = el.value; }; });
+document.querySelectorAll('[data-chip-del]').forEach(function(el){ el.onclick = function(){ s.shiftChips.splice(parseInt(el.dataset.chipDel, 10), 1); renderSettingsContent(); }; });
+const addChip = document.getElementById('addChipBtn');
+if (addChip) addChip.onclick = function(){ s.shiftChips.push({ id: 'chip_' + Date.now(), icon: '⭐', name: 'Yeni Kart', type: 'full', start: '09:00', end: '18:00' }); renderSettingsContent(); };
+const saveChips = document.getElementById('saveChipsBtn');
+if (saveChips) saveChips.onclick = function(){ data.settings.shiftChips = s.shiftChips.map(function(c){return Object.assign({}, c);}); lsSave(); showToast('✅ Kartlar kaydedildi', 'success'); };
+document.querySelectorAll('[data-color-start]').forEach(function(el){ el.oninput = function(){ const idx = parseInt(el.dataset.colorStart, 10); if (s.colorRules[idx]) s.colorRules[idx].start = el.value; }; });
+document.querySelectorAll('[data-color-end]').forEach(function(el){ el.oninput = function(){ const idx = parseInt(el.dataset.colorEnd, 10); if (s.colorRules[idx]) s.colorRules[idx].end = el.value; }; });
+document.querySelectorAll('[data-color-name]').forEach(function(el){ el.oninput = function(){ const idx = parseInt(el.dataset.colorName, 10); if (s.colorRules[idx]) s.colorRules[idx].name = el.value; }; });
+document.querySelectorAll('[data-color-swatch]').forEach(function(el){
+const idx = parseInt(el.dataset.colorSwatch, 10);
+el.onclick = function(){
+const inp = document.createElement('input');
+inp.type = 'color';
+inp.value = s.colorRules[idx].color || '#e0e7ff';
+inp.oninput = function(ev){ s.colorRules[idx].color = ev.target.value; el.style.background = ev.target.value; };
+inp.click();
+};
+});
+document.querySelectorAll('[data-color-del]').forEach(function(el){ el.onclick = function(){ s.colorRules.splice(parseInt(el.dataset.colorDel, 10), 1); renderSettingsContent(); }; });
+const addColor = document.getElementById('addColorRuleBtn');
+if (addColor) addColor.onclick = function(){ s.colorRules.push({ start: '12:00', end: '18:00', color: '#e0e7ff', name: 'Yeni' }); renderSettingsContent(); };
+document.querySelectorAll('[data-staff-bg]').forEach(function(el){
+const sid = el.dataset.staffBg;
+el.oninput = function(ev){
+const st = s.staff.find(function(x){return x.id === sid;});
+if (st) {
+if (!st.color) st.color = Object.assign({}, DEFAULT_STAFF_COLORS[st.role] || DEFAULT_STAFF_COLORS.pt);
+st.color.bg = ev.target.value;
+el.parentElement.style.background = ev.target.value;
+}
+};
+});
+document.querySelectorAll('[data-staff-text]').forEach(function(el){
+const sid = el.dataset.staffText;
+el.oninput = function(ev){
+const st = s.staff.find(function(x){return x.id === sid;});
+if (st) {
+if (!st.color) st.color = Object.assign({}, DEFAULT_STAFF_COLORS[st.role] || DEFAULT_STAFF_COLORS.pt);
+st.color.text = ev.target.value;
+el.parentElement.style.background = ev.target.value;
+}
+};
+});
+const saveColors = document.getElementById('saveColorsBtn');
+if (saveColors) saveColors.onclick = function(){
+data.settings.colorRules = s.colorRules.map(function(c){return Object.assign({}, c);});
+data.settings.staff = s.staff.map(function(st){return Object.assign({}, st, { color: st.color ? Object.assign({}, st.color) : undefined });});
+lsSave(); showToast('✅ Renkler kaydedildi', 'success'); render();
+};
+document.querySelectorAll('[data-break-min-h]').forEach(function(el){ el.oninput = function(){ s.breakRules[+el.dataset.breakMinH].minHours = parseFloat(el.value.replace(',','.')) || 0; }; });
+document.querySelectorAll('[data-break-max]').forEach(function(el){ el.oninput = function(){ s.breakRules[+el.dataset.breakMax].maxHours = parseFloat(el.value.replace(',','.')) || 0; }; });
+document.querySelectorAll('[data-break-min]').forEach(function(el){ el.oninput = function(){ s.breakRules[+el.dataset.breakMin].breakMin = parseInt(el.value) || 0; }; });
+document.querySelectorAll('[data-break-del]').forEach(function(el){ el.onclick = function(){ s.breakRules.splice(+el.dataset.breakDel, 1); renderSettingsContent(); }; });
 const addBreak = document.getElementById('addBreakRuleBtn');
-if (addBreak) addBreak.onclick = () => {
+if (addBreak) addBreak.onclick = function(){
 const last = s.breakRules[s.breakRules.length - 1] || { maxHours: 4, breakMin: 15 };
 s.breakRules.push({ minHours: last.maxHours, maxHours: last.maxHours + 2, breakMin: last.breakMin + 30 });
 renderSettingsContent();
 };
 const saveBreaks = document.getElementById('saveBreaksBtn');
-if (saveBreaks) saveBreaks.onclick = () => {
-data.settings.breakRules = s.breakRules.map(r => Object.assign({}, r));
-lsSave();
-showToast('✅ Molalar kaydedildi', 'success');
-render();
+if (saveBreaks) saveBreaks.onclick = function(){
+data.settings.breakRules = s.breakRules.map(function(r){return Object.assign({}, r);});
+lsSave(); showToast('✅ Molalar kaydedildi', 'success'); render();
 };
 }
 
-function renderToast() { return <div class="toast ${state.toast.kind}">${state.toast.text}&lt;/div>; }
+function renderToast() { return '<div class="toast ' + state.toast.kind + '">' + state.toast.text + '</div>'; }
 
+// ============ EVENT HANDLERS ============
 function bindEvents() {
-const el = (id) => document.getElementById(id);
+const el = function(id){ return document.getElementById(id); };
 const setBtn = el('settingsBtn'); if (setBtn) setBtn.onclick = openSettings;
 const addBtn = el('addStaffBtn'); if (addBtn) addBtn.onclick = openStaffManager;
 const clrBtn = el('openClearBtn'); if (clrBtn) clrBtn.onclick = openClearMenu;
 
-document.querySelectorAll('[data-ht-month-shift]').forEach(e => { e.onclick = () => shiftMonth(parseInt(e.dataset.htMonthShift, 10)); });
-const htNav = el('htNavLabel'); if (htNav) htNav.onclick = () => { state.showMonthPicker = !state.showMonthPicker; render(); };
+document.querySelectorAll('[data-ht-month-shift]').forEach(function(e){ e.onclick = function(){ shiftMonth(parseInt(e.dataset.htMonthShift, 10)); }; });
+const htNav = el('htNavLabel'); if (htNav) htNav.onclick = function(){ state.showMonthPicker = !state.showMonthPicker; render(); };
 
-document.querySelectorAll('[data-week-shift]').forEach(e => { e.onclick = () => shiftWeek(parseInt(e.dataset.weekShift, 10)); });
+document.querySelectorAll('[data-week-shift]').forEach(function(e){ e.onclick = function(){ shiftWeek(parseInt(e.dataset.weekShift, 10)); }; });
 const wpBtn = el('openWeekPicker'); if (wpBtn) wpBtn.onclick = openWeekPicker;
-document.querySelectorAll('[data-close-week-picker]').forEach(e => { e.onclick = () => closeWeekPicker(); });
-document.querySelectorAll('[data-wp-year]').forEach(e => { e.onclick = () => wpChangeYear(parseInt(e.dataset.wpYear, 10)); });
-document.querySelectorAll('[data-wp-month]').forEach(e => { e.onclick = () => wpPickMonth(parseInt(e.dataset.wpMonth, 10)); });
-document.querySelectorAll('[data-wp-week]').forEach(e => {
-e.onclick = () => {
-const [y, mo, d] = e.dataset.wpWeek.split('-').map(Number);
-wpPickWeek(new Date(y, mo - 1, d));
+document.querySelectorAll('[data-close-week-picker]').forEach(function(e){ e.onclick = closeWeekPicker; });
+document.querySelectorAll('[data-wp-year]').forEach(function(e){ e.onclick = function(){ wpChangeYear(parseInt(e.dataset.wpYear, 10)); }; });
+document.querySelectorAll('[data-wp-month]').forEach(function(e){ e.onclick = function(){ wpPickMonth(parseInt(e.dataset.wpMonth, 10)); }; });
+document.querySelectorAll('[data-wp-week]').forEach(function(e){
+e.onclick = function(){
+const p = e.dataset.wpWeek.split('-').map(Number);
+wpPickWeek(new Date(p[0], p[1]-1, p[2]));
 };
 });
 
-document.querySelectorAll('[data-close-clear]').forEach(e => { e.onclick = () => closeClearMenu(); });
-document.querySelectorAll('[data-clear-staff]').forEach(e => { e.onclick = () => toggleClearStaff(e.dataset.clearStaff); });
-document.querySelectorAll('[data-clear-day]').forEach(e => { e.onclick = () => toggleClearDay(parseInt(e.dataset.clearDay, 10)); });
-document.querySelectorAll('[data-clear-all-staff]').forEach(e => { e.onclick = () => selectAllClearStaff(); });
-document.querySelectorAll('[data-clear-all-days]').forEach(e => { e.onclick = () => selectAllClearDays(); });
-document.querySelectorAll('[data-apply-clear]').forEach(e => { e.onclick = () => applyClear(); });
+document.querySelectorAll('[data-close-clear]').forEach(function(e){ e.onclick = closeClearMenu; });
+document.querySelectorAll('[data-clear-staff]').forEach(function(e){ e.onclick = function(){ toggleClearStaff(e.dataset.clearStaff); }; });
+document.querySelectorAll('[data-clear-day]').forEach(function(e){ e.onclick = function(){ toggleClearDay(parseInt(e.dataset.clearDay, 10)); }; });
+document.querySelectorAll('[data-clear-all-staff]').forEach(function(e){ e.onclick = selectAllClearStaff; });
+document.querySelectorAll('[data-clear-all-days]').forEach(function(e){ e.onclick = selectAllClearDays; });
+document.querySelectorAll('[data-apply-clear]').forEach(function(e){ e.onclick = applyClear; });
 
-document.querySelectorAll('[data-plan-cell]').forEach(e => {
-e.onclick = () => openShiftEdit(e.dataset.staff, e.dataset.date);
+document.querySelectorAll('[data-plan-cell]').forEach(function(e){
+e.onclick = function(){ openShiftEdit(e.dataset.staff, e.dataset.date); };
 });
-document.querySelectorAll('[data-warning-staff]').forEach(e => {
-e.onclick = () => goToWarningCell(e.dataset.warningStaff, e.dataset.warningDate);
+document.querySelectorAll('[data-warning-staff]').forEach(function(e){
+e.onclick = function(){ goToWarningCell(e.dataset.warningStaff, e.dataset.warningDate); };
 });
 const monthToggle = el('monthPickerToggle');
-if (monthToggle) monthToggle.onclick = (ev) => { ev.stopPropagation(); state.showMonthPicker = !state.showMonthPicker; render(); };
-document.querySelectorAll('[data-month-offset]').forEach(e => {
-e.onclick = (ev) => {
+if (monthToggle) monthToggle.onclick = function(ev){ ev.stopPropagation(); state.showMonthPicker = !state.showMonthPicker; render(); };
+document.querySelectorAll('[data-month-offset]').forEach(function(e){
+e.onclick = function(ev){
 ev.stopPropagation();
 const newOffset = parseInt(e.dataset.monthOffset, 10);
 state.selectedMonthOffset = newOffset;
@@ -1282,9 +2019,9 @@ render();
 });
 const targetDisplay = el('hourTargetDisplay');
 if (targetDisplay) {
-targetDisplay.addEventListener('dblclick', (ev) => { ev.preventDefault(); state.editingHourTarget = true; render(); });
+targetDisplay.addEventListener('dblclick', function(ev){ ev.preventDefault(); state.editingHourTarget = true; render(); });
 let lastTap = 0;
-targetDisplay.addEventListener('touchend', (ev) => {
+targetDisplay.addEventListener('touchend', function(ev){
 const now = Date.now();
 if (now - lastTap < 350) { ev.preventDefault(); state.editingHourTarget = true; render(); lastTap = 0; }
 else { lastTap = now; }
@@ -1292,17 +2029,17 @@ else { lastTap = now; }
 }
 const targetInput = el('hourTargetInput');
 if (targetInput) {
-setTimeout(() => { targetInput.focus(); targetInput.select(); }, 50);
-targetInput.addEventListener('keydown', (ev) => {
+setTimeout(function(){ targetInput.focus(); targetInput.select(); }, 50);
+targetInput.addEventListener('keydown', function(ev){
 if (ev.key === 'Enter') { ev.preventDefault(); saveHourTarget(); }
 if (ev.key === 'Escape') { state.editingHourTarget = false; render(); }
 });
-targetInput.addEventListener('blur', () => { if (state.editingHourTarget) saveHourTarget(); });
+targetInput.addEventListener('blur', function(){ if (state.editingHourTarget) saveHourTarget(); });
 }
-document.querySelectorAll('[data-receivable-hours-cell]').forEach(e => {
-e.ondblclick = (ev) => { ev.stopPropagation(); state.editingReceivableStaffId = e.dataset.receivableHoursCell; render(); };
+document.querySelectorAll('[data-receivable-hours-cell]').forEach(function(e){
+e.ondblclick = function(ev){ ev.stopPropagation(); state.editingReceivableStaffId = e.dataset.receivableHoursCell; render(); };
 let lastTap = 0;
-e.addEventListener('touchend', (ev) => {
+e.addEventListener('touchend', function(ev){
 const now = Date.now();
 if (now - lastTap < 350) { ev.preventDefault(); ev.stopPropagation(); state.editingReceivableStaffId = e.dataset.receivableHoursCell; render(); lastTap = 0; }
 else { lastTap = now; }
@@ -1310,53 +2047,53 @@ else { lastTap = now; }
 });
 const mInp = el('manualExtraInput');
 if (mInp) {
-setTimeout(() => { mInp.focus(); mInp.select(); }, 30);
-const commit = () => { if (state.editingReceivableStaffId) saveReceivableInput(state.editingReceivableStaffId); };
-mInp.addEventListener('keydown', (ev) => {
+setTimeout(function(){ mInp.focus(); mInp.select(); }, 30);
+const commit = function(){ if (state.editingReceivableStaffId) saveReceivableInput(state.editingReceivableStaffId); };
+mInp.addEventListener('keydown', function(ev){
 if (ev.key === 'Enter') { ev.preventDefault(); commit(); }
 if (ev.key === 'Escape') { state.editingReceivableStaffId = null; render(); }
 });
 mInp.addEventListener('blur', commit);
 }
-document.querySelectorAll('[data-chip-id]').forEach(e => { e.onclick = () => selectChip(e.dataset.chipId); });
-document.querySelectorAll('[data-pick-hour]').forEach(e => { e.onclick = () => pickHour(e.dataset.pickHour, parseInt(e.dataset.hour, 10)); });
-document.querySelectorAll('[data-pick-minute]').forEach(e => { e.onclick = () => pickMinute(e.dataset.pickMinute, parseInt(e.dataset.minute, 10)); });
-document.querySelectorAll('[data-go-manual]').forEach(e => { e.onclick = () => goToManual(); });
-document.querySelectorAll('[data-go-save-manual]').forEach(e => {
-e.onclick = () => {
+document.querySelectorAll('[data-chip-id]').forEach(function(e){ e.onclick = function(){ selectChip(e.dataset.chipId); }; });
+document.querySelectorAll('[data-pick-hour]').forEach(function(e){ e.onclick = function(){ pickHour(e.dataset.pickHour, parseInt(e.dataset.hour, 10)); }; });
+document.querySelectorAll('[data-pick-minute]').forEach(function(e){ e.onclick = function(){ pickMinute(e.dataset.pickMinute, parseInt(e.dataset.minute, 10)); }; });
+document.querySelectorAll('[data-go-manual]').forEach(function(e){ e.onclick = goToManual; });
+document.querySelectorAll('[data-go-save-manual]').forEach(function(e){
+e.onclick = function(){
 const m = state.modal; if (!m) return;
 const sEl = el('manStart'); const eEl = el('manEnd');
-if (sEl && sEl.value) { const [h, mi] = sEl.value.split(':'); m.startHour = parseInt(h, 10); m.startMinute = parseInt(mi, 10); }
-if (eEl && eEl.value) { const [h, mi] = eEl.value.split(':'); m.endHour = parseInt(h, 10); m.endMinute = parseInt(mi, 10); }
+if (sEl && sEl.value) { const p = sEl.value.split(':'); m.startHour = parseInt(p[0],10); m.startMinute = parseInt(p[1],10); }
+if (eEl && eEl.value) { const p = eEl.value.split(':'); m.endHour = parseInt(p[0],10); m.endMinute = parseInt(p[1],10); }
 autoSaveShift(false);
 };
 });
-document.querySelectorAll('[data-modal-cancel]').forEach(e => { e.onclick = () => { state.modal = null; state.editingStaff = null; render(); }; });
-document.querySelectorAll('[data-modal-delete]').forEach(e => { e.onclick = () => deleteShiftEdit(); });
-document.querySelectorAll('[data-toggle-alacak]').forEach(e => { e.onclick = () => toggleAlacak(); });
-document.querySelectorAll('[data-alacak-quick]').forEach(e => { e.onclick = () => { if (e.disabled) return; setAlacakHours(parseFloat(e.dataset.alacakQuick)); }; });
-document.querySelectorAll('[data-close-emoji]').forEach(e => { e.onclick = () => { state.chipEditEmojiTarget = null; render(); }; });
-document.querySelectorAll('[data-emoji]').forEach(e => {
-e.onclick = () => {
+document.querySelectorAll('[data-modal-cancel]').forEach(function(e){ e.onclick = function(){ state.modal = null; state.editingStaff = null; render(); }; });
+document.querySelectorAll('[data-modal-delete]').forEach(function(e){ e.onclick = deleteShiftEdit; });
+document.querySelectorAll('[data-toggle-alacak]').forEach(function(e){ e.onclick = toggleAlacak; });
+document.querySelectorAll('[data-alacak-quick]').forEach(function(e){ e.onclick = function(){ if (e.disabled) return; setAlacakHours(parseFloat(e.dataset.alacakQuick)); }; });
+document.querySelectorAll('[data-close-emoji]').forEach(function(e){ e.onclick = function(){ state.chipEditEmojiTarget = null; render(); }; });
+document.querySelectorAll('[data-emoji]').forEach(function(e){
+e.onclick = function(){
 const idx = state.chipEditEmojiTarget;
 if (idx !== null && state.editingSettings && state.editingSettings.shiftChips[idx]) state.editingSettings.shiftChips[idx].icon = e.dataset.emoji;
 state.chipEditEmojiTarget = null; render();
 };
 });
-document.querySelectorAll('[data-edit-staff]').forEach(e => { e.onclick = () => openStaffForm(e.dataset.editStaff); });
-document.querySelectorAll('[data-del-staff]').forEach(e => { e.onclick = () => deleteStaff(e.dataset.delStaff); });
-const addStaffList = el('addStaffInListBtn'); if (addStaffList) addStaffList.onclick = () => openStaffForm();
+document.querySelectorAll('[data-edit-staff]').forEach(function(e){ e.onclick = function(){ openStaffForm(e.dataset.editStaff); }; });
+document.querySelectorAll('[data-del-staff]').forEach(function(e){ e.onclick = function(){ deleteStaff(e.dataset.delStaff); }; });
+const addStaffList = el('addStaffInListBtn'); if (addStaffList) addStaffList.onclick = function(){ openStaffForm(); };
 const saveStaffBtn = el('saveStaffFormBtn');
-if (saveStaffBtn) saveStaffBtn.onclick = () => {
+if (saveStaffBtn) saveStaffBtn.onclick = function(){
 const nameEl = el('staffNameInput'); const titleEl = el('staffTitleInput');
 if (nameEl) state.editingStaff.name = nameEl.value.trim();
 if (titleEl) state.editingStaff.title = titleEl.value.trim();
 saveStaffForm();
 };
-document.querySelectorAll('[data-staff-name-cell]').forEach(e => {
-e.ondblclick = (ev) => { ev.stopPropagation(); state.editingStaffNameId = e.dataset.staffNameCell; render(); };
+document.querySelectorAll('[data-staff-name-cell]').forEach(function(e){
+e.ondblclick = function(ev){ ev.stopPropagation(); state.editingStaffNameId = e.dataset.staffNameCell; render(); };
 let lastTap = 0;
-e.addEventListener('touchend', (ev) => {
+e.addEventListener('touchend', function(ev){
 const now = Date.now();
 if (now - lastTap < 350) { ev.preventDefault(); ev.stopPropagation(); state.editingStaffNameId = e.dataset.staffNameCell; render(); lastTap = 0; }
 else { lastTap = now; }
@@ -1364,26 +2101,26 @@ else { lastTap = now; }
 });
 const nameInp = el('staffNameInlineInput');
 if (nameInp) {
-setTimeout(() => { nameInp.focus(); nameInp.select(); }, 30);
-const commit = () => {
+setTimeout(function(){ nameInp.focus(); nameInp.select(); }, 30);
+const commit = function(){
 const val = nameInp.value.trim();
 const sid = state.editingStaffNameId;
 if (sid && val) {
-const st = data.settings.staff.find(s => s.id === sid);
+const st = data.settings.staff.find(function(s){return s.id === sid;});
 if (st) st.name = val;
 lsSave();
 }
 state.editingStaffNameId = null;
 render();
 };
-nameInp.addEventListener('keydown', (ev) => {
+nameInp.addEventListener('keydown', function(ev){
 if (ev.key === 'Enter') { ev.preventDefault(); commit(); }
 if (ev.key === 'Escape') { state.editingStaffNameId = null; render(); }
 });
 nameInp.addEventListener('blur', commit);
 }
-document.querySelectorAll('[data-receivable-staff]').forEach(e => {
-e.onclick = (ev) => {
+document.querySelectorAll('[data-receivable-staff]').forEach(function(e){
+e.onclick = function(ev){
 if (ev.target.closest('[data-staff-name-cell]') || ev.target.closest('input') || ev.target.closest('[data-receivable-hours-cell]')) return;
 const sid = e.dataset.receivableStaff;
 const earned = getExtraHours(sid, state.selectedMonthOffset || 0);
@@ -1393,9 +2130,9 @@ state.receivableDetailStaffId = sid;
 render();
 };
 });
-document.querySelectorAll('[data-close-receivable-detail]').forEach(e => { e.onclick = () => { state.receivableDetailStaffId = null; render(); }; });
-document.querySelectorAll('[data-warn-edit]').forEach(e => { e.onclick = () => { state.warnConfirm = null; render(); }; });
-document.querySelectorAll('[data-warn-apply]').forEach(e => { e.onclick = () => { autoSaveShift(true); }; });
+document.querySelectorAll('[data-close-receivable-detail]').forEach(function(e){ e.onclick = function(){ state.receivableDetailStaffId = null; render(); }; });
+document.querySelectorAll('[data-warn-edit]').forEach(function(e){ e.onclick = function(){ state.warnConfirm = null; render(); }; });
+document.querySelectorAll('[data-warn-apply]').forEach(function(e){ e.onclick = function(){ autoSaveShift(true); }; });
 if (state.showSettings) renderSettingsContent();
 }
 
@@ -1403,7 +2140,7 @@ if (state.showSettings) renderSettingsContent();
 render();
 initFirebase();
 
-setInterval(() => {
+setInterval(function(){
 state.now = new Date();
 const c = document.querySelector('.dt-clock');
 if (c) c.textContent = fmtTime(state.now);
