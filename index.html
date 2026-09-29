@@ -506,7 +506,7 @@ function isNightShift(start, end) {
 const s = toMin(start); const e = toMin(end);
 const dur = (e - s + 1440) % 1440;
 let nightMin = 0;
-for (let i = 0; i < dur; i++) { const cur = (s + i) % 1440; if (cur >= 20*60 || cur < 6*60) nightMin++;
+for (let i = 0; i < dur; i++) { const cur = (s + i) % 1440; if (cur >= 20*60 || cur < 6*60) nightMin++;}
 return nightMin > dur / 2;
 }
 function getShiftColor(start, end) {
