@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Firebase Test</title>
+<style>
+body { font-family: sans-serif; padding: 20px; background: #f1f5f9; }
+.box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.ok { color: green; font-weight: bold; }
+.err { color: red; font-weight: bold; }
+.info { color: #555; font-size: 14px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>Firebase Test</h1>
+  <div id="out">Deneniyor...</div>
+</div>
+<script type="module">
+  const out = document.getElementById('out');
+  try {
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js");
+    const { getFirestore } = await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js");
+    const { getAuth, signInAnonymously } = await import("https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js");
+    out.innerHTML += '<div class="info">1. SDK yüklendi ✓</div>';
+    const app = initializeApp({
+      apiKey: "AIzaSyA24PxJApdRNa4-_Tm9lYaeG6mhWnjH22I",
+      authDomain: "besteam-84083.firebaseapp.com",
+      projectId: "besteam-84083",
+      storageBucket: "besteam-84083.firebasestorage.app",
+      messagingSenderId: "312603270874",
+      appId: "1:312603270874:web:61176677189bd460be8fe3"
+    });
+    out.innerHTML += '<div class="info">2. App başlatıldı ✓</div>';
+    const auth = getAuth(app);
+    out.innerHTML += '<div class="info">3. Auth hazır ✓</div>';
+    const userCred = await signInAnonymously(auth);
+    out.innerHTML += '<div class="ok">4. ANONİM GİRİŞ BAŞARILI! UID: ' + userCred.user.uid + '</div>';
+  } catch (e) {
+    out.innerHTML += '<div class="err">HATA: ' + e.message + '</div>';
+    out.innerHTML += '<div class="err">Kod: ' + e.code + '</div>';
+  }
+</script>
+</body>
+</html>
