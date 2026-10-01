@@ -1,68 +1,89 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!DOCTYPE html>  <html lang="tr">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes, viewport-fit=cover" />
 <title>Vardiya Planlama</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.6.0/chroma.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+<script type="module"
+src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { min-height: 100%; height: auto; overflow-x: hidden; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f1f5f9; color: #0f172a; min-height: 100vh; padding-bottom: 20px; user-select: none; -webkit-user-select: none; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+background: #f1f5f9; color: #0f172a; min-height: 100vh; padding-bottom: 20px; user-select: none; -webkit-user-select: none; }
 .app { max-width: 480px; margin: 0 auto; padding: 0 12px 12px; }
 button { transition: transform 0.08s ease; font-family: inherit; }
-button:active:not(:disabled) { transform: scale(0.94); }
-
-.sync-badge { position: fixed; top: 8px; right: 8px; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 900; z-index: 999; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 4px; }
+button:active:not(:disabled) { transform: scale(0.94); }  .sync-badge { position: fixed; top: 8px;
+right: 8px; padding: 4px 10px; border-radius: 12px; font-size: 10px; font-weight: 900; z-index: 999; box-shadow: 0 2px 6px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 4px; }
 .sync-badge.online { background: #dcfce7; color: #166534; }
 .sync-badge.offline { background: #fee2e2; color: #991b1b; }
 .sync-badge.saving { background: #fef3c7; color: #92400e; }
 .sync-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
-.top-header { display: flex; align-items: center; gap: 8px; padding: 8px 12px; margin: 0 -12px; background: #ffffff; border-bottom: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 20; }
-.avatar-btn { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; font-weight: 800; font-size: 13px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; overflow: hidden; }
+.top-header { display: flex; align-items: center; gap: 8px; padding: 8px 12px; margin: 0 -12px;
+background: #ffffff; border-bottom: 1px solid #e2e8f0; box-shadow: 0 1px 2px
+rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 20; }
+.avatar-btn { width: 36px; height: 36px; border-radius: 50%; background:
+linear-gradient(135deg, #ec4899, #be185d); color: #fff; font-weight: 800; font-size: 13px;
+border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+flex-shrink: 0; padding: 0; overflow: hidden; }
 .avatar-btn img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .greeting-block { flex: 1; min-width: 0; }
 .greeting-hi { font-size: 15px; font-weight: 800; color: #0f172a; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .greeting-sub { font-size: 12px; color: #64748b; margin-top: 1px; display: flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .live-dot { display: inline-block; width: 6px; height: 6px; background: #16a34a; border-radius: 50%; margin-right: 5px; animation: pulse 1.5s infinite; flex-shrink: 0; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-.icon-btn { width: 34px; height: 34px; border-radius: 50%; background: transparent; border: none; display: flex; align-items: center; justify-content: center; font-size: 17px; cursor: pointer; padding: 0; flex-shrink: 0; color: #475569; }
+.icon-btn { width: 34px; height: 34px; border-radius: 50%; background: transparent; border: none; display: flex; align-items: center; justify-content: center; font-size: 17px; cursor:
+pointer; padding: 0; flex-shrink: 0; color: #475569; }
 .icon-btn.settings-active { background: #eff6ff; }
-.datetime-bar { text-align: center; padding: 6px 12px; margin: 0 -12px 8px; background: #ffffff; border-bottom: 1px solid #e2e8f0; font-size: 12px; color: #64748b; font-weight: 600; font-variant-numeric: tabular-nums; position: sticky; top: 53px; z-index: 19; }
+.datetime-bar { text-align: center; padding: 6px 12px; margin: 0 -12px 8px; background: #ffffff;
+border-bottom: 1px solid #e2e8f0; font-size: 12px; color: #64748b; font-weight: 600;
+font-variant-numeric: tabular-nums; position: sticky; top: 53px; z-index: 19; }
 .datetime-bar .dt-sep { margin: 0 8px; color: #cbd5e1; }
 
-.card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; position: relative; }
-.card-header { padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; }
-.card-title { font-size: 12px; font-weight: 900; color: #1e293b; letter-spacing: 1.2px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+.card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid
+#e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; position: relative; }
+.card-header { padding: 12px 14px; display: flex; align-items: center; justify-content:
+space-between; }
+.card-title { font-size: 12px; font-weight: 900; color: #1e293b; letter-spacing: 1.2px;
+text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
 .card-badge { background: #eff6ff; color: #2563eb; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 8px; }
 .card-badge.success { background: #dcfce7; color: #166534; }
 .card-badge.danger { background: #fee2e2; color: #991b1b; }
 
 .hour-target-card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden; }
 .hour-target-head { display: flex; align-items: center; justify-content: center; padding: 10px 14px 8px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; position: relative; }
-.hour-target-title { font-size: 12px; font-weight: 900; color: #64748b; letter-spacing: 1.2px; text-transform: uppercase; }
+.hour-target-title { font-size: 12px; font-weight: 900; color: #64748b; letter-spacing: 1.2px;
+text-transform: uppercase; }
 .hour-target-nav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 12px; background: #ffffff; border-bottom: 1px solid #f1f5f9; }
-.ht-nav-arrow { width: 28px; height: 28px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 13px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
-.ht-nav-label { font-size: 13px; font-weight: 900; color: #1e293b; text-align: center; flex: 1; cursor: pointer; padding: 3px 8px; border-radius: 8px; }
+.ht-nav-arrow { width: 28px; height: 28px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 13px; font-weight: 900; cursor: pointer; display: flex;
+align-items: center; justify-content: center; padding: 0; }
+.ht-nav-label { font-size: 13px; font-weight: 900; color: #1e293b; text-align: center; flex: 1;
+cursor: pointer; padding: 3px 8px; border-radius: 8px; }
 .ht-nav-label .ht-month { color: #1d4ed8; }
 .hour-target-compact { display: flex; align-items: center; padding: 10px 14px 8px; gap: 8px; }
-.ht-value-wrap { display: flex; flex-direction: column; align-items: center; min-width: 84px; flex-shrink: 0; }
+.ht-value-wrap { display: flex; flex-direction: column; align-items: center; min-width: 84px;
+flex-shrink: 0; }
 .ht-value { font-size: 26px; font-weight: 900; color: #0f172a; letter-spacing: -1px; line-height: 1; display: inline-block; padding: 2px 8px; border-radius: 6px; cursor: pointer; border: 2px dashed transparent; }
 .ht-value.empty { color: #cbd5e1; }
 .ht-input { font-size: 26px; font-weight: 900; color: #0f172a; text-align: center; padding: 2px 8px; border: 2px solid #3b82f6; border-radius: 6px; background: #eff6ff; outline: none; width: 96px; letter-spacing: -1px; line-height: 1; }
 .ht-hint { font-size: 9.5px; color: #94a3b8; font-weight: 700; margin-top: 3px; }
 .ht-meta { display: flex; align-items: center; gap: 4px; flex: 1; justify-content: flex-end; }
-.ht-chip { background: #f8fafc; border-radius: 8px; padding: 5px 8px; text-align: center; min-width: 0; flex: 1; max-width: 72px; }
-.ht-chip .htc-lbl { font-size: 8.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; white-space: nowrap; }
+.ht-chip { background: #f8fafc; border-radius: 8px; padding: 5px 8px; text-align: center;
+min-width: 0; flex: 1; max-width: 72px; }
+.ht-chip .htc-lbl { font-size: 8.5px; font-weight: 800; color: #94a3b8; text-transform:
+uppercase; white-space: nowrap; }
 .ht-chip .htc-val { font-size: 14px; font-weight: 900; color: #0f172a; margin-top: 1px; }
 .ht-chip .htc-val.good { color: #16a34a; }
 .ht-chip .htc-val.warn { color: #ea580c; }
 .ht-chip .htc-val.bad { color: #dc2626; }
 .ht-chip .htc-val.empty { color: #cbd5e1; }
-.hour-target-weeks { padding: 8px 12px; background: #ffffff; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 4px; font-size: 11px; font-weight: 800; color: #1e293b; line-height: 1.6; border-top: 1px solid #f1f5f9; }
+.hour-target-weeks { padding: 8px 12px; background: #ffffff; display: flex; flex-wrap: wrap;
+align-items: center; justify-content: center; gap: 2px 4px; font-size: 11px; font-weight: 800;
+color: #1e293b; line-height: 1.6; border-top: 1px solid #f1f5f9; }
 .htw-item { display: inline-flex; align-items: baseline; gap: 3px; white-space: nowrap; }
 .htw-item .htw-lbl { font-size: 10.5px; color: #64748b; font-weight: 800; }
 .htw-item .htw-val { color: #2563eb; font-weight: 900; font-size: 12px; }
@@ -71,42 +92,65 @@ button:active:not(:disabled) { transform: scale(0.94); }
 
 .weekly-hours-card { background: #ffffff; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; overflow: hidden; }
 .weekly-hours-scroll { display: flex; padding: 10px 12px; overflow: hidden; width: 100%; }
-.wh-item { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 2px; gap: 3px; position: relative; }
+.wh-item { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center;
+justify-content: center; padding: 4px 2px; gap: 3px; position: relative; }
 .wh-item + .wh-item { border-left: 1px solid #e2e8f0; }
-.wh-item.dragging { transform: scale(1.12); background: #eff6ff; border-radius: 8px; box-shadow: 0 6px 16px rgba(59,130,246,0.35); z-index: 10; }
-.wh-name { font-size: 10px; font-weight: 900; color: #0f172a; white-space: normal; word-break: break-word; max-width: 100%; text-align: center; line-height: 1.1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.wh-hours { font-size: 14px; font-weight: 900; cursor: pointer; padding: 1px 4px; border-radius: 4px; }
+.wh-item.dragging { transform: scale(1.12); background: #eff6ff; border-radius: 8px;
+box-shadow: 0 6px 16px rgba(59,130,246,0.35); z-index: 10; }
+.wh-name { font-size: 10px; font-weight: 900; color: #0f172a; white-space: normal;
+word-break: break-word; max-width: 100%; text-align: center; line-height: 1.1; overflow:
+hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.wh-hours { font-size: 14px; font-weight: 900; cursor: pointer; padding: 1px 4px;
+border-radius: 4px; }
 .wh-hours.good { color: #16a34a; }
 .wh-hours.warn { color: #ea580c; }
 .wh-hours.danger { color: #dc2626; }
 .wh-hours.zero { color: #cbd5e1; }
 .wh-hours.receivable { color: #7c3aed; }
-.wh-hours-input { font-size: 14px; font-weight: 900; color: #7c3aed; background: #f3e8ff; border: 1.5px solid #9333ea; border-radius: 4px; outline: none; text-align: center; width: 48px; padding: 1px 2px; }
-.wh-name-input { font-size: 10px; font-weight: 900; color: #0f172a; background: #eff6ff; border: 1.5px solid #3b82f6; border-radius: 4px; outline: none; text-align: center; padding: 1px 2px; width: 90%; }
+.wh-hours-input { font-size: 14px; font-weight: 900; color: #7c3aed; background: #f3e8ff;
+border: 1.5px solid #9333ea; border-radius: 4px; outline: none; text-align: center; width:
+48px; padding: 1px 2px; }
+.wh-name-input { font-size: 10px; font-weight: 900; color: #0f172a; background: #eff6ff;
+border: 1.5px solid #3b82f6; border-radius: 4px; outline: none; text-align: center; padding: 1px 2px; width: 90%; }
 
 .plan-header-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px 6px; gap: 8px; }
-.plan-header-title { font-size: 11.5px; font-weight: 900; color: #1e293b; letter-spacing: 1px; text-transform: uppercase; }
+.plan-header-title { font-size: 11.5px; font-weight: 900; color: #1e293b; letter-spacing: 1px;
+text-transform: uppercase; }
 .clear-btn { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 900; cursor: pointer; }
 .plan-week-nav { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 12px 10px; }
 .plan-week-arrow { width: 32px; height: 32px; border-radius: 8px; background: #ffffff; border: 1px solid #e2e8f0; color: #475569; font-size: 15px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.plan-week-label { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; cursor: pointer; flex: 1; min-width: 0; justify-content: center; }
-.plan-week-text { font-size: 12.5px; font-weight: 800; color: #1e293b; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.plan-week-label { display: flex; align-items: center; gap: 6px; padding: 6px 12px;
+background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; cursor: pointer; flex: 1;
+min-width: 0; justify-content: center; }
+.plan-week-text { font-size: 12.5px; font-weight: 800; color: #1e293b; text-align: center;
+white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .plan-week-text .pwt-range { color: #64748b; font-weight: 700; }
 .plan-week-text .pwt-month { color: #1d4ed8; font-weight: 900; }
 .plan-week-cal { font-size: 14px; flex-shrink: 0; }
 .plan-grid-wrap { padding: 0 6px 12px; }
 .plan-grid { display: grid; grid-template-columns: 52px repeat(7, minmax(0, 1fr)); background: #ffffff; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e1; width: 100%; }
-.plan-grid > div { min-height: 28px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 3px 1px; font-size: 11px; text-align: center; line-height: 1.15; min-width: 0; }
+.plan-grid > div { min-height: 28px; display: flex; align-items: center; justify-content: center;
+overflow: hidden; padding: 3px 1px; font-size: 11px; text-align: center; line-height: 1.15;
+min-width: 0; }
 .plan-corner { background: #ffffff; border-right: 2px solid #64748b; border-bottom: 2px solid #64748b; padding: 0; min-height: 34px; cursor: pointer; }
-.plan-corner-inner { width: 24px; height: 24px; border-radius: 8px; background: #fce7f3; color: #ec4899; font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; border: 1.5px solid #fbcfe8; margin: auto; transition: all 0.15s; }
+.plan-corner-inner { width: 24px; height: 24px; border-radius: 8px; background: #fce7f3;
+color: #ec4899; font-size: 14px; font-weight: 900; display: flex; align-items: center;
+justify-content: center; border: 1.5px solid #fbcfe8; margin: auto; transition: all 0.15s; }
 .plan-corner:active .plan-corner-inner { background: #fbcfe8; transform: scale(0.92); }
-.plan-day-head { background: #f1f5f9; border-right: 1px solid #cbd5e1; border-bottom: 2px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 4px 0; min-height: 34px; font-size: 9px; font-weight: 900; color: #475569; }
+.plan-day-head { background: #f1f5f9; border-right: 1px solid #cbd5e1; border-bottom: 2px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content:
+center; gap: 1px; padding: 4px 0; min-height: 34px; font-size: 9px; font-weight: 900; color: #475569; }
 .plan-day-head .pdh-num { font-size: 8px; font-weight: 700; color: #94a3b8; }
-.plan-name-cell { background: #fafbfc; border-right: 2px solid #64748b; border-bottom: 1px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3px 1px; gap: 1px; min-height: 62px; text-align: center; line-height: 1.05; overflow: hidden; }
-.plan-name-cell .pnc-name { font-size: 9px; font-weight: 900; color: #0f172a; white-space: normal; word-break: break-word; line-height: 1.05; max-width: 100%; text-align: center; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.plan-name-cell { background: #fafbfc; border-right: 2px solid #64748b; border-bottom: 1px solid #64748b; display: flex; flex-direction: column; align-items: center; justify-content:
+center; padding: 3px 1px; gap: 1px; min-height: 62px; text-align: center; line-height: 1.05;
+overflow: hidden; }
+.plan-name-cell .pnc-name { font-size: 9px; font-weight: 900; color: #0f172a; white-space: normal; word-break: break-word; line-height: 1.05; max-width: 100%; text-align: center;
+overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
 .plan-name-cell .pnc-role { font-size: 8px; font-weight: 900; color: #64748b; white-space: nowrap; letter-spacing: 0.3px; }
-.pnc-name-input { font-size: 9.5px; font-weight: 900; color: #0f172a; background: #eff6ff; border: 1.5px solid #3b82f6; border-radius: 4px; outline: none; text-align: center; padding: 1px 2px; width: 96%; }
-.plan-cell { border-right: 1px solid #cbd5e1; border-bottom: 1px solid #64748b; cursor: pointer; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4px 0; min-height: 62px; gap: 0; font-size: 11px; font-weight: 900; line-height: 1.15; color: #0f172a; min-width: 0; }
+.pnc-name-input { font-size: 9.5px; font-weight: 900; color: #0f172a; background: #eff6ff;
+border: 1.5px solid #3b82f6; border-radius: 4px; outline: none; text-align: center; padding: 1px 2px; width: 96%; }
+.plan-cell { border-right: 1px solid #cbd5e1; border-bottom: 1px solid #64748b; cursor:
+pointer; position: relative; display: flex; flex-direction: column; align-items: center;
+justify-content: center; padding: 4px 0; min-height: 62px; gap: 0; font-size: 11px; font-weight: 900; line-height: 1.15; color: #0f172a; min-width: 0; }
 .plan-cell.sabah { background: #ffedd5; color: #9a3412; }
 .plan-cell.aksam { background: #e0e7ff; color: #3730a3; }
 .plan-cell.tam { background: #fce7f3; color: #9d174d; }
@@ -116,206 +160,348 @@ button:active:not(:disabled) { transform: scale(0.94); }
 .plan-cell.gece { background: #ede9fe; color: #5b21b6; }
 .plan-cell.has-error { animation: cellErrorPulse 1.4s ease-in-out infinite; }
 @keyframes cellErrorPulse { 0%, 100% { background: #fef2f2; box-shadow: inset 0 0 0 2px rgba(220,38,38,0.5); } 50% { background: #fecaca; box-shadow: inset 0 0 0 3px #dc2626, 0 0 8px rgba(220,38,38,0.5); } }
-.plan-cell .pc-time { font-size: 10.5px; font-weight: 900; line-height: 1.15; white-space: nowrap; position: relative; z-index: 1; }
+.plan-cell .pc-time { font-size: 10.5px; font-weight: 900; line-height: 1.15; white-space:
+nowrap; position: relative; z-index: 1; }
 .plan-cell .pc-divider { width: 72%; height: 1px; background: rgba(0,0,0,0.22); margin: 2.5px auto; border-radius: 1px; }
-.plan-cell .pc-meta { display: flex; align-items: center; justify-content: center; gap: 4px; line-height: 1; width: 100%; }
+.plan-cell .pc-meta { display: flex; align-items: center; justify-content: center; gap: 4px;
+line-height: 1; width: 100%; }
 .plan-cell .pc-net { font-size: 9.5px; font-weight: 800; color: #64748b; }
 .plan-cell .pc-break-sep { font-size: 9px; font-weight: 800; color: #94a3b8; }
 .plan-cell .pc-break { font-size: 9.5px; font-weight: 800; color: #64748b; }
-.plan-cell.has-error .pc-net, .plan-cell.has-error .pc-break, .plan-cell.has-error .pc-break-sep { color: #991b1b; }
-.plan-cell .pc-ar { position: absolute; top: 2px; right: 3px; font-size: 9px; font-weight: 900; color: #7c3aed; background: #ede9fe; border-radius: 3px; padding: 0 3px; line-height: 1.4; z-index: 2; }
-.plan-cell.edit-hint { box-shadow: inset 0 0 0 2px #f59e0b, 0 0 8px rgba(245,158,11,0.4); z-index: 4; background: #fef3c7; }
-.plan-cell.edit-hint::after { content: '✏️'; position: absolute; top: 1px; right: 1px; font-size: 10px; opacity: 0.9; pointer-events: none; }
-.plan-cell-tooltip { position: fixed; background: #0f172a; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 800; white-space: nowrap; z-index: 500; box-shadow: 0 6px 16px rgba(0,0,0,0.3); pointer-events: none; }
-.plan-sum-label { background: #f1f5f9; border-right: 2px solid #64748b; border-top: 1px solid #64748b; font-size: 8.5px; font-weight: 900; color: #7c3aed; text-transform: uppercase; padding-left: 2px; min-height: 28px; }
+.plan-cell.has-error .pc-net, .plan-cell.has-error .pc-break, .plan-cell.has-error .pc-break-sep {
+color: #991b1b; }
+.plan-cell .pc-ar { position: absolute; top: 2px; right: 3px; font-size: 9px; font-weight: 900;
+color: #7c3aed; background: #ede9fe; border-radius: 3px; padding: 0 3px; line-height: 1.4;
+z-index: 2; }
+.plan-cell.edit-hint { box-shadow: inset 0 0 0 2px #f59e0b, 0 0 8px rgba(245,158,11,0.4);
+z-index: 4; background: #fef3c7; }
+.plan-cell.edit-hint::after { content: '✏'; position: absolute; top: 1px; right: 1px; font-size:
+10px; opacity: 0.9; pointer-events: none; }
+.plan-cell-tooltip { position: fixed; background: #0f172a; color: #fff; padding: 8px 14px;
+border-radius: 8px; font-size: 12px; font-weight: 800; white-space: nowrap; z-index: 500;
+box-shadow: 0 6px 16px rgba(0,0,0,0.3); pointer-events: none; }
+.plan-sum-label { background: #f1f5f9; border-right: 2px solid #64748b; border-top: 1px solid #64748b; font-size: 8.5px; font-weight: 900; color: #7c3aed; text-transform: uppercase;
+padding-left: 2px; min-height: 28px; }
 .plan-sum-cell { background: #faf5ff; border-right: 1px solid #cbd5e1; border-top: 1px solid #64748b; font-size: 11px; font-weight: 900; color: #7c3aed; min-height: 28px; }
-.plan-count-label { background: #f1f5f9; border-right: 2px solid #64748b; border-top: 1px solid #64748b; font-size: 8.5px; font-weight: 900; color: #475569; text-transform: uppercase; padding-left: 2px; min-height: 26px; }
+.plan-count-label { background: #f1f5f9; border-right: 2px solid #64748b; border-top: 1px solid #64748b; font-size: 8.5px; font-weight: 900; color: #475569; text-transform: uppercase;
+padding-left: 2px; min-height: 26px; }
 .plan-count-cell { background: #f8fafc; border-right: 1px solid #cbd5e1; border-top: 1px solid #64748b; font-size: 11px; font-weight: 900; color: #0f172a; min-height: 26px; padding: 2px 1px; }
 
 .warnings-card { padding: 0 14px 12px; }
-.warning-item { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 8px; margin-bottom: 6px; font-size: 12.5px; color: #78350f; font-weight: 700; line-height: 1.35; cursor: pointer; }
+.warning-item { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px;
+background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 8px; margin-bottom: 6px;
+font-size: 12.5px; color: #78350f; font-weight: 700; line-height: 1.35; cursor: pointer; }
 .warning-item.danger { background: #fee2e2; border-left-color: #dc2626; color: #991b1b; }
 .warning-item .w-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
 .warning-item .w-content { flex: 1; min-width: 0; }
-.warning-item .w-go { font-size: 16px; color: #94a3b8; font-weight: 900; flex-shrink: 0; align-self: center; margin-left: 6px; }
+.warning-item .w-go { font-size: 16px; color: #94a3b8; font-weight: 900; flex-shrink: 0;
+align-self: center; margin-left: 6px; }
 .warning-item.danger .w-go { color: #dc2626; }
-.warning-empty { font-size: 13px; color: #16a34a; font-weight: 800; padding: 10px; background: #f0fdf4; border-radius: 8px; text-align: center; }
+.warning-empty { font-size: 13px; color: #16a34a; font-weight: 800; padding: 10px;
+background: #f0fdf4; border-radius: 8px; text-align: center; }
 
-.modal-backdrop { position: fixed; inset: 0; background: rgba(15,23,42,0.5); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 12px; overflow-y: auto; }
+.modal-backdrop { position: fixed; inset: 0; background: rgba(15,23,42,0.5); z-index: 100;
+display: flex; align-items: center; justify-content: center; padding: 12px; overflow-y: auto; }
 .modal { background: #ffffff; border-radius: 14px; padding: 20px; width: 100%; max-width: 400px; max-height: 92vh; overflow-y: auto; margin: auto; }
 .modal-icon { width: 52px; height: 52px; border-radius: 50%; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 12px; }
-.modal-title { font-size: 17px; font-weight: 800; color: #0f172a; text-align: center; margin-bottom: 6px; }
-.modal-desc { font-size: 13px; color: #64748b; font-weight: 600; text-align: center; line-height: 1.45; margin-bottom: 18px; }
+.modal-title { font-size: 17px; font-weight: 800; color: #0f172a; text-align: center;
+margin-bottom: 6px; }
+.modal-desc { font-size: 13px; color: #64748b; font-weight: 600; text-align: center;
+line-height: 1.45; margin-bottom: 18px; }
 .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
-.modal-btn { flex: 1; padding: 12px; border-radius: 10px; border: none; font-size: 15px; font-weight: 800; cursor: pointer; }
+.modal-btn { flex: 1; padding: 12px; border-radius: 10px; border: none; font-size: 15px;
+font-weight: 800; cursor: pointer; }
 .modal-btn.cancel { background: #f1f5f9; color: #475569; }
 .modal-btn.confirm { background: #2563eb; color: #ffffff; }
 .modal-btn.danger { background: #dc2626; color: #ffffff; }
 .modal-scroll-body { overflow-y: auto; }
 
-.shift-modal { background: #ffffff; border-radius: 14px; width: 100%; max-width: 440px; min-height: 540px; max-height: 96vh; overflow: hidden; margin: auto; display: flex; flex-direction: column; position: relative; }
-.shift-modal-head { padding: 10px 50px 8px 50px; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; text-align: center; position: relative; }
+.shift-modal { background: #ffffff; border-radius: 14px; width: 100%; max-width: 440px;
+min-height: 540px; max-height: 96vh; overflow: hidden; margin: auto; display: flex;
+flex-direction: column; position: relative; }
+.shift-modal-head { padding: 10px 50px 8px 50px; border-bottom: 1px solid #e2e8f0;
+flex-shrink: 0; text-align: center; position: relative; }
 .shift-modal-title { font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 3px; }
 .shift-modal-sub { font-size: 12.5px; color: #64748b; font-weight: 700; }
-.shift-modal-close { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; color: #475569; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; padding: 0; }
-.shift-modal-delete { position: absolute; top: 10px; left: 10px; width: 34px; height: 34px; border-radius: 50%; background: #fee2e2; border: none; cursor: pointer; color: #dc2626; font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center; padding: 0; }
-.shift-chips-bar { display: flex; gap: 6px; padding: 8px 12px; border-bottom: 1px solid #e2e8f0; overflow-x: auto; flex-shrink: 0; justify-content: center; }
-.stc-btn { flex-shrink: 0; min-width: 72px; padding: 9px 6px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 10px; font-size: 11px; font-weight: 900; color: #475569; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.stc-btn .stc-icon { font-size: 19px; }
+.shift-modal-close { position: absolute; top: 10px; right: 10px; width: 34px; height: 34px;
+border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; color: #475569;
+font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center;
+padding: 0; }
+.shift-modal-delete { position: absolute; top: 10px; left: 10px; width: 34px; height: 34px;
+border-radius: 50%; background: #fee2e2; border: none; cursor: pointer; color: #dc2626;
+font-size: 16px; font-weight: 900; display: flex; align-items: center; justify-content: center;
+padding: 0; }
+.shift-chips-bar { display: flex; gap: 8px; padding: 10px 12px; border-bottom: 1px solid
+#e2e8f0; overflow-x: auto; flex-shrink: 0; justify-content: flex-start; }
+
+/* ============ KART BUTONU (chip bar) ============ */
+.stc-btn { flex-shrink: 0; width: 88px; height: 88px; padding: 4px; border: 2px solid #e2e8f0;
+background: #ffffff; border-radius: 12px; color: #475569; cursor: pointer; display: flex;
+flex-direction: column; align-items: center; justify-content: center; gap: 4px; overflow: hidden;
+}
+.stc-btn .stc-media { width: 44px; height: 44px; display: flex; align-items: center;
+justify-content: center; font-size: 34px; line-height: 1; flex-shrink: 0; }
+.stc-btn .stc-media img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.stc-btn .stc-label { font-size: 10px; font-weight: 900; text-align: center; line-height: 1.1;
+max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 2px; }
 .stc-btn.active { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; }
 .stc-btn.izinli.active { border-color: #16a34a; background: #dcfce7; color: #166534; }
 .stc-btn.alacak-izinli.active { border-color: #9333ea; background: #ede9fe; color: #6b21a8; }
 .stc-btn.pt-off.active { border-color: #64748b; background: #e2e8f0; color: #334155; }
 .stc-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.stc-btn-add { min-width: 58px; border-style: dashed; background: #f8fafc; color: #64748b; }
+.stc-btn-add { border-style: dashed; background: #f8fafc; color: #64748b; }
+.stc-btn-add .stc-media { font-size: 28px; color: #64748b; }
 .stc-btn-add:hover { border-color: #3b82f6; color: #2563eb; background: #eff6ff; }
+
 .shift-modal-body { overflow-y: auto; flex: 1; padding-bottom: 12px; }
-.picked-summary { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 14px; margin: 8px 14px 4px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.picked-summary { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+padding: 10px 14px; margin: 8px 14px 4px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .picked-item { display: flex; flex-direction: column; gap: 2px; }
-.picked-item .pi-lbl { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform: uppercase; }
+.picked-item .pi-lbl { font-size: 10px; font-weight: 800; color: #94a3b8; text-transform:
+uppercase; }
 .picked-item .pi-val { font-size: 19px; font-weight: 900; color: #0f172a; }
 .picked-arrow { font-size: 19px; color: #cbd5e1; font-weight: 900; }
 .picked-summary.has-start .pi-val.start { color: #1d4ed8; }
 .picked-summary.has-end .pi-val.end { color: #16a34a; }
 .shift-section { padding: 6px 14px 8px; }
-.shift-section-title { font-size: 11.5px; font-weight: 900; color: #475569; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+.shift-section-title { font-size: 11.5px; font-weight: 900; color: #475569; text-transform:
+uppercase; margin-bottom: 8px; display: flex; align-items: center; justify-content:
+space-between; }
 .hour-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .minute-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-.hour-btn, .minute-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 10px; font-weight: 900; color: #0f172a; cursor: pointer; }
+.hour-btn, .minute-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #ffffff;
+border-radius: 10px; font-weight: 900; color: #0f172a; cursor: pointer; }
 .hour-btn { font-size: 16px; }
 .minute-btn { font-size: 17px; padding: 14px 4px; }
-.manual-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 0 14px 8px; padding: 11px; background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer; }
+.manual-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width:
+calc(100% - 28px); margin: 0 14px 8px; padding: 11px; background: #ffffff; border: 2px
+dashed #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569;
+cursor: pointer; }
 .manual-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; padding: 0 14px; }
-.time-input-group { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 12px; display: flex; flex-direction: column; align-items: center; }
-.time-input-label { font-size: 10px; font-weight: 900; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+.time-input-group { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+padding: 8px 12px; display: flex; flex-direction: column; align-items: center; }
+.time-input-label { font-size: 10px; font-weight: 900; color: #64748b; text-transform:
+uppercase; margin-bottom: 4px; }
 .time-input { width: 100%; border: none; outline: none; background: transparent; font-size: 19px; font-weight: 900; color: #0f172a; padding: 2px 0; text-align: center; }
-.manual-save-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 0 14px 8px; padding: 12px; background: #2563eb; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 900; cursor: pointer; }
-.alacak-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; margin: 6px 14px; background: #f3e8ff; border: 1.5px solid #d8b4fe; border-radius: 10px; }
+.manual-save-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 0 14px 8px; padding: 12px; background: #2563eb; color: #fff;
+border: none; border-radius: 10px; font-size: 14px; font-weight: 900; cursor: pointer; }
+.alacak-toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; margin: 6px 14px; background: #f3e8ff; border: 1.5px solid
+#d8b4fe; border-radius: 10px; }
 .alacak-toggle-row.disabled { background: #f1f5f9; border-color: #e2e8f0; opacity: 0.7; }
 .alacak-toggle-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
 .alacak-toggle-icon { font-size: 20px; flex-shrink: 0; }
 .alacak-toggle-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .alacak-toggle-title { font-size: 13.5px; font-weight: 900; color: #6b21a8; }
 .alacak-toggle-sub { font-size: 11px; font-weight: 700; color: #9333ea; }
-.alacak-switch { width: 46px; height: 26px; border-radius: 13px; background: #d8b4fe; border: none; cursor: pointer; position: relative; flex-shrink: 0; padding: 0; transition: background 0.2s; }
-.alacak-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.2s; }
+.alacak-switch { width: 46px; height: 26px; border-radius: 13px; background: #d8b4fe;
+border: none; cursor: pointer; position: relative; flex-shrink: 0; padding: 0; transition:
+background 0.2s; }
+.alacak-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+transition: transform 0.2s; }
 .alacak-switch.on { background: #9333ea; }
 .alacak-switch.on::after { transform: translateX(20px); }
 .alacak-switch:disabled { opacity: 0.5; cursor: not-allowed; }
 .alacak-hours-picker { padding: 0 14px 6px; }
-.alacak-quick-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 6px; }
-.alacak-quick-btn { padding: 12px 2px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 8px; font-size: 14px; font-weight: 900; color: #6b21a8; cursor: pointer; }
+.alacak-quick-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;
+margin-bottom: 6px; }
+.alacak-quick-btn { padding: 12px 2px; border: 2px solid #e2e8f0; background: #ffffff;
+border-radius: 8px; font-size: 14px; font-weight: 900; color: #6b21a8; cursor: pointer; }
 .alacak-quick-btn.active { border-color: #9333ea; background: #f3e8ff; }
 .alacak-quick-btn:disabled { opacity: 0.25; cursor: not-allowed; }
 
 .staff-list { margin-bottom: 14px; }
-.staff-row { display: flex; align-items: center; gap: 10px; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 6px; }
-.staff-row-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0; overflow: hidden; }
+.staff-row { display: flex; align-items: center; gap: 10px; padding: 10px; background: #f8fafc;
+border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 6px; }
+.staff-row-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0;
+overflow: hidden; }
 .staff-row-info { flex: 1; min-width: 0; }
-.staff-row-name { font-size: 14px; font-weight: 800; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.staff-row-name { font-size: 14px; font-weight: 800; color: #0f172a; white-space: nowrap;
+overflow: hidden; text-overflow: ellipsis; }
 .staff-row-role { font-size: 11px; color: #64748b; font-weight: 700; margin-top: 1px; }
 .staff-row-actions { display: flex; gap: 4px; flex-shrink: 0; }
-.staff-row-btn { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.staff-row-btn { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer;
+display: flex; align-items: center; justify-content: center; font-size: 14px; }
 .staff-row-btn.edit { background: #dbeafe; color: #2563eb; }
 .staff-row-btn.del { background: #fee2e2; color: #dc2626; }
-.form-label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 4px; display: block; }
+.form-label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase;
+margin-bottom: 4px; display: block; }
 .form-input { width: 100%; padding: 11px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 15px; font-weight: 700; color: #0f172a; background: #ffffff; margin-bottom: 10px; outline: none; font-family: inherit; }
 .form-input.invalid { border-color: #dc2626; background: #fef2f2; }
 
+/* ============ KART ACCORDION ============ */
 .chip-editor-list { display: flex; flex-direction: column; gap: 8px; }
-.chip-edit-row-v2 { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 10px; }
-.chip-edit-header { display: flex; align-items: center; gap: 8px; }
-.chip-edit-preview-v2 { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #eff6ff; font-size: 22px; border: 1px solid #e2e8f0; flex-shrink: 0; overflow: hidden; cursor: pointer; }
-.chip-edit-preview-v2 img { width: 100%; height: 100%; object-fit: cover; }
-.chip-edit-label { font-size: 10px; font-weight: 900; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; display: block; }
-.chip-edit-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: #f1f5f9; padding: 3px; border-radius: 8px; }
-.chip-edit-seg-btn { padding: 8px 4px; border: none; background: transparent; border-radius: 6px; font-size: 11.5px; font-weight: 800; color: #64748b; cursor: pointer; font-family: inherit; transition: all 0.15s; }
-.chip-edit-seg-btn.active { background: #fff; color: #1d4ed8; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.chip-edit-photo-row { display: flex; gap: 6px; }
-.chip-edit-photo-btn { flex: 1; padding: 8px 6px; border: 1.5px solid #e2e8f0; background: #fff; border-radius: 8px; font-size: 11px; font-weight: 800; color: #475569; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 4px; }
-.chip-edit-photo-btn:active { background: #eff6ff; border-color: #3b82f6; color: #2563eb; }
-.chip-edit-photo-btn.danger { flex: 0 0 auto; padding: 8px 10px; color: #dc2626; border-color: #fecaca; background: #fef2f2; }
-.chip-edit-emoji-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; padding: 6px; background: #f8fafc; border-radius: 8px; max-height: 120px; overflow-y: auto; }
-.chip-edit-emoji-btn { padding: 5px 1px; border: none; background: transparent; font-size: 17px; cursor: pointer; border-radius: 5px; }
-.chip-edit-emoji-btn:active { background: #dbeafe; }
-.chip-edit-color-row { display: flex; align-items: center; gap: 10px; }
-.chip-edit-color-swatch { width: 42px; height: 42px; border-radius: 10px; border: 2px solid #e2e8f0; cursor: pointer; flex-shrink: 0; }
-.chip-edit-color-label { font-size: 12px; font-weight: 800; color: #64748b; font-family: monospace; }
-.chip-edit-name { flex: 1; min-width: 0; font-size: 14px; font-weight: 800; color: #0f172a; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 8px; outline: none; background: #fff; font-family: inherit; }
-.chip-edit-del { width: 32px; height: 32px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 14px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.chip-edit-sort { display: flex; flex-direction: column; gap: 1px; flex-shrink: 0; }
-.chip-sort-btn { width: 24px; height: 18px; border: 1px solid #e2e8f0; background: #f8fafc; color: #475569; font-size: 8px; font-weight: 900; cursor: pointer; border-radius: 4px; padding: 0; display: flex; align-items: center; justify-content: center; }
-.chip-sort-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-.chip-sort-btn:active:not(:disabled) { background: #dbeafe; color: #1d4ed8; }
-.chip-edit-times { display: flex; align-items: center; gap: 6px; margin-top: 2px; }
-.chip-edit-time { border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px 6px; font-size: 12px; font-weight: 800; color: #0f172a; background: #f8fafc; outline: none; width: 82px; font-family: inherit; }
-.chip-edit-times span { color: #94a3b8; font-weight: 900; font-size: 12px; }
-.add-chip-btn { width: 100%; padding: 12px; border: 2px dashed #cbd5e1; background: #ffffff; border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer; margin-top: 10px; font-family: inherit; }
+.chip-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
+.chip-card.expanded { border-color: #bfdbfe; box-shadow: 0 4px 12px
+rgba(59,130,246,0.08); }
+.chip-card-head { display: flex; align-items: center; gap: 8px; padding: 10px; cursor: pointer; }
+.chip-card-preview { width: 40px; height: 40px; border-radius: 10px; background: #eff6ff;
+border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0; overflow: hidden; }
+.chip-card-preview img { width: 100%; height: 100%; object-fit: cover; }
+.chip-card-info { flex: 1; min-width: 0; }
+.chip-card-title { font-size: 14px; font-weight: 800; color: #0f172a; white-space: nowrap;
+overflow: hidden; text-overflow: ellipsis; }
+.chip-card-sub { font-size: 10.5px; font-weight: 700; color: #94a3b8; margin-top: 1px;
+white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip-card-toggle { width: 30px; height: 30px; border-radius: 8px; background: #f1f5f9;
+border: none; color: #64748b; font-size: 12px; cursor: pointer; display: flex; align-items:
+center; justify-content: center; padding: 0; flex-shrink: 0; transition: transform 0.2s; }
+.chip-card.expanded .chip-card-toggle { background: #dbeafe; color: #1d4ed8; transform: rotate(180deg); }
+.chip-card-del { width: 30px; height: 30px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 13px; font-weight: 900; display: flex;
+align-items: center; justify-content: center; padding: 0; flex-shrink: 0; }
 
-.settings-page { position: fixed; inset: 0; background: #f1f5f9; z-index: 200; display: flex; flex-direction: column; max-width: 480px; margin: 0 auto; }
+.chip-card-body { padding: 0 12px 12px; display: flex; flex-direction: column; gap: 12px;
+border-top: 1px solid #f1f5f9; padding-top: 12px; }
+
+.chip-field { display: flex; flex-direction: column; gap: 6px; }
+.chip-field-label { font-size: 10.5px; font-weight: 900; color: #64748b; letter-spacing: 0.5px;
+text-transform: uppercase; }
+.chip-field-input { width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-weight: 700; color: #0f172a; background: #fff; outline: none;
+font-family: inherit; }
+.chip-field-input:focus { border-color: #3b82f6; background: #eff6ff; }
+
+.chip-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background:
+#f1f5f9; padding: 3px; border-radius: 8px; }
+.chip-seg-btn { padding: 9px 4px; border: none; background: transparent; border-radius: 6px;
+font-size: 11.5px; font-weight: 800; color: #64748b; cursor: pointer; font-family: inherit;
+transition: all 0.15s; }
+.chip-seg-btn.active { background: #fff; color: #1d4ed8; box-shadow: 0 1px 3px
+rgba(0,0,0,0.1); }
+
+.chip-media-row { display: flex; gap: 6px; }
+.chip-media-btn { flex: 1; padding: 10px 6px; border: 1.5px solid #e2e8f0; background: #fff;
+border-radius: 8px; font-size: 11.5px; font-weight: 800; color: #475569; cursor: pointer;
+font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.chip-media-btn:active { background: #eff6ff; border-color: #3b82f6; color: #2563eb; }
+.chip-media-btn.emoji-btn { flex: 0 0 auto; padding: 10px 14px; font-size: 17px; }
+.chip-media-btn.danger { color: #dc2626; border-color: #fecaca; background: #fef2f2; flex: 0 0 auto; padding: 10px 12px; }
+
+.chip-preview-big { width: 80px; height: 80px; border-radius: 18px; background: #eff6ff;
+display: flex; align-items: center; justify-content: center; font-size: 40px; border: 2px solid #e2e8f0; overflow: hidden; margin: 0 auto 10px; cursor: pointer; }
+.chip-preview-big img { width: 100%; height: 100%; object-fit: cover; }
+
+.chip-times-row { display: flex; align-items: center; gap: 6px; }
+.chip-times-row input { flex: 1; border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 6px; font-size: 13px; font-weight: 800; color: #0f172a; background: #f8fafc; outline: none;
+font-family: inherit; text-align: center; }
+.chip-times-row span { color: #94a3b8; font-weight: 900; font-size: 13px; }
+
+.chip-color-row { display: flex; align-items: center; gap: 10px; }
+.chip-color-swatch { width: 44px; height: 44px; border-radius: 10px; border: 2px solid
+#e2e8f0; cursor: pointer; flex-shrink: 0; }
+.chip-color-label { font-size: 12.5px; font-weight: 800; color: #64748b; font-family:
+monospace; }
+
+.add-chip-btn { width: 100%; padding: 12px; border: 2px dashed #cbd5e1; background: #ffffff;
+border-radius: 10px; font-size: 14px; font-weight: 800; color: #475569; cursor: pointer;
+margin-top: 10px; font-family: inherit; }
+.add-chip-btn:hover { border-color: #3b82f6; color: #2563eb; background: #eff6ff; }
+
+/* Emoji picker modal */
+.emoji-picker-modal-inner { background: #ffffff; border-radius: 14px; width: 100%; max-width: 400px; max-height: 88vh; margin: auto; padding: 12px; display: flex; flex-direction: column;
+gap: 10px; }
+emoji-picker { width: 100%; height: 380px; --num-columns: 8; --emoji-size: 1.5rem;
+--category-emoji-size: 1.25rem; --border-radius: 8px; --background: #ffffff;
+--category-font-color: #64748b; --indicator-color: #2563eb; --input-border-color: #e2e8f0;
+--input-font-color: #0f172a; --input-background: #fff; }
+
+.settings-page { position: fixed; inset: 0; background: #f1f5f9; z-index: 200; display: flex;
+flex-direction: column; max-width: 480px; margin: 0 auto; }
 .settings-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #ffffff; border-bottom: 1px solid #e2e8f0; flex-shrink: 0; }
 .settings-header-left { display: flex; align-items: center; gap: 8px; }
 .settings-header-icon { font-size: 18px; }
 .settings-title { font-size: 15px; font-weight: 900; color: #0f172a; }
-.settings-close { width: 34px; height: 34px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; font-size: 14px; color: #475569; display: flex; align-items: center; justify-content: center; padding: 0; }
-.settings-tabs-bar { display: flex; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0 8px; overflow-x: auto; flex-shrink: 0; }
-.settings-tab-btn { padding: 11px 12px; border: none; background: transparent; font-size: 12.5px; font-weight: 800; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; font-family: inherit; }
+.settings-close { width: 34px; height: 34px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; font-size: 14px; color: #475569; display: flex; align-items: center;
+justify-content: center; padding: 0; }
+.settings-tabs-bar { display: flex; background: #ffffff; border-bottom: 1px solid #e2e8f0;
+padding: 0 8px; overflow-x: auto; flex-shrink: 0; }
+.settings-tab-btn { padding: 11px 12px; border: none; background: transparent; font-size: 12.5px; font-weight: 800; color: #64748b; cursor: pointer; border-bottom: 3px solid
+transparent; white-space: nowrap; font-family: inherit; }
 .settings-tab-btn.active { color: #2563eb; border-bottom-color: #2563eb; }
 .settings-body { flex: 1; overflow-y: auto; padding: 14px; }
 .settings-section-title { font-size: 10.5px; font-weight: 900; color: #64748b; letter-spacing: 0.9px; text-transform: uppercase; margin-bottom: 8px; margin-top: 14px; }
 .settings-hint { font-size: 11px; color: #94a3b8; font-weight: 600; line-height: 1.4; margin-top: 2px; margin-bottom: 10px; }
-.settings-input-group { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; transition: border-color 0.15s; }
-.settings-input-group:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+.settings-input-group { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;
+padding: 10px 14px; margin-bottom: 8px; transition: border-color 0.15s; }
+.settings-input-group:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px
+rgba(59,130,246,0.1); }
 .settings-input-label { font-size: 10.5px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.3px; }
-.settings-input { width: 100%; border: none; outline: none; font-size: 14.5px; font-weight: 700; color: #0f172a; background: transparent; padding: 2px 0; font-family: inherit; }
+.settings-input { width: 100%; border: none; outline: none; font-size: 14.5px; font-weight: 700;
+color: #0f172a; background: transparent; padding: 2px 0; font-family: inherit; }
 .save-settings-btn { width: 100%; padding: 13px; background: #2563eb; color: #ffffff; border: none; border-radius: 10px; font-size: 14.5px; font-weight: 800; cursor: pointer; margin-top: 14px; font-family: inherit; }
 
-.break-rule-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-.break-rule-left { flex: 1; min-width: 0; font-size: 12px; font-weight: 800; color: #0f172a; line-height: 1.6; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
-.break-rule-left .brr-input { width: 54px; text-align: center; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 5px 4px; font-size: 13px; font-weight: 900; color: #0f172a; background: #f8fafc; outline: none; font-family: inherit; }
+.break-rule-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;
+padding: 10px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.break-rule-left { flex: 1; min-width: 0; font-size: 12px; font-weight: 800; color: #0f172a;
+line-height: 1.6; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.break-rule-left .brr-input { width: 54px; text-align: center; border: 1.5px solid #cbd5e1;
+border-radius: 6px; padding: 5px 4px; font-size: 13px; font-weight: 900; color: #0f172a;
+background: #f8fafc; outline: none; font-family: inherit; }
 .break-rule-left .brr-unit { font-size: 11px; color: #64748b; font-weight: 800; }
-.break-rule-del { width: 34px; height: 34px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 15px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.add-rule-btn { width: 100%; padding: 12px; border: 2px dashed #cbd5e1; background: #ffffff; border-radius: 10px; font-size: 13px; font-weight: 800; color: #475569; cursor: pointer; margin-top: 4px; font-family: inherit; }
-.empty-state { font-size: 12.5px; color: #94a3b8; font-weight: 700; padding: 14px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 10px; text-align: center; margin-bottom: 10px; }
+.break-rule-del { width: 34px; height: 34px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 15px; font-weight: 900; display: flex;
+align-items: center; justify-content: center; flex-shrink: 0; }
+.add-rule-btn { width: 100%; padding: 12px; border: 2px dashed #cbd5e1; background: #ffffff;
+border-radius: 10px; font-size: 13px; font-weight: 800; color: #475569; cursor: pointer;
+margin-top: 4px; font-family: inherit; }
+.empty-state { font-size: 12.5px; color: #94a3b8; font-weight: 700; padding: 14px;
+background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 10px; text-align: center;
+margin-bottom: 10px; }
 
-.week-picker-modal { background: #ffffff; border-radius: 14px; width: 100%; max-width: 400px; max-height: 88vh; overflow-y: auto; margin: auto; padding: 18px; }
-.week-picker-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.week-picker-modal { background: #ffffff; border-radius: 14px; width: 100%; max-width:
+400px; max-height: 88vh; overflow-y: auto; margin: auto; padding: 18px; }
+.week-picker-head { display: flex; align-items: center; justify-content: space-between;
+margin-bottom: 14px; }
 .week-picker-title { font-size: 15px; font-weight: 900; color: #0f172a; }
-.week-picker-close { width: 32px; height: 32px; border-radius: 50%; background: #f1f5f9; border: none; cursor: pointer; font-size: 14px; color: #475569; display: flex; align-items: center; justify-content: center; padding: 0; }
-.wp-year-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 12px; }
-.wp-year-label { font-size: 10.5px; font-weight: 900; color: #64748b; text-transform: uppercase; letter-spacing: 0.6px; }
+.week-picker-close { width: 32px; height: 32px; border-radius: 50%; background: #f1f5f9;
+border: none; cursor: pointer; font-size: 14px; color: #475569; display: flex; align-items:
+center; justify-content: center; padding: 0; }
+.wp-year-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px;
+margin-bottom: 12px; }
+.wp-year-label { font-size: 10.5px; font-weight: 900; color: #64748b; text-transform:
+uppercase; letter-spacing: 0.6px; }
 .wp-year-val { font-size: 18px; font-weight: 900; color: #0f172a; }
-.wp-year-arrow { width: 32px; height: 32px; border-radius: 8px; background: #fff; border: 1px solid #e2e8f0; color: #475569; font-size: 15px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.wp-year-arrow { width: 32px; height: 32px; border-radius: 8px; background: #fff; border: 1px solid #e2e8f0; color: #475569; font-size: 15px; font-weight: 900; cursor: pointer; display: flex;
+align-items: center; justify-content: center; }
 .wp-year-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
-.wp-month-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 12px; }
-.wp-month-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #fff; border-radius: 8px; font-size: 12px; font-weight: 900; color: #475569; cursor: pointer; font-family: inherit; }
+.wp-month-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;
+margin-bottom: 12px; }
+.wp-month-btn { padding: 10px 4px; border: 2px solid #e2e8f0; background: #fff;
+border-radius: 8px; font-size: 12px; font-weight: 900; color: #475569; cursor: pointer;
+font-family: inherit; }
 .wp-month-btn.active { border-color: #3b82f6; background: #eff6ff; color: #1d4ed8; }
 .wp-month-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-.wp-week-list { max-height: 260px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 10px; padding: 6px; }
+.wp-week-list { max-height: 260px; overflow-y: auto; border: 1px solid #e2e8f0;
+border-radius: 10px; padding: 6px; }
 .wp-week-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 12px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; }
 .wp-week-row.active { background: #eff6ff; border: 1.5px solid #3b82f6; }
 .wp-week-row .wwr-range-full { font-size: 13px; font-weight: 800; color: #1e293b; line-height: 1.3; }
 .wp-week-row.active .wwr-range-full { color: #1d4ed8; }
 .wp-week-row .wwr-badge { font-size: 10px; font-weight: 900; background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 6px; }
 
-.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff; padding: 10px 20px; border-radius: 20px; font-size: 13.5px; font-weight: 800; z-index: 400; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 90vw; text-align: center; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); color: #fff;
+padding: 10px 20px; border-radius: 20px; font-size: 13.5px; font-weight: 800; z-index: 400;
+box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-width: 90vw; text-align: center; }
 .toast.success { background: #16a34a; }
 .toast.error { background: #dc2626; }
 .toast.info { background: #2563eb; }
 .toast.warn { background: #f59e0b; }
 
-.app-footer { text-align: center; padding: 22px 12px 14px; font-size: 11px; color: #94a3b8; font-weight: 600; line-height: 1.65; opacity: 0.7; }
+.app-footer { text-align: center; padding: 22px 12px 14px; font-size: 11px; color: #94a3b8;
+font-weight: 600; line-height: 1.65; opacity: 0.7; }
 .app-footer .footer-line { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.app-footer .heart { color: #ec4899; opacity: 0.7; animation: heartbeat 1.5s ease-in-out infinite; display: inline-block; }
+.app-footer .heart { color: #ec4899; opacity: 0.7; animation: heartbeat 1.5s ease-in-out
+infinite; display: inline-block; }
 @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
 .clear-staff-row { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; margin-bottom: 5px; }
 .clear-staff-row.selected { background: #eff6ff; border-color: #3b82f6; }
 .clear-staff-row .cs-check { width: 18px; height: 18px; border-radius: 5px; border: 2px solid #cbd5e1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; font-weight: 900; color: transparent; background: #fff; }
 .clear-staff-row.selected .cs-check { background: #3b82f6; border-color: #3b82f6; color: #fff; }
-.clear-staff-row .cs-name { font-size: 13px; font-weight: 800; color: #0f172a; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clear-staff-row .cs-name { font-size: 13px; font-weight: 800; color: #0f172a; flex: 1;
+min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .clear-day-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 12px; }
-.clear-day-btn { padding: 10px 2px; border: 2px solid #e2e8f0; background: #ffffff; border-radius: 8px; font-size: 11px; font-weight: 900; color: #475569; cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; font-family: inherit; }
+.clear-day-btn { padding: 10px 2px; border: 2px solid #e2e8f0; background: #ffffff;
+border-radius: 8px; font-size: 11px; font-weight: 900; color: #475569; cursor: pointer;
+text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px;
+font-family: inherit; }
 .clear-day-btn.active { border-color: #dc2626; background: #fef2f2; color: #dc2626; }
 .clear-day-btn .cdb-num { font-size: 9.5px; font-weight: 700; color: #94a3b8; }
 .clear-day-btn.active .cdb-num { color: #dc2626; }
@@ -326,51 +512,85 @@ button:active:not(:disabled) { transform: scale(0.94); }
 .setup-logo { font-size: 56px; line-height: 1; margin-bottom: 10px; }
 .setup-title { font-size: 24px; font-weight: 900; color: #0f172a; margin-bottom: 6px; }
 .setup-sub { font-size: 13.5px; color: #64748b; font-weight: 600; line-height: 1.5; }
-.setup-card { background: #fff; border-radius: 14px; border: 1px solid #e2e8f0; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(15,23,42,0.05); }
-.setup-step-badge { display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 10.5px; font-weight: 900; padding: 3px 9px; border-radius: 8px; letter-spacing: 0.6px; margin-bottom: 8px; }
-.setup-label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 6px; display: block; letter-spacing: 0.4px; }
-.setup-input { width: 100%; padding: 12px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 16px; font-weight: 700; color: #0f172a; background: #fff; outline: none; font-family: inherit; }
+.setup-card { background: #fff; border-radius: 14px; border: 1px solid #e2e8f0; padding:
+16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(15,23,42,0.05); }
+.setup-step-badge { display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: 10.5px; font-weight: 900; padding: 3px 9px; border-radius: 8px; letter-spacing: 0.6px;
+margin-bottom: 8px; }
+.setup-label { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase;
+margin-bottom: 6px; display: block; letter-spacing: 0.4px; }
+.setup-input { width: 100%; padding: 12px 14px; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 16px; font-weight: 700; color: #0f172a; background: #fff; outline: none;
+font-family: inherit; }
 .setup-input:focus { border-color: #3b82f6; background: #eff6ff; }
 .setup-staff-row { display: flex; gap: 8px; align-items: flex-start; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; }
 .setup-staff-fields { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-.setup-staff-input { width: 100%; padding: 9px 10px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-weight: 700; color: #0f172a; background: #fff; outline: none; font-family: inherit; }
+.setup-staff-input { width: 100%; padding: 9px 10px; border: 1.5px solid #e2e8f0;
+border-radius: 8px; font-size: 14px; font-weight: 700; color: #0f172a; background: #fff;
+outline: none; font-family: inherit; }
 .setup-staff-input:focus { border-color: #3b82f6; }
-.setup-role-select { width: 100%; padding: 9px 10px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 800; color: #0f172a; background: #fff; outline: none; font-family: inherit; }
+.setup-role-select { width: 100%; padding: 9px 10px; border: 1.5px solid #e2e8f0;
+border-radius: 8px; font-size: 13px; font-weight: 800; color: #0f172a; background: #fff;
+outline: none; font-family: inherit; }
 .setup-staff-del { width: 34px; height: 34px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 16px; font-weight: 900; flex-shrink: 0; }
-.setup-add-staff { width: 100%; padding: 11px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 10px; font-size: 13.5px; font-weight: 800; color: #475569; cursor: pointer; margin-top: 4px; font-family: inherit; }
-.setup-cta { width: 100%; padding: 16px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 900; cursor: pointer; margin-top: 12px; box-shadow: 0 4px 14px rgba(37,99,235,0.35); font-family: inherit; }
-.setup-note { font-size: 11.5px; color: #94a3b8; text-align: center; margin-top: 14px; font-weight: 600; line-height: 1.5; }
+.setup-add-staff { width: 100%; padding: 11px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 10px; font-size: 13.5px; font-weight: 800; color: #475569; cursor: pointer;
+margin-top: 4px; font-family: inherit; }
+.setup-cta { width: 100%; padding: 16px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 900;
+cursor: pointer; margin-top: 12px; box-shadow: 0 4px 14px rgba(37,99,235,0.35); font-family: inherit; }
+.setup-note { font-size: 11.5px; color: #94a3b8; text-align: center; margin-top: 14px;
+font-weight: 600; line-height: 1.5; }
 
 .profile-head { display: flex; flex-direction: column; align-items: center; margin-bottom: 18px; }
-.profile-avatar-wrap { position: relative; width: 100px; height: 100px; cursor: pointer; margin-bottom: 10px; }
-.profile-avatar { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #be185d); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 900; overflow: hidden; border: 3px solid #fff; box-shadow: 0 6px 16px rgba(236,72,153,0.35); }
+.profile-avatar-wrap { position: relative; width: 100px; height: 100px; cursor: pointer;
+margin-bottom: 10px; }
+.profile-avatar { width: 100px; height: 100px; border-radius: 50%; background:
+linear-gradient(135deg, #ec4899, #be185d); color: #fff; display: flex; align-items: center;
+justify-content: center; font-size: 34px; font-weight: 900; overflow: hidden; border: 3px solid #fff; box-shadow: 0 6px 16px rgba(236,72,153,0.35); }
 .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.profile-avatar-edit { position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; border-radius: 50%; background: #2563eb; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+.profile-avatar-edit { position: absolute; bottom: 0; right: 0; width: 32px; height: 32px;
+border-radius: 50%; background: #2563eb; color: #fff; display: flex; align-items: center;
+justify-content: center; font-size: 15px; border: 2px solid #fff; box-shadow: 0 2px 6px
+rgba(0,0,0,0.25); }
 .profile-name-title { font-size: 17px; font-weight: 900; color: #0f172a; }
 .profile-subtitle { font-size: 12.5px; color: #64748b; font-weight: 700; margin-top: 2px; }
-.profile-remove-avatar { width: 100%; padding: 10px; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; margin-top: 4px; font-family: inherit; }
-.phone-input-group { display: flex; align-items: center; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0 12px; margin-bottom: 10px; background: #fff; transition: border-color 0.15s; }
-.phone-input-group:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+.profile-remove-avatar { width: 100%; padding: 10px; background: #fef2f2; color: #dc2626;
+border: 1px solid #fecaca; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; margin-top: 4px; font-family: inherit; }
+.phone-input-group { display: flex; align-items: center; border: 1px solid #e2e8f0;
+border-radius: 8px; padding: 0 12px; margin-bottom: 10px; background: #fff; transition:
+border-color 0.15s; }
+.phone-input-group:focus-within { border-color: #3b82f6; box-shadow: 0 0 0 3px
+rgba(59,130,246,0.15); }
 .phone-input-group.invalid { border-color: #dc2626; background: #fef2f2; }
-.phone-prefix { font-size: 14px; font-weight: 900; color: #64748b; margin-right: 8px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-.phone-input-group .form-input { border: none; margin: 0; padding: 11px 0; flex: 1; background: transparent; }
+.phone-prefix { font-size: 14px; font-weight: 900; color: #64748b; margin-right: 8px;
+flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.phone-input-group .form-input { border: none; margin: 0; padding: 11px 0; flex: 1;
+background: transparent; }
 .phone-input-group .form-input:focus { background: transparent; }
-.field-error { font-size: 11.5px; color: #dc2626; font-weight: 800; margin: -6px 0 10px 2px; display: none; }
+.field-error { font-size: 11.5px; color: #dc2626; font-weight: 800; margin: -6px 0 10px 2px;
+display: none; }
 .field-error.show { display: block; }
 
-.settings-card-v2 { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.04); }
+.settings-card-v2 { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
+margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.04); }
 .settings-card-v2-header { padding: 11px 14px; border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: space-between; background: #fafbfc; }
-.settings-card-v2-title { font-size: 11px; font-weight: 900; color: #1e293b; letter-spacing: 0.7px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+.settings-card-v2-title { font-size: 11px; font-weight: 900; color: #1e293b; letter-spacing:
+0.7px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
 .settings-card-v2-body { padding: 12px 14px; }
 .color-rule-row-v2 { display: flex; align-items: center; gap: 8px; padding: 10px; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; }
 .color-rule-times-v2 { display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
-.color-rule-times-v2 input { width: 60px; border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px 4px; font-size: 12px; font-weight: 800; color: #0f172a; background: #f8fafc; outline: none; text-align: center; font-variant-numeric: tabular-nums; font-family: inherit; }
+.color-rule-times-v2 input { width: 60px; border: 1px solid #cbd5e1; border-radius: 6px;
+padding: 5px 4px; font-size: 12px; font-weight: 800; color: #0f172a; background: #f8fafc;
+outline: none; text-align: center; font-variant-numeric: tabular-nums; font-family: inherit; }
 .color-rule-times-v2 span { color: #94a3b8; font-weight: 900; font-size: 11px; }
-.color-rule-name-v2 { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-size: 12.5px; font-weight: 800; color: #0f172a; padding: 2px 4px; font-family: inherit; }
-.pickr-swatch { width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; cursor: pointer; border: 2px solid #e2e8f0; position: relative; transition: transform 0.1s; }
+.color-rule-name-v2 { flex: 1; min-width: 0; border: none; outline: none; background:
+transparent; font-size: 12.5px; font-weight: 800; color: #0f172a; padding: 2px 4px;
+font-family: inherit; }
+.pickr-swatch { width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; cursor: pointer;
+border: 2px solid #e2e8f0; position: relative; transition: transform 0.1s; }
 .pickr-swatch:active { transform: scale(0.92); }
-.color-rule-del-v2 { width: 30px; height: 30px; border-radius: 8px; background: #fee2e2; color: #dc2626; border: none; cursor: pointer; font-size: 13px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.role-color-block { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
+.color-rule-del-v2 { width: 30px; height: 30px; border-radius: 8px; background: #fee2e2;
+color: #dc2626; border: none; cursor: pointer; font-size: 13px; font-weight: 900; display: flex;
+align-items: center; justify-content: center; flex-shrink: 0; }
+.role-color-block { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+margin-bottom: 8px; overflow: hidden; }
 .role-color-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
 .role-color-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
 .role-color-info { flex: 1; min-width: 0; }
@@ -380,58 +600,62 @@ button:active:not(:disabled) { transform: scale(0.94); }
 .role-color-pick-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .role-color-lbl { font-size: 8px; font-weight: 800; color: #94a3b8; text-transform: uppercase; }
 .role-color-preview { padding: 0 12px 10px; }
-.role-preview-mini { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 6px; font-size: 10.5px; font-weight: 900; }
-.add-rule-btn-v2 { width: 100%; padding: 11px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 10px; font-size: 13px; font-weight: 800; color: #475569; cursor: pointer; margin-top: 4px; transition: all 0.15s; font-family: inherit; }
+.role-preview-mini { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px;
+border-radius: 6px; font-size: 10.5px; font-weight: 900; }
+.add-rule-btn-v2 { width: 100%; padding: 11px; border: 2px dashed #cbd5e1; background: #fff; border-radius: 10px; font-size: 13px; font-weight: 800; color: #475569; cursor: pointer;
+margin-top: 4px; transition: all 0.15s; font-family: inherit; }
 .add-rule-btn-v2:hover { border-color: #3b82f6; color: #2563eb; background: #eff6ff; }
 
 @media (min-width: 640px) {
-  .app { max-width: 720px; padding: 0 20px 20px; }
-  .top-header, .datetime-bar { margin: 0 -20px; }
-  .top-header { padding: 10px 20px; }
-  .datetime-bar { padding: 8px 20px; }
-  .settings-page { max-width: 720px; }
-  .modal { max-width: 520px; }
-  .shift-modal { max-width: 560px; }
-  .week-picker-modal { max-width: 480px; }
-  .plan-grid > div { font-size: 12px; min-height: 34px; }
-  .plan-name-cell .pnc-name { font-size: 11px; }
-  .plan-name-cell .pnc-role { font-size: 10px; }
-  .plan-cell { min-height: 72px; font-size: 12.5px; }
-  .plan-cell .pc-time { font-size: 12px; }
-  .plan-cell .pc-net, .plan-cell .pc-break { font-size: 11px; }
-  .plan-cell .pc-break-sep { font-size: 10.5px; }
-  .plan-grid { grid-template-columns: 68px repeat(7, minmax(0, 1fr)); }
-  .plan-sum-label, .plan-sum-cell, .plan-count-label, .plan-count-cell { min-height: 32px; font-size: 12px; }
-  .wh-name { font-size: 11.5px; }
-  .wh-hours { font-size: 16px; }
-  .avatar-btn { width: 42px; height: 42px; font-size: 15px; }
-  .greeting-hi { font-size: 17px; }
-  .greeting-sub { font-size: 13px; }
+.app { max-width: 720px; padding: 0 20px 20px; }
+.top-header, .datetime-bar { margin: 0 -20px; }
+.top-header { padding: 10px 20px; }
+.datetime-bar { padding: 8px 20px; }
+.settings-page { max-width: 720px; }
+.modal { max-width: 520px; }
+.shift-modal { max-width: 560px; }
+.week-picker-modal { max-width: 480px; }
+.plan-grid > div { font-size: 12px; min-height: 34px; }
+.plan-name-cell .pnc-name { font-size: 11px; }
+.plan-name-cell .pnc-role { font-size: 10px; }
+.plan-cell { min-height: 72px; font-size: 12.5px; }
+.plan-cell .pc-time { font-size: 12px; }
+.plan-cell .pc-net, .plan-cell .pc-break { font-size: 11px; }
+.plan-cell .pc-break-sep { font-size: 10.5px; }
+.plan-grid { grid-template-columns: 68px repeat(7, minmax(0, 1fr)); }
+.plan-sum-label, .plan-sum-cell, .plan-count-label, .plan-count-cell { min-height: 32px;
+font-size: 12px; }
+.wh-name { font-size: 11.5px; }
+.wh-hours { font-size: 16px; }
+.avatar-btn { width: 42px; height: 42px; font-size: 15px; }
+.greeting-hi { font-size: 17px; }
+.greeting-sub { font-size: 13px; }
 }
 @media (min-width: 1024px) {
-  .app { max-width: 900px; }
-  .settings-page { max-width: 900px; }
+.app { max-width: 900px; }
+.settings-page { max-width: 900px; }
 }
 @media (max-height: 500px) and (orientation: landscape) {
-  .app { max-width: 720px; padding: 0 16px 12px; }
-  .top-header { padding: 6px 16px; }
-  .datetime-bar { padding: 4px 16px; font-size: 11px; }
-  .avatar-btn { width: 34px; height: 34px; }
-  .plan-header-row { padding: 6px 12px 4px; }
-  .plan-week-nav { padding: 0 12px 6px; }
-  .hour-target-card, .weekly-hours-card, .card { margin-bottom: 8px; }
-  .plan-name-cell { min-height: 54px; }
-  .plan-cell { min-height: 54px; }
-  .app-footer { padding: 12px 12px 8px; }
+.app { max-width: 720px; padding: 0 16px 12px; }
+.top-header { padding: 6px 16px; }
+.datetime-bar { padding: 4px 16px; font-size: 11px; }
+.avatar-btn { width: 34px; height: 34px; }
+.plan-header-row { padding: 6px 12px 4px; }
+.plan-week-nav { padding: 0 12px 6px; }
+.hour-target-card, .weekly-hours-card, .card { margin-bottom: 8px; }
+.plan-name-cell { min-height: 54px; }
+.plan-cell { min-height: 54px; }
+.app-footer { padding: 12px 12px 8px; }
 }
 @media (max-width: 340px) {
-  .plan-name-cell .pnc-name { font-size: 8.5px; }
-  .plan-cell .pc-time { font-size: 10px; }
-  .plan-cell .pc-net, .plan-cell .pc-break { font-size: 9px; }
-  .wh-name { font-size: 9.5px; }
-  .wh-hours { font-size: 13px; }
+.plan-name-cell .pnc-name { font-size: 8.5px; }
+.plan-cell .pc-time { font-size: 10px; }
+.plan-cell .pc-net, .plan-cell .pc-break { font-size: 9px; }
+.wh-name { font-size: 9.5px; }
+.wh-hours { font-size: 13px; }
 }
 </style>
+
 </head>
 <body>
 <div class="app" id="app">
@@ -440,9 +664,7 @@ button:active:not(:disabled) { transform: scale(0.94); }
 <h2 style="color:#1e293b;margin-bottom:8px;">Yükleniyor...</h2>
 <p style="color:#64748b;font-size:14px;">Bağlanıyor, lütfen bekleyin.</p>
 </div>
-</div>
-
-<script type="module">
+</div>  <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, onSnapshot }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
@@ -467,11 +689,8 @@ window.__fb.setDoc = setDoc;
 window.__fb.onSnapshot = onSnapshot;
 window.__fb.signInAnonymously = signInAnonymously;
 window.__fb.onAuthStateChanged = onAuthStateChanged;
-</script>
-
-<script>
-// ============ SABİT VERİLER ============
-// Rol etiketleri (sistem sabit — kullanıcı silip ekleyemez)
+</script>  <script>
+// ============ SABİT VERİLER (sistem sabitleri — kullanıcı silemez) ============
 const ROLES = {
 manager:   { label: 'Mağaza Müdürü',      short: 'MM'  },
 assistant: { label: 'Müdür Yardımcısı',   short: 'MDY' },
@@ -484,7 +703,6 @@ const RECEIVABLE_LEAVE_TYPE = 'alacak-izinli';
 const RECEIVABLE_LEAVE_HOURS = 7.5;
 const PT_OFF_TYPE = 'pt-off';
 
-// Kart tipi varsayılan renkleri (tip bazlı)
 const CHIP_TYPE_DEFAULTS = {
 'izinli': '#d1fae5',
 [RECEIVABLE_LEAVE_TYPE]: '#ede9fe',
@@ -498,39 +716,7 @@ const CHIP_TYPE_LABELS = {
 [PT_OFF_TYPE]: 'PT Çalışma Yok'
 };
 
-// Başlangıç kartları (fonksiyonel minimum — silinebilir/özelleştirilebilir)
-const DEFAULT_CHIPS = [
-{ id: 'chip_time',  icon: '🕐', image: null, name: 'Saat Seç',        type: 'time',                 start: '',      end: '',      audience: 'all' },
-{ id: 'chip_full',  icon: '🌓', image: null, name: 'Tam Gün',         type: 'full',                 start: '10:00', end: '22:00', audience: 'all' },
-{ id: 'chip_off',   icon: '🏖️', image: null, name: 'Haftalık İzin',   type: 'izinli',               start: '',      end: '',      audience: 'all' },
-{ id: 'chip_ar',    icon: '💰', image: null, name: 'Alacak İzni',     type: RECEIVABLE_LEAVE_TYPE,  start: '',      end: '',      audience: 'all' },
-{ id: 'chip_ptoff', icon: '🚫', image: null, name: 'PT Çalışma Yok',  type: PT_OFF_TYPE,            start: '',      end: '',      audience: 'pt'  }
-];
-
-// Başlangıç saat renk kuralları (fonksiyonel minimum — silinebilir)
-const DEFAULT_COLOR_RULES = [
-{ id: 'cr_1', start: '08:00', end: '12:00', color: '#ffedd5', name: 'Sabah',  enabled: true },
-{ id: 'cr_2', start: '12:00', end: '18:00', color: '#e0e7ff', name: 'Gündüz', enabled: true },
-{ id: 'cr_3', start: '18:00', end: '22:00', color: '#fce7f3', name: 'Akşam',  enabled: true },
-{ id: 'cr_4', start: '22:00', end: '06:00', color: '#ede9fe', name: 'Gece',   enabled: true },
-{ id: 'cr_type_izinli', chipType: 'izinli',              color: '#d1fae5', name: 'Haftalık İzin',   enabled: true },
-{ id: 'cr_type_alacak', chipType: RECEIVABLE_LEAVE_TYPE, color: '#ede9fe', name: 'Alacak İzni',     enabled: true },
-{ id: 'cr_type_ptoff',  chipType: PT_OFF_TYPE,           color: '#e2e8f0', name: 'PT Çalışma Yok',  enabled: true }
-];
-
-// Rol bazlı personel renkleri
-const DEFAULT_ROLE_RULES = [
-{ role: 'manager',   bg: '#fce7f3', text: '#9d174d' },
-{ role: 'assistant', bg: '#d1fae5', text: '#065f46' },
-{ role: 'ft',        bg: '#dbeafe', text: '#1e40af' },
-{ role: 'pt',        bg: '#f3e8ff', text: '#6b21a8' },
-{ role: 'support',   bg: '#fed7aa', text: '#9a3412' }
-];
-
-// Emoji havuzu
-const EMOJI_LIST = ['🕐','🌓','☀️','🌙','🌆','🏖️','⭐','🔥','💼','🎯','⚡','🍀','🎨','💎','🌟','🛒','📌','🎁','🚀','🏆','💰','🧡','💙','💚','💜','🚫','✅','📅','⏰','🎴','🎪','🍽️','☕','📞','🛍️','🎉','🎈','🌸','🌈','✨','💫'];
-
-// Sabit personel renkleri (fallback)
+// SABİT RENKLER (fallback — kullanıcı override edebilir)
 const DEFAULT_STAFF_COLORS = {
 manager:   { bg: '#fce7f3', text: '#9d174d' },
 assistant: { bg: '#d1fae5', text: '#065f46' },
@@ -539,7 +725,15 @@ pt:        { bg: '#f3e8ff', text: '#6b21a8' },
 support:   { bg: '#fed7aa', text: '#9a3412' }
 };
 
-// Kullanıcı verisi YOK — staff boş, storeName boş, weekPlan boş
+// YASAL MOLA KURALLARI (varsayılan — kullanıcı düzenleyebilir)
+const DEFAULT_BREAK_RULES = [
+{ minHours: 0,   maxHours: 4,   breakMin: 15  },
+{ minHours: 4,   maxHours: 7.5, breakMin: 30  },
+{ minHours: 7.5, maxHours: 11,  breakMin: 60  },
+{ minHours: 11,  maxHours: 14,  breakMin: 120 }
+];
+
+// Boş başlangıç — demo personel veya plan yazılmaz
 const DEFAULT_SETTINGS = {
 storeName: '',
 setupComplete: false,
@@ -548,15 +742,10 @@ dailyLimitHours: 11,
 nightLimitHours: 7.5,
 ptMaxWeeklyHours: 30,
 monthlyTargetsByMonth: {},
-shiftChips: JSON.parse(JSON.stringify(DEFAULT_CHIPS)),
-colorRules: JSON.parse(JSON.stringify(DEFAULT_COLOR_RULES)),
-roleRules: JSON.parse(JSON.stringify(DEFAULT_ROLE_RULES)),
-breakRules: [
-{ minHours: 0,    maxHours: 4,  breakMin: 15  },
-{ minHours: 4,    maxHours: 7.5, breakMin: 30 },
-{ minHours: 7.5,  maxHours: 11,  breakMin: 60 },
-{ minHours: 11,   maxHours: 14,  breakMin: 120 }
- ],
+shiftChips: [],
+colorRules: [],
+roleRules: [],
+breakRules: JSON.parse(JSON.stringify(DEFAULT_BREAK_RULES)),
 staff: []
 };
 
@@ -568,6 +757,7 @@ manualExtra: {}
 };
 
 let _dataLoaded = false;
+let _dirty = false;
 
 const _todayD = new Date();
 const _tday = _todayD.getDay();
@@ -587,6 +777,8 @@ editingSettings: null,
 editingStaff: null,
 editingProfile: null,
 editingHourTarget: false,
+expandedChipId: null,
+emojiPickerFor: null,
 showMonthPicker: false,
 monthPickerModalOpen: false,
 monthPickerYear: _tmonday.getFullYear(),
@@ -608,9 +800,10 @@ showSetup: false,
 setupDraft: null
 };
 
-// ============ YARDIMCI ============
+// ============ YARDIMCI FONKSİYONLAR ============
 function dateKey(d) {
-return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' +
+String(d.getDate()).padStart(2,'0');
 }
 function monthKey(d) {
 return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
@@ -624,7 +817,8 @@ return String(d.getHours()).padStart(2,'0') + ':' +
        String(d.getSeconds()).padStart(2,'0');
 }
 function fmtDateTR(d) {
-const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const AY =
+['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'] ;
 const GUN = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
 return d.getDate() + ' ' + AY[d.getMonth()] + ' ' + d.getFullYear() + ', ' + GUN[d.getDay()];
 }
@@ -637,7 +831,8 @@ function autoShortTitle(title) {
 if (!title) return '';
 const words = title.trim().split(/\s+/).filter(Boolean);
 if (words.length === 0) return '';
-return words.map(function(w){ return w.charAt(0).toLocaleUpperCase('tr-TR'); }).join('').slice(0, 4);
+return words.map(function(w){ return w.charAt(0).toLocaleUpperCase('tr-TR');
+}).join('').slice(0, 4);
 }
 function roleLabelFor(staff) {
 if (!staff) return '';
@@ -653,7 +848,8 @@ const monday = new Date(d);
 monday.setDate(d.getDate() + diff);
 monday.setHours(0,0,0,0);
 const arr = [];
-for (let i = 0; i < 7; i++) { const x = new Date(monday); x.setDate(monday.getDate() + i); arr.push(x); }
+for (let i = 0; i < 7; i++) { const x = new Date(monday); x.setDate(monday.getDate() + i);
+arr.push(x); }
 return arr;
 }
 function getCurrentWeekDates() { return getWeekDatesForDate(state.weekAnchorDate); }
@@ -672,7 +868,11 @@ for (let i = 0; i < rules.length; i++) {
 const r = rules[i];
 const min = typeof r.minHours === 'number' ? r.minHours : 0;
 const max = typeof r.maxHours === 'number' ? r.maxHours : Infinity;
-if (grossHours >= min && grossHours < max) return r.breakMin;
+const last = i === rules.length - 1;
+if (grossHours >= min && (grossHours < max || (grossHours === max && !last) || (last && grossHours >= min))) {
+if (grossHours === max && !last) continue;
+return r.breakMin;
+}
 }
 return rules[rules.length-1].breakMin;
 }
@@ -680,7 +880,9 @@ function shiftNetHours(shift) {
 if (!shift || isLeaveType(shift.type)) return 0;
 const grossH = shiftHours(shift);
 if (grossH <= 0) return 0;
-return Math.max(0, grossH - getAutoBreak(grossH) / 60);
+const net = Math.max(0, grossH - getAutoBreak(grossH) / 60);
+const used = shiftAlacakHours(shift);
+return Math.max(0, net - used);
 }
 function shiftAlacakHours(shift) {
 if (!shift || isLeaveType(shift.type)) return 0;
@@ -700,7 +902,8 @@ function isNightShift(start, end) {
 const s = toMin(start); const e = toMin(end);
 const dur = (e - s + 1440) % 1440;
 let nightMin = 0;
-for (let i = 0; i < dur; i++) { const cur = (s + i) % 1440; if (cur >= 20*60 || cur < 6*60) nightMin++;}
+for (let i = 0; i < dur; i++) { const cur = (s + i) % 1440; if (cur >= 20*60 || cur < 6*60)
+nightMin++;}
 return nightMin > dur / 2;
 }
 
@@ -716,8 +919,9 @@ return /^#([0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(h);
 }
 function getShiftColor(start, end) {
 if (!start || !end) return null;
-const mid = (toMin(start) + toMin(end)) / 2;
-const midNorm = ((mid % 1440) + 1440) % 1440;
+const sMin = toMin(start);
+const dur = (toMin(end) - sMin + 1440) % 1440;
+const midNorm = (sMin + Math.floor(dur / 2)) % 1440;
 const rules = (data.settings.colorRules || []).filter(function(r){ return r.enabled !== false && !r.chipType; });
 for (let i = 0; i < rules.length; i++) {
 const r = rules[i];
@@ -747,10 +951,14 @@ function validateShift(shift) {
 const errors = [];
 if (!shift || isLeaveType(shift.type)) return errors;
 if (!shift.start || !shift.end) { errors.push('Başlangıç ve bitiş saati zorunlu'); return errors; }
+if (shift.start === shift.end) { errors.push('Giriş ve çıkış aynı olamaz'); return errors; }
+const dailyLimit = data.settings.dailyLimitHours || 11;
+const nightLimit = data.settings.nightLimitHours || 7.5;
 const grossH = shiftHours(shift);
 const netH = Math.max(0, grossH - getAutoBreak(grossH) / 60);
-if (netH > 11) errors.push('Günlük 11 saat sınırı aşılıyor (net ' + netH.toFixed(1) + ' sa)');
-if (isNightShift(shift.start, shift.end) && netH > 7.5) errors.push('Gece çalışması 7.5 saati aşamaz (net ' + netH.toFixed(1) + ' sa)');
+if (netH > dailyLimit + 0.001) errors.push('Günlük ' + dailyLimit + ' saat sınırı aşılıyor (net ' + netH.toFixed(1) + ' sa)');
+if (isNightShift(shift.start, shift.end) && netH > nightLimit + 0.001) errors.push('Gece çalışması ' + nightLimit + ' saati aşamaz (net ' + netH.toFixed(1) + ' sa)');
+if (shiftAlacakHours(shift) > netH + 0.001) errors.push('Alacak kullanımı vardiya net süresinden büyük');
 return errors;
 }
 function getStaffWeekHours(staffId) {
@@ -882,10 +1090,11 @@ lsSave();
 }
 function getWeeklyExtraDetails(staffId, monthOffset) {
 const so = data.settings.staff.find(function(s){return s.id === staffId;});
-if (!so || (so.role !== 'ft' && so.role !== 'manager')) return { total: 0, weeks: [] };
+if (!so || (so.role !== 'ft' && so.role !== 'manager' && so.role !== 'assistant')) return { total: 0, weeks: [] };
 const weeklyLimit = data.settings.weeklyLimitHours || 45;
 const mPrefix = monthKey(getMonthByOffset(monthOffset));
 const weekMap = {};
+const dayCount = {};
 Object.entries(data.weekPlan || {}).forEach(function(entry){
 const dk = entry[0]; const dayPlan = entry[1];
 const sh = (dayPlan || {})[staffId];
@@ -898,11 +1107,16 @@ const mon = new Date(dt);
 mon.setDate(dt.getDate() + diff);
 const wk = dateKey(mon);
 weekMap[wk] = (weekMap[wk] || 0) + shiftNetHours(sh);
+if (!dayCount[wk]) dayCount[wk] = {};
+const mk = dk.slice(0, 7);
+dayCount[wk][mk] = (dayCount[wk][mk] || 0) + 1;
 });
 const weeks = [];
 Object.entries(weekMap).forEach(function(entry){
 const wk = entry[0]; const hours = entry[1];
-if (wk.indexOf(mPrefix) !== 0) return;
+let best = ''; let bestN = -1;
+Object.entries(dayCount[wk] || {}).forEach(function(e){ if (e[1] > bestN) { bestN = e[1]; best = e[0]; } });
+if (best !== mPrefix) return;
 const over = hours - weeklyLimit;
 if (over > 0.01) {
 const p = wk.split('-').map(Number);
@@ -926,7 +1140,8 @@ const dk = entry[0]; const dayPlan = entry[1];
 if (dk.indexOf(mPrefix) !== 0) return;
 const sh = (dayPlan || {})[staffId];
 if (!sh) return;
-if (sh.type === RECEIVABLE_LEAVE_TYPE) uses.push({ dateKey: dk, hours: RECEIVABLE_LEAVE_HOURS });
+if (sh.type === RECEIVABLE_LEAVE_TYPE) uses.push({ dateKey: dk, hours:
+RECEIVABLE_LEAVE_HOURS });
 else if (!isLeaveType(sh.type) && shiftAlacakHours(sh) > 0) uses.push({ dateKey: dk, hours: shiftAlacakHours(sh) });
 });
 uses.sort(function(a,b){return a.dateKey.localeCompare(b.dateKey);});
@@ -935,13 +1150,22 @@ uses.forEach(function(u){total += u.hours;});
 return { total: total, uses: uses };
 }
 function getExtraHours(staffId, monthOffset) {
-return getWeeklyExtraDetails(staffId, monthOffset).total + getManualExtra(staffId, monthOffset);
+return getWeeklyExtraDetails(staffId, monthOffset).total + getManualExtra(staffId,
+monthOffset);
 }
-function getUsedReceivableHours(staffId, monthOffset) { return getReceivableUsageDetails(staffId, monthOffset).total; }
-function getNetReceivableHours(staffId, monthOffset) { return getExtraHours(staffId, monthOffset) - getUsedReceivableHours(staffId, monthOffset); }
+function getUsedReceivableHours(staffId, monthOffset) { return
+getReceivableUsageDetails(staffId, monthOffset).total; }
+function getNetReceivableHours(staffId, monthOffset) { return getExtraHours(staffId,
+monthOffset) - getUsedReceivableHours(staffId, monthOffset); }
 function getAvailableReceivableForWeek(staffId) {
-const earned = getExtraHours(staffId, state.selectedMonthOffset || 0);
-const used = getUsedReceivableHours(staffId, state.selectedMonthOffset || 0);
+let offset = state.selectedMonthOffset || 0;
+if (state.modal && state.modal.dateKey) {
+const p = state.modal.dateKey.split('-').map(Number);
+const now = new Date();
+offset = (p[0] - now.getFullYear()) * 12 + ((p[1] - 1) - now.getMonth());
+}
+const earned = getExtraHours(staffId, offset);
+const used = getUsedReceivableHours(staffId, offset);
 return Math.max(0, earned - used);
 }
 
@@ -1009,7 +1233,8 @@ const FB_DOC_PATH = ['shared', 'state'];
 function initFirebase() {
 const fb = window.__fb;
 if (!fb) { setTimeout(initFirebase, 100); return; }
-fb.signInAnonymously(fb.auth).catch(function(err){ console.error('Anonim giriş hatası:', err); });
+fb.signInAnonymously(fb.auth).catch(function(err){ console.error('Anonim giriş hatası:', err);
+});
 fb.onAuthStateChanged(fb.auth, function(user){
 if (!user) return;
 _fbReady = true;
@@ -1025,10 +1250,6 @@ const snap = await fb.getDoc(ref);
 if (snap.exists()) {
 const remote = snap.data();
 applyRemote(remote, false);
-if (data.settings.setupComplete !== true) {
-data.settings.setupComplete = true;
-fbSaveNow();
-}
 _dataLoaded = true;
 } else {
 startSetup();
@@ -1049,61 +1270,37 @@ render();
 }
 
 function applyRemote(remote, isUpdate) {
+if (_dirty && isUpdate) return;
 _applyingRemote = true;
 data.settings = Object.assign({}, DEFAULT_SETTINGS, remote.settings || {});
 if (remote.settings) {
 if (remote.settings.shiftChips) {
 data.settings.shiftChips = remote.settings.shiftChips.map(function(c){
 var o = Object.assign({}, c);
-if (o.type === 'izinli' && o.name !== 'Haftalık İzin') o.name = 'Haftalık İzin';
 if (typeof o.audience !== 'string') o.audience = o.ptOnly ? 'pt' : 'all';
 delete o.ptOnly;
 if (typeof o.image === 'undefined') o.image = null;
 if (typeof o.icon === 'undefined') o.icon = '⭐';
 return o;
 });
-var hasPtOff = data.settings.shiftChips.some(function(c){ return c.type === PT_OFF_TYPE; });
-if (!hasPtOff) {
-data.settings.shiftChips.push({
-id: 'chip_ptoff', icon: '🚫', image: null, name: 'PT Çalışma Yok',
-type: PT_OFF_TYPE, start: '', end: '', audience: 'pt'
-});
-}
-var hasTime = data.settings.shiftChips.some(function(c){ return c.type === 'time'; });
-if (!hasTime) {
-data.settings.shiftChips.unshift({
-id: 'chip_time', icon: '🕐', image: null, name: 'Saat Seç',
-type: 'time', start: '', end: '', audience: 'all'
-});
-}
 }
 if (remote.settings.colorRules) data.settings.colorRules = remote.settings.colorRules;
 if (remote.settings.roleRules) data.settings.roleRules = remote.settings.roleRules;
 if (remote.settings.breakRules) data.settings.breakRules = remote.settings.breakRules;
 if (remote.settings.staff) data.settings.staff = remote.settings.staff;
-if (remote.settings.monthlyTargetsByMonth) data.settings.monthlyTargetsByMonth = remote.settings.monthlyTargetsByMonth;
+if (remote.settings.monthlyTargetsByMonth) data.settings.monthlyTargetsByMonth =
+remote.settings.monthlyTargetsByMonth;
 }
-// Migration
+// Migration: colorRules id/enabled
 (data.settings.colorRules || []).forEach(function(r, i){
 if (!r.id) r.id = 'cr_migrated_' + i;
 if (typeof r.enabled !== 'boolean') r.enabled = true;
 });
-['izinli', RECEIVABLE_LEAVE_TYPE, PT_OFF_TYPE].forEach(function(t){
-const exists = (data.settings.colorRules || []).some(function(r){ return r.chipType === t; });
-if (!exists) {
-data.settings.colorRules.push({
-id: 'cr_type_' + t,
-chipType: t,
-color: CHIP_TYPE_DEFAULTS[t],
-name: CHIP_TYPE_LABELS[t] || t,
-enabled: true
-});
-}
-});
 data.weekPlan = remote.weekPlan || {};
 data.manualExtra = remote.manualExtra || {};
 _applyingRemote = false;
-if (isUpdate && !state.modal && !state.showSettings && !state.clearMenuOpen && !state.weekPickerOpen && !state.showSetup) {
+if (isUpdate && !state.modal && !state.showSettings && !state.clearMenuOpen &&
+!state.weekPickerOpen && !state.showSetup) {
 render();
 }
 }
@@ -1116,8 +1313,10 @@ try {
 await fb.setDoc(fb.doc(fb.db, FB_DOC_PATH[0], FB_DOC_PATH[1]), {
 settings: data.settings,
 weekPlan: data.weekPlan,
-manualExtra: data.manualExtra
+manualExtra: data.manualExtra,
+updatedAt: Date.now()
 });
+_dirty = false;
 setSyncBadge('online');
 } catch (e) {
 console.error('Kayıt hatası:', e);
@@ -1127,6 +1326,7 @@ setSyncBadge('offline');
 
 function lsSave() {
 if (_applyingRemote) return;
+_dirty = true;
 clearTimeout(_saveTimer);
 _saveTimer = setTimeout(function(){ if (_fbReady) fbSaveNow(); }, 400);
 }
@@ -1178,7 +1378,8 @@ function shiftWeek(delta) {
 const nd = new Date(state.weekAnchorDate);
 nd.setDate(nd.getDate() + delta * 7);
 state.weekAnchorDate = nd;
-state.selectedMonthOffset = (nd.getFullYear() - new Date().getFullYear()) * 12 + (nd.getMonth() - new Date().getMonth());
+state.selectedMonthOffset = (nd.getFullYear() - new Date().getFullYear()) * 12 +
+(nd.getMonth() - new Date().getMonth());
 render();
 }
 function shiftMonth(delta) {
@@ -1237,7 +1438,7 @@ if (toIdx < 0) toIdx = staffList.length;
 else if (side === 'right') toIdx = toIdx + 1;
 staffList.splice(toIdx, 0, moved);
 lsSave();
-showToast('↕️ Sıralama kaydedildi', 'info');
+showToast('↕  Sıralama kaydedildi', 'info');
 }
 }
 items.forEach(function(it){ it.classList.remove('dragging'); });
@@ -1262,7 +1463,8 @@ if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
 if (isDragging) { onUp(e); isDragging = false; }
 };
 item.addEventListener('touchstart', function(e){ startPress(e); }, { passive: true });
-item.addEventListener('touchmove', function(e){ if (isDragging) { e.preventDefault(); } }, { passive: false });
+item.addEventListener('touchmove', function(e){ if (isDragging) { e.preventDefault(); } }, {
+passive: false });
 item.addEventListener('touchend', function(e){ cancelPress(e); });
 item.addEventListener('mousedown', function(e){ e.preventDefault(); startPress(e); });
 item.addEventListener('mouseup', function(e){ cancelPress(e); });
@@ -1272,22 +1474,26 @@ item.addEventListener('mouseup', function(e){ cancelPress(e); });
 // ============ VARDİYA DÜZENLEME ============
 function openShiftEdit(staffId, dk) {
 const cur = (data.weekPlan[dk] || {})[staffId] || null;
-state.modal = { type: 'shiftEdit', staffId: staffId, dateKey: dk, activeChipId: 'chip_time',
+state.modal = { type: 'shiftEdit', staffId: staffId, dateKey: dk, activeChipId: null,
 startHour: null, startMinute: null, endHour: null, endMinute: null,
 existing: cur, step: 'start-hour' };
 state.alacakToggleOn = false;
 state.alacakHours = 3;
 if (cur && !isLeaveType(cur.type)) {
-if (cur.start) { const p = cur.start.split(':'); state.modal.startHour = parseInt(p[0],10); state.modal.startMinute = parseInt(p[1],10); }
-if (cur.end) { const p = cur.end.split(':'); state.modal.endHour = parseInt(p[0],10); state.modal.endMinute = parseInt(p[1],10); }
-if (shiftAlacakHours(cur) > 0) { state.alacakToggleOn = true; state.alacakHours = shiftAlacakHours(cur); }
+if (cur.start) { const p = cur.start.split(':'); state.modal.startHour = parseInt(p[0],10);
+state.modal.startMinute = parseInt(p[1],10); }
+if (cur.end) { const p = cur.end.split(':'); state.modal.endHour = parseInt(p[0],10);
+state.modal.endMinute = parseInt(p[1],10); }
+if (shiftAlacakHours(cur) > 0) { state.alacakToggleOn = true; state.alacakHours =
+shiftAlacakHours(cur); }
 }
 render();
 }
 function autoSaveShift(force) {
 const m = state.modal; if (!m) return;
 if (m.startHour === null || m.startMinute === null || m.endHour === null || m.endMinute === null) return;
-const startStr = String(m.startHour).padStart(2,'0') + ':' + String(m.startMinute).padStart(2,'0');
+const startStr = String(m.startHour).padStart(2,'0') + ':' +
+String(m.startMinute).padStart(2,'0');
 const endStr = String(m.endHour).padStart(2,'0') + ':' + String(m.endMinute).padStart(2,'0');
 const durH = ((toMin(endStr) - toMin(startStr) + 1440) % 1440) / 60;
 let type = 'sabah';
@@ -1295,7 +1501,8 @@ if (durH >= 10) type = 'tam';
 else if (isNightShift(startStr, endStr)) type = 'gece';
 else if (toMin(startStr) >= 12 * 60) type = 'aksam';
 const mData = { type: type, start: startStr, end: endStr };
-if (state.alacakToggleOn && state.alacakHours > 0) mData.alacakHours = state.alacakHours;
+if (state.alacakToggleOn && state.alacakHours > 0) mData.alacakHours =
+state.alacakHours;
 const errors = validateShift(mData);
 if (errors.length > 0 && !force) {
 state.warnConfirm = { mData: mData, dateKey: m.dateKey, staffId: m.staffId, errors: errors };
@@ -1313,7 +1520,7 @@ const m = state.modal; if (!m) return;
 if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {};
 data.weekPlan[m.dateKey][m.staffId] = { type: 'izinli', start: '', end: '' };
 lsSave(); state.modal = null;
-showToast('🏖️ Haftalık izin kaydedildi', 'success'); render();
+showToast('🏖 Haftalık izin kaydedildi', 'success'); render();
 }
 function saveShiftAsPTOff() {
 const m = state.modal; if (!m) return;
@@ -1335,8 +1542,14 @@ function saveShiftAsFull(chip) {
 const m = state.modal; if (!m) return;
 const start = chip.start || '10:00';
 const end = chip.end || '22:00';
+const mData = { type: 'full', start: start, end: end };
+const errors = validateShift(mData);
+if (errors.length > 0) {
+state.warnConfirm = { mData: mData, dateKey: m.dateKey, staffId: m.staffId, errors: errors };
+render(); return;
+}
 if (!data.weekPlan[m.dateKey]) data.weekPlan[m.dateKey] = {};
-data.weekPlan[m.dateKey][m.staffId] = { type: 'full', start: start, end: end };
+data.weekPlan[m.dateKey][m.staffId] = mData;
 lsSave(); state.modal = null;
 showToast('✅ ' + chip.name + ' kaydedildi', 'success'); render();
 }
@@ -1347,7 +1560,7 @@ delete data.weekPlan[m.dateKey][m.staffId];
 if (Object.keys(data.weekPlan[m.dateKey]).length === 0) delete data.weekPlan[m.dateKey];
 }
 lsSave(); state.modal = null;
-showToast('🗑️ Vardiya silindi', 'info'); render();
+showToast('🗑 Vardiya silindi', 'info'); render();
 }
 function selectChip(chipId) {
 const m = state.modal; if (!m) return;
@@ -1385,22 +1598,25 @@ function goToManual() { const m = state.modal; if (!m) return; m.step = 'manual'
 function toggleAlacak() {
 const m = state.modal; if (!m) return;
 const avail = getAvailableReceivableForWeek(m.staffId);
-if (!state.alacakToggleOn && avail <= 0.01) { showToast('Kullanılabilir alacak yok', 'error'); return; }
+if (!state.alacakToggleOn && avail <= 0.01) { showToast('Kullanılabilir alacak yok', 'error');
+return; }
 state.alacakToggleOn = !state.alacakToggleOn;
 render();
 }
 function setAlacakHours(v) { state.alacakHours = v; render(); }
 function goToWarningCell(staffId, dateKey) {
 if (!staffId || !dateKey) { showToast('Hedef gün bulunamadı', 'warn'); return; }
-document.querySelectorAll('.plan-cell.edit-hint').forEach(function(el){ el.classList.remove('edit-hint'); });
-const cell = document.querySelector('.plan-cell[data-staff="' + staffId + '"][data-date="' + dateKey + '"]');
+document.querySelectorAll('.plan-cell.edit-hint').forEach(function(el){
+el.classList.remove('edit-hint'); });
+const cell = document.querySelector('.plan-cell[data-staff="' + staffId + '"][data-date="' +
+dateKey + '"]');
 if (!cell) { showToast('Hedef gün bulunamadı', 'warn'); return; }
 cell.scrollIntoView({ behavior: 'smooth', block: 'center' });
 cell.classList.add('edit-hint');
 const rect = cell.getBoundingClientRect();
 const tooltip = document.createElement('div');
 tooltip.className = 'plan-cell-tooltip';
-tooltip.textContent = '✏️ Düzenlemek için tıkla';
+tooltip.textContent = '✏ Düzenlemek için tıkla';
 tooltip.style.left = Math.max(8, rect.left + rect.width / 2 - 80) + 'px';
 tooltip.style.top = Math.max(60, rect.top - 40) + 'px';
 document.body.appendChild(tooltip);
@@ -1447,7 +1663,7 @@ Object.keys(data.weekPlan).forEach(function(dk){
 if (data.weekPlan[dk][staffId]) delete data.weekPlan[dk][staffId];
 });
 lsSave();
-showToast('🗑️ Personel silindi', 'info');
+showToast('🗑 Personel silindi', 'info');
 render();
 }
 
@@ -1547,11 +1763,13 @@ function openSettings() {
 state.editingSettings = JSON.parse(JSON.stringify(data.settings));
 state.settingsTab = 'general';
 state.showSettings = true;
+state.expandedChipId = null;
 render();
 }
 
 // ============ SIFIRLA ============
-function openClearMenu() { state.clearMenuOpen = true; state.clearSelectedStaff = []; state.clearSelectedDays = []; render(); }
+function openClearMenu() { state.clearMenuOpen = true; state.clearSelectedStaff = [];
+state.clearSelectedDays = []; render(); }
 function closeClearMenu() { state.clearMenuOpen = false; render(); }
 function toggleClearStaff(id) {
 const i = state.clearSelectedStaff.indexOf(id);
@@ -1589,7 +1807,7 @@ if (!Object.keys(data.weekPlan[dk]).length) delete data.weekPlan[dk];
 });
 lsSave();
 state.clearMenuOpen = false;
-showToast('🗑️ ' + count + ' vardiya silindi', 'info');
+showToast('🗑 ' + count + ' vardiya silindi', 'info');
 render();
 }
 
@@ -1606,7 +1824,8 @@ function wpPickMonth(m) { state.weekPickerMonth = m; render(); }
 function wpPickWeek(start) {
 state.weekAnchorDate = new Date(start);
 state.weekAnchorDate.setHours(0,0,0,0);
-state.selectedMonthOffset = (start.getFullYear() - new Date().getFullYear()) * 12 + (start.getMonth() - new Date().getMonth());
+state.selectedMonthOffset = (start.getFullYear() - new Date().getFullYear()) * 12 +
+(start.getMonth() - new Date().getMonth());
 state.weekPickerOpen = false;
 render();
 }
@@ -1621,7 +1840,8 @@ function closeMonthPicker() { state.monthPickerModalOpen = false; render(); }
 function mpChangeYear(d) { state.monthPickerYear += d; render(); }
 function mpPickMonth(monthIdx) {
 const today = new Date();
-const offset = (state.monthPickerYear - today.getFullYear()) * 12 + (monthIdx - today.getMonth());
+const offset = (state.monthPickerYear - today.getFullYear()) * 12 + (monthIdx -
+today.getMonth());
 state.selectedMonthOffset = offset;
 state.monthPickerModalOpen = false;
 if (offset === 0) {
@@ -1667,7 +1887,8 @@ if (s) s.role = e.target.value;
 });
 document.querySelectorAll('[data-setup-del]').forEach(function(btn){
 btn.addEventListener('click', function(){
-state.setupDraft.staff = state.setupDraft.staff.filter(function(s){return s.id !== btn.dataset.setupDel;});
+state.setupDraft.staff = state.setupDraft.staff.filter(function(s){return s.id !==
+btn.dataset.setupDel;});
 render();
 });
 });
@@ -1695,7 +1916,8 @@ validStaff.forEach(function(s){
 s.name = s.name.trim();
 s.title = (ROLES[s.role] && ROLES[s.role].label) || 'Personel';
 s.titleShort = (ROLES[s.role] && ROLES[s.role].short) || autoShortTitle(s.title);
-s.color = Object.assign({}, DEFAULT_STAFF_COLORS[s.role] || DEFAULT_STAFF_COLORS.pt);
+s.color = Object.assign({}, DEFAULT_STAFF_COLORS[s.role] ||
+DEFAULT_STAFF_COLORS.pt);
 });
 data.settings.storeName = d.storeName.trim();
 data.settings.staff = validStaff;
@@ -1769,8 +1991,7 @@ bindSetupEvents();
 return;
 }
 if (!_dataLoaded) {
-app.innerHTML = '<div style="padding:60px 20px;text-align:center;font-family:sans-serif;">' +
-'<div style="font-size:40px;margin-bottom:12px;">⏳</div>' +
+app.innerHTML = '<div style="padding:60px 20px;text-align:center;font-family:sans-serif;">' + '<div style="font-size:40px;margin-bottom:12px;">⏳</div>' +
 '<h2 style="color:#1e293b;margin-bottom:8px;">Yükleniyor...</h2>' +
 '<p style="color:#64748b;font-size:14px;">Bağlanıyor, lütfen bekleyin.</p></div>';
 return;
@@ -1787,9 +2008,9 @@ renderWarnings() +
 renderFooter() +
 (state.showSettings ? renderSettingsPage() : '') +
 (state.modal && state.modal.type === 'shiftEdit' ? renderShiftEditModal() : '') +
-(state.modal && state.modal.type === 'staffManager' ? renderStaffManagerModal() : '') +
-(state.modal && state.modal.type === 'staffForm' ? renderStaffFormModal() : '') +
+(state.modal && state.modal.type === 'staffManager' ? renderStaffManagerModal() : '') + (state.modal && state.modal.type === 'staffForm' ? renderStaffFormModal() : '') +
 (state.modal && state.modal.type === 'profile' ? renderProfileModal() : '') +
+(state.emojiPickerFor ? renderEmojiPickerModal() : '') +
 renderReceivableDetailModal() +
 renderWarnConfirmModal() +
 (state.clearMenuOpen ? renderClearModal() : '') +
@@ -1806,7 +2027,8 @@ const d = state.setupDraft;
 if (!d) return '';
 const staffRows = d.staff.map(function(s){
 const opts = Object.keys(ROLES).map(function(k){
-return '<option value="' + k + '" ' + (s.role === k ? 'selected' : '') + '>' + ROLES[k].label + '</option>';
+return '<option value="' + k + '" ' + (s.role === k ? 'selected' : '') + '>' + ROLES[k].label +
+'</option>';
 }).join('');
 return '<div class="setup-staff-row">' +
 '<div class="setup-staff-fields">' +
@@ -1834,7 +2056,7 @@ staffRows +
 '<button class="setup-add-staff" id="setupAddStaff">＋ Personel Ekle</button>' +
 '</div>' +
 '<button class="setup-cta" id="setupCompleteBtn">Başla 🚀</button>' +
-'<div class="setup-note">Bu bilgiler cihazlar arası senkronize edilir.<br/>Sonradan ⚙️ Ayarlar\'dan değiştirebilirsiniz.</div>' +
+'<div class="setup-note">Bu bilgiler cihazlar arası senkronize edilir.<br/>Sonradan ⚙ Ayarlar\'dan değiştirebilirsiniz.</div>' +
 '</div></div>';
 }
 
@@ -1848,17 +2070,19 @@ return '<div class="top-header">' +
 '<div class="greeting-hi">' + mgr.fullName + ' 👋</div>' +
 '<div class="greeting-sub"><span class="live-dot"></span>' + (data.settings.storeName || 'Mağaza') + '</div>' +
 '</div>' +
-'<button class="icon-btn ' + (state.showSettings ? 'settings-active' : '') + '" id="settingsBtn">⚙️</button>' +
+'<button class="icon-btn ' + (state.showSettings ? 'settings-active' : '') + '" id="settingsBtn">⚙</button>' +
 '</div>';
 }
 
 function renderDateTimeBar() {
-return '<div class="datetime-bar"><span>' + fmtDateTR(state.now) + '</span><span class="dt-sep">•</span><span class="dt-clock">' + fmtTimeSec(state.now) + '</span></div>';
+return '<div class="datetime-bar"><span>' + fmtDateTR(state.now) + '</span><span class="dt-sep">•</span><span class="dt-clock">' + fmtTimeSec(state.now) +
+'</span></div>';
 }
 
 function renderHourTargetCard() {
 const monthOffset = state.selectedMonthOffset || 0;
-const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const AY =
+['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'] ;
 const targetDate = getMonthByOffset(monthOffset);
 const monthTarget = getMonthTarget(monthOffset);
 const mb = getMonthWeekBuckets(monthOffset);
@@ -1866,6 +2090,7 @@ const buckets = mb.buckets, daysInMonth = mb.daysInMonth;
 const monthUsed = getTotalMonthHoursForMonth(monthOffset);
 const monthRemaining = monthTarget > 0 ? (monthTarget - monthUsed) : 0;
 const oran = monthTarget > 0 ? (monthRemaining / monthTarget) * 100 : 0;
+const realized = monthTarget > 0 ? (monthUsed / monthTarget) * 100 : 0;
 let oranCls = 'neutral';
 if (monthTarget > 0) {
 if (oran >= 50) oranCls = 'good';
@@ -1882,7 +2107,12 @@ let label;
 if (b.isExtra) label = 'Kalan ' + b.days + ' Gün';
 else if (b.isPartial) label = '1. Hafta (' + b.days + 'g)';
 else label = b.index + '. Hafta';
-const hours = monthTarget > 0 ? Math.round(monthTarget * (b.days / daysInMonth)) : 0;
+const rawHours = buckets.map(function(x){ return monthTarget > 0 ? monthTarget * (x.days / daysInMonth) : 0; });
+const floorHours = rawHours.map(function(n){ return Math.floor(n); });
+let leftHours = (monthTarget > 0 ? Math.round(monthTarget) : 0) - floorHours.reduce(function(a,b){return a+b;}, 0);
+const hourOrder = rawHours.map(function(n, idx){ return { idx: idx, frac: n - floorHours[idx] }; }).sort(function(a,b){ return b.frac - a.frac; });
+for (let hi = 0; hi < hourOrder.length && leftHours > 0; hi++, leftHours--) floorHours[hourOrder[hi].idx] += 1;
+const hours = floorHours[buckets.indexOf(b)];
 return '<span class="htw-item"><span class="htw-lbl">' + label + '</span><span class="htw-val ' + (b.isExtra ? 'extra' : '') + '">' + hours + '</span></span>';
 }).join('<span class="htw-sep">·</span>');
 
@@ -1892,7 +2122,8 @@ return '<div class="hour-target-card">' +
 '</div>' +
 '<div class="hour-target-nav">' +
 '<button class="ht-nav-arrow" data-ht-month-shift="-1">‹</button>' +
-'<div class="ht-nav-label" id="openMonthPicker"><span class="ht-month">' + AY[targetDate.getMonth()].toUpperCase() + ' ' + targetDate.getFullYear() + '</span> 📅</div>' +
+'<div class="ht-nav-label" id="openMonthPicker"><span class="ht-month">' +
+AY[targetDate.getMonth()].toUpperCase() + ' ' + targetDate.getFullYear() + '</span> 📅</div>' +
 '<button class="ht-nav-arrow" data-ht-month-shift="1">›</button>' +
 '</div>' +
 '<div class="hour-target-compact">' +
@@ -1900,9 +2131,10 @@ return '<div class="hour-target-card">' +
 (!isEditing ? '<div class="ht-hint">' + (hasTarget ? 'çift tıkla' : 'çift tıkla → hedef gir') + '</div>' : '') +
 '</div>' +
 '<div class="ht-meta">' +
-'<div class="ht-chip"><div class="htc-lbl">Kullanılan</div><div class="htc-val ' + (monthUsed > 0 ? '' : 'empty') + '">' + (monthUsed > 0 ? monthUsed.toFixed(0) : '—') + '</div></div>' +
-'<div class="ht-chip"><div class="htc-lbl">Kalan</div><div class="htc-val ' + (monthTarget > 0 ? oranCls : 'empty') + '">' + (monthTarget > 0 ? monthRemaining.toFixed(0) : '—') + '</div></div>' +
-'<div class="ht-chip"><div class="htc-lbl">Gerçekleşen</div><div class="htc-val ' + (monthTarget > 0 ? oranCls : 'empty') + '">' + (monthTarget > 0 ? '%' + oran.toFixed(0) : '—') + '</div></div>' +
+'<div class="ht-chip"><div class="htc-lbl">Kullanılan</div><div class="htc-val ' + (monthUsed > 0 ? '' : 'empty') + '">' + (monthUsed > 0 ? monthUsed.toFixed(0) : '—') + '</div></div>' + '<div class="ht-chip"><div class="htc-lbl">Kalan</div><div class="htc-val ' + (monthTarget > 0 ? oranCls : 'empty') + '">' + (monthTarget > 0 ? monthRemaining.toFixed(0) : '—') +
+'</div></div>' +
+'<div class="ht-chip"><div class="htc-lbl">Gerçekleşen</div><div class="htc-val ' +
+(monthTarget > 0 ? oranCls : 'empty') + '">' + (monthTarget > 0 ? '%' + realized.toFixed(0) : '—') + '</div></div>' +
 '</div>' +
 '</div>' +
 '<div class="hour-target-weeks">' + weekLineHtml + '</div>' +
@@ -1915,12 +2147,12 @@ return '<div class="weekly-hours-card">' +
 '<div class="card-header" style="padding: 8px 14px 4px; display:flex; align-items:center; justify-content:space-between;">' +
 '<div class="card-title" style="font-size: 11px;">👥 Haftalık Çalışma</div>' +
 '</div>' +
-'<div class="empty-state">Personel eklemek için grid\'deki ＋ butonunu kullanın</div>' +
-'</div>';
+'<div class="empty-state">Personel eklemek için grid\'deki ＋ butonunu kullanın</div>' + '</div>';
 }
 const items = data.settings.staff.map(function(s){
 const hours = getStaffWeekHours(s.id);
-const limit = s.role === 'pt' ? (data.settings.ptMaxWeeklyHours || 30) : (data.settings.weeklyLimitHours || 45);
+const limit = s.role === 'pt' ? (data.settings.ptMaxWeeklyHours || 30) :
+(data.settings.weeklyLimitHours || 45);
 const cls = getWeekHoursColorClass(hours, limit);
 const isEditingName = state.editingStaffNameId === s.id;
 let nameHtml;
@@ -1931,8 +2163,7 @@ return '<div class="wh-item" data-wh-staff="' + s.id + '">' + nameHtml + '<span 
 return '<div class="weekly-hours-card">' +
 '<div class="card-header" style="padding: 8px 14px 4px; display:flex; align-items:center; justify-content:space-between;">' +
 '<div class="card-title" style="font-size: 11px;">👥 Haftalık Çalışma</div>' +
-'<span style="font-size:10px;font-weight:800;color:#94a3b8;">basılı tut → sırala</span>' +
-'</div>' +
+'<span style="font-size:10px;font-weight:800;color:#94a3b8;">basılı tut → sırala</span>' + '</div>' +
 '<div class="weekly-hours-scroll" id="weeklyHoursScroll">' + items + '</div>' +
 '</div>';
 }
@@ -1957,8 +2188,7 @@ return '<div class="wh-item" data-receivable-staff="' + s.id + '" style="cursor:
 return '<div class="weekly-hours-card">' +
 '<div class="card-header" style="padding: 8px 14px 4px; display:flex; align-items:center; justify-content:space-between;">' +
 '<div class="card-title" style="font-size: 11px;">💰 Alacak Saatler</div>' +
-'<span style="font-size:10px;font-weight:800;color:#94a3b8;">çift tıkla → düzenle</span>' +
-'</div>' +
+'<span style="font-size:10px;font-weight:800;color:#94a3b8;">çift tıkla → düzenle</span>' + '</div>' +
 '<div class="weekly-hours-scroll">' + items + '</div>' +
 '</div>';
 }
@@ -1973,7 +2203,8 @@ const earned = getWeeklyExtraDetails(sid, monthOffset);
 const manual = getManualExtra(sid, monthOffset);
 const used = getReceivableUsageDetails(sid, monthOffset);
 const net = (earned.total + manual) - used.total;
-const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const AY =
+['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'] ;
 const target = getMonthByOffset(monthOffset);
 const monthLabel = AY[target.getMonth()] + ' ' + target.getFullYear();
 let earnedRows;
@@ -1981,7 +2212,8 @@ if (earned.weeks.length === 0) earnedRows = '<div style="font-size:12px;color:#9
 else earnedRows = earned.weeks.map(function(w){
 return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">' + w.label + ' haftası</span><span style="font-size:13px;font-weight:900;color:#16a34a;">+' + fmtNetHoursShort(w.over) + ' sa</span></div>';
 }).join('');
-const manualRow = manual > 0 ? '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">Manuel eklenen</span><span style="font-size:13px;font-weight:900;color:#16a34a;">+' + fmtNetHoursShort(manual) + ' sa</span></div>' : '';
+const manualRow = manual > 0 ? '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">Manuel eklenen</span><span style="font-size:13px;font-weight:900;color:#16a34a;">+' +
+fmtNetHoursShort(manual) + ' sa</span></div>' : '';
 let usedRows;
 if (used.uses.length === 0) usedRows = '<div style="font-size:12px;color:#94a3b8;font-weight:700;padding:4px 0;">Bu ay alacak kullanımı yok</div>';
 else usedRows = used.uses.map(function(u){
@@ -1989,7 +2221,8 @@ const p = u.dateKey.split('-').map(Number);
 const dt = new Date(p[0], p[1]-1, p[2]);
 const GUN = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
 const AY_K = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
-return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">' + p[2] + ' ' + AY_K[p[1]-1] + ' ' + GUN[dt.getDay()] + '</span><span style="font-size:13px;font-weight:900;color:#dc2626;">−' + fmtNetHoursShort(u.hours) + ' sa</span></div>';
+return '<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9;"><span style="font-size:13px;font-weight:800;color:#1e293b;">' + p[2] + ' ' + AY_K[p[1]-1] + ' ' +
+GUN[dt.getDay()] + '</span><span style="font-size:13px;font-weight:900;color:#dc2626;">−' + fmtNetHoursShort(u.hours) + ' sa</span></div>';
 }).join('');
 return '<div class="modal-backdrop" data-close-receivable-detail="1"><div class="modal" onclick="event.stopPropagation()" style="max-width:390px;">' +
 '<div class="modal-icon">💰</div>' +
@@ -2009,13 +2242,13 @@ const errs = state.warnConfirm.errors.map(function(e){
 return '<div style="font-size:12.5px;color:#7f1d1d;font-weight:700;padding:3px 0;">⚠ ' + e + '</div>';
 }).join('');
 return '<div class="modal-backdrop" style="z-index:300;"><div class="modal" onclick="event.stopPropagation()" style="max-width:360px;">' +
-'<div class="modal-icon" style="background:#fef3c7;">⚠️</div>' +
+'<div class="modal-icon" style="background:#fef3c7;">⚠</div>' +
 '<div class="modal-title">Kanuni Uyarılar</div>' +
 '<div class="modal-desc">Bu vardiyada dikkat edilmesi gereken durumlar var. Yine de uygulanmalı mı?</div>' +
 '<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:10px 12px;">' + errs + '</div>' +
 '<div class="modal-actions">' +
-'<button class="modal-btn cancel" data-warn-edit="1">✏️ Düzenle</button>' +
-'<button class="modal-btn confirm" data-warn-apply="1" style="background:#dc2626;">⚠️ Yine de Uygula</button>' +
+'<button class="modal-btn cancel" data-warn-edit="1">✏ Düzenle</button>' +
+'<button class="modal-btn confirm" data-warn-apply="1" style="background:#dc2626;">⚠ Yine de Uygula</button>' +
 '</div>' +
 '</div></div>';
 }
@@ -2025,17 +2258,20 @@ const weekDates = getCurrentWeekDates();
 const staff = data.settings.staff;
 const staffRows = staff.map(function(s){
 const sel = state.clearSelectedStaff.indexOf(s.id) >= 0;
-return '<div class="clear-staff-row ' + (sel ? 'selected' : '') + '" data-clear-staff="' + s.id + '"><div class="cs-check">✓</div><div class="cs-name">' + s.name + '</div></div>';
+return '<div class="clear-staff-row ' + (sel ? 'selected' : '') + '" data-clear-staff="' + s.id +
+'"><div class="cs-check">✓</div><div class="cs-name">' + s.name + '</div></div>';
 }).join('');
 const GUN_KISA = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
 const dayBtns = weekDates.map(function(d, i){
 const sel = state.clearSelectedDays.indexOf(i) >= 0;
-return '<button class="clear-day-btn ' + (sel ? 'active' : '') + '" data-clear-day="' + i + '"><span>' + GUN_KISA[i] + '</span><span class="cdb-num">' + d.getDate() + '</span></button>';
+return '<button class="clear-day-btn ' + (sel ? 'active' : '') + '" data-clear-day="' + i +
+'"><span>' + GUN_KISA[i] + '</span><span class="cdb-num">' + d.getDate() +
+'</span></button>';
 }).join('');
 const allDaysActive = state.clearSelectedDays.length === 7;
 const allStaffActive = state.clearSelectedStaff.length === staff.length && staff.length > 0;
 return '<div class="modal-backdrop" data-close-clear="1"><div class="modal" onclick="event.stopPropagation()" style="max-width:420px;">' +
-'<div class="modal-icon" style="background:#fef2f2;">🗑️</div>' +
+'<div class="modal-icon" style="background:#fef2f2;">🗑</div>' +
 '<div class="modal-title">Plan Sıfırla</div>' +
 '<div class="modal-desc">Silinecek personel ve günleri seç</div>' +
 '<div style="font-size:11px;font-weight:900;color:#475569;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:6px;display:flex;justify-content:space-between;">' +
@@ -2048,7 +2284,7 @@ return '<div class="modal-backdrop" data-close-clear="1"><div class="modal" oncl
 '<button data-clear-all-days="1" style="background:none;border:none;color:#2563eb;font-weight:900;font-size:12px;cursor:pointer;">' + (allDaysActive ? 'Hiçbiri' : 'Tümü') + '</button>' +
 '</div>' +
 '<div class="clear-day-row">' + dayBtns + '</div>' +
-'<div class="modal-actions"><button class="modal-btn cancel" data-close-clear="1">İptal</button><button class="modal-btn danger" data-apply-clear="1">🗑️ Sil</button></div>' +
+'<div class="modal-actions"><button class="modal-btn cancel" data-close-clear="1">İptal</button><button class="modal-btn danger" data-apply-clear="1">🗑 Sil</button></div>' +
 '</div></div>';
 }
 
@@ -2056,7 +2292,8 @@ function renderWeekPickerModal() {
 const year = state.weekPickerYear;
 const month = state.weekPickerMonth;
 const AY_KISA = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
-const AY_FULL = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const AY_FULL =
+['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'] ;
 const today = new Date();
 const maxYear = today.getFullYear() + 1;
 const minYear = today.getFullYear() - 5;
@@ -2070,11 +2307,11 @@ const curWeekKey = dateKey(state.weekAnchorDate);
 const weekRows = weeks.map(function(w){
 const key = dateKey(w.start);
 const isActive = key === curWeekKey;
-const fullRange = w.start.getDate() + ' ' + AY_FULL[w.start.getMonth()] + ' ' + w.start.getFullYear() +
+const fullRange = w.start.getDate() + ' ' + AY_FULL[w.start.getMonth()] + ' ' +
+w.start.getFullYear() +
   ' — ' +
   w.end.getDate() + ' ' + AY_FULL[w.end.getMonth()] + ' ' + w.end.getFullYear();
-return '<div class="wp-week-row ' + (isActive ? 'active' : '') + '" data-wp-week="' + key + '">' +
-'<div class="wwr-range-full">' + fullRange + '</div>' +
+return '<div class="wp-week-row ' + (isActive ? 'active' : '') + '" data-wp-week="' + key + '">' + '<div class="wwr-range-full">' + fullRange + '</div>' +
 (isActive ? '<span class="wwr-badge">Seçili</span>' : '') +
 '</div>';
 }).join('');
@@ -2136,7 +2373,7 @@ const endStr = end.getDate() + ' ' + AY_KISA[end.getMonth()] + ' ' + end.getFull
 return '<div class="card">' +
 '<div class="plan-header-row">' +
 '<div class="plan-header-title">📅 HAFTALIK VARDIYA PLANI</div>' +
-'<button class="clear-btn" id="openClearBtn">🗑️ Sıfırla</button>' +
+'<button class="clear-btn" id="openClearBtn">🗑 Sıfırla</button>' +
 '</div>' +
 '<div class="plan-week-nav">' +
 '<button class="plan-week-arrow" data-week-shift="-1">‹</button>' +
@@ -2156,7 +2393,8 @@ const staff = data.settings.staff;
 const GUN_KISA = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
 let html = '<div class="plan-corner" id="addStaffBtn"><div class="plan-corner-inner">＋</div></div>';
 weekDates.forEach(function(d, i){
-html += '<div class="plan-day-head"><span class="pdh-name">' + GUN_KISA[i] + '</span><span class="pdh-num">' + d.getDate() + '</span></div>';
+html += '<div class="plan-day-head"><span class="pdh-name">' + GUN_KISA[i] +
+'</span><span class="pdh-num">' + d.getDate() + '</span></div>';
 });
 if (!staff.length) {
 html += '<div class="plan-name-cell" style="grid-column: span 8; min-height:120px; background:#f8fafc; color:#94a3b8; font-weight:700; font-size:12.5px; border-right:none;">Personel eklemek için sol üstteki ＋ butonunu kullanın</div>';
@@ -2170,7 +2408,8 @@ if (isEditingName) nameHtml = '<input class="pnc-name-input" id="staffNameInline
 else nameHtml = '<span class="pnc-name" data-staff-name-cell="' + s.id + '" title="' + s.name + '">' + s.name + '</span>';
 const roleTxt = roleLabelFor(s);
 const nameCellStyle = sc ? 'background:' + sc.bg + ';color:' + sc.text + ';' : '';
-html += '<div class="plan-name-cell" style="' + nameCellStyle + '">' + nameHtml + '<span class="pnc-role" style="color:' + (sc ? sc.text : '#64748b') + ';opacity:0.85;">' + roleTxt + '</span></div>';
+html += '<div class="plan-name-cell" style="' + nameCellStyle + '">' + nameHtml + '<span class="pnc-role" style="color:' + (sc ? sc.text : '#64748b') + ';opacity:0.85;">' + roleTxt +
+'</span></div>';
 weekDates.forEach(function(d){
 const dk = dateKey(d);
 const plan = (data.weekPlan[dk] || {})[s.id];
@@ -2204,7 +2443,8 @@ const breakMin = getAutoBreak(grossH);
 const alacakH = shiftAlacakHours(plan);
 customBg = getShiftColor(plan.start, plan.end);
 const aBadge = alacakH > 0 ? '<span class="pc-ar">a</span>' : '';
-content = aBadge + '<span class="pc-time">' + plan.start.replace(':','.') + '<br>' + plan.end.replace(':','.') + '</span><div class="pc-divider"></div><div class="pc-meta"><span class="pc-net">' + fmtNetHoursShort(netH) + '</span><span class="pc-break-sep">·</span><span class="pc-break">' + fmtNetHoursShort(breakMin / 60) + '</span></div>';
+content = aBadge + '<span class="pc-time">' + plan.start.replace(':','.') + '<br>' +
+plan.end.replace(':','.') + '</span><div class="pc-divider"></div><div class="pc-meta"><span class="pc-net">' + fmtNetHoursShort(netH) + '</span><span class="pc-break-sep">·</span><span class="pc-break">' + fmtNetHoursShort(breakMin / 60) + '</span></div>';
 hasError = validateShift(plan).length > 0;
 }
 }
@@ -2214,10 +2454,12 @@ if (customBg) {
 const txtColor = getReadableText(customBg);
 styleAttr = 'style="background:' + customBg + ';color:' + txtColor + ';"';
 content = content
-.replace(/class="pc-divider"/g, 'class="pc-divider" style="background:' + txtColor + ';opacity:0.3;"')
+.replace(/class="pc-divider"/g, 'class="pc-divider" style="background:' + txtColor +
+';opacity:0.3;"')
 .replace(/class="pc-net"/g, 'class="pc-net" style="color:' + txtColor + ';opacity:0.75;"')
 .replace(/class="pc-break"/g, 'class="pc-break" style="color:' + txtColor + ';opacity:0.75;"')
-.replace(/class="pc-break-sep"/g, 'class="pc-break-sep" style="color:' + txtColor + ';opacity:0.5;"');
+.replace(/class="pc-break-sep"/g, 'class="pc-break-sep" style="color:' + txtColor +
+';opacity:0.5;"');
 }
 html += '<div class="' + cellCls + '" ' + styleAttr + ' data-plan-cell="1" data-staff="' + s.id + '" data-date="' + dk + '">' + content + '</div>';
 });
@@ -2250,7 +2492,8 @@ const errs = validateShift(s);
 if (errs.length > 0) {
 const staff = data.settings.staff.find(function(x){return x.id === staffId;});
 errs.forEach(function(err){
-warnings.push({ text: (staff ? staff.name : staffId) + ': ' + err, danger: true, staffId: staffId, dateKey: dk });
+warnings.push({ text: (staff ? staff.name : staffId) + ': ' + err, danger: true, staffId: staffId,
+dateKey: dk });
 });
 }
 });
@@ -2259,20 +2502,20 @@ validatePTWeek().forEach(function(w){
 warnings.push({ text: w.staff + ' PT haftalık ' + w.hours.toFixed(1) + ' — max ' + w.max + ' saat aşıldı!', danger: true, staffId: w.staffId, dateKey: null });
 });
 if (warnings.length === 0) {
-return '<div class="card"><div class="card-header"><div class="card-title">⚠️ Uyarılar</div><span class="card-badge success">✓ Sorun yok</span></div><div class="warnings-card"><div class="warning-empty">Bu haftada kanuni uyarı yok</div></div></div>';
+return '<div class="card"><div class="card-header"><div class="card-title">⚠ Uyarılar</div><span class="card-badge success">✓ Sorun yok</span></div><div class="warnings-card"><div class="warning-empty">Bu haftada kanuni uyarı yok</div></div></div>';
 }
 const items = warnings.map(function(w){
-return '<div class="warning-item ' + (w.danger ? 'danger' : '') + '" data-warning-staff="' + (w.staffId || '') + '" data-warning-date="' + (w.dateKey || '') + '"><span class="w-icon">' + (w.danger ? '🚫' : '⚠️') + '</span><div class="w-content">' + w.text + '</div><span class="w-go">›</span></div>';
+return '<div class="warning-item ' + (w.danger ? 'danger' : '') + '" data-warning-staff="' +
+(w.staffId || '') + '" data-warning-date="' + (w.dateKey || '') + '"><span class="w-icon">' +
+(w.danger ? '🚫' : '⚠') + '</span><div class="w-content">' + w.text + '</div><span class="w-go">›</span></div>';
 }).join('');
-return '<div class="card"><div class="card-header"><div class="card-title">⚠️ Uyarılar</div><span class="card-badge danger">' + warnings.length + '</span></div><div class="warnings-card">' + items + '</div></div>';
+return '<div class="card"><div class="card-header"><div class="card-title">⚠ Uyarılar</div><span class="card-badge danger">' + warnings.length + '</span></div><div class="warnings-card">' + items + '</div></div>';
 }
 
 function renderFooter() {
 return '<div class="app-footer">' +
-'<span class="footer-line">© 2026 hakangaykak.</span>' +
-'<span class="footer-line">Gülşah için AŞKLA kodlanmıştır.</span>' +
-'<span class="footer-line">Tüm hakları kalbimde saklıdır.</span>' +
-'<span class="footer-line"><span class="heart">❤️</span></span>' +
+'<span class="footer-line">© 2026 Vardiya Planlama</span>' +
+'<span class="footer-line"><span class="heart">❤</span></span>' +
 '</div>';
 }
 
@@ -2283,7 +2526,8 @@ const isPT = staff && staff.role === 'pt';
 const p = m.dateKey.split('-').map(Number);
 const dt = new Date(p[0], p[1]-1, p[2]);
 const GUN = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
-const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const AY =
+['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'] ;
 const dateLabel = p[2] + ' ' + AY[p[1]-1] + ' ' + GUN[dt.getDay()];
 const isExisting = !!m.existing;
 const avail = getAvailableReceivableForWeek(m.staffId);
@@ -2307,12 +2551,13 @@ if (!icon) icon = '🚫';
 if (!label) label = 'Çalışma Yok';
 }
 if (m.activeChipId === chip.id) cls += ' active';
-const disabled = chip.type === RECEIVABLE_LEAVE_TYPE && avail < RECEIVABLE_LEAVE_HOURS;
-const iconHtml = chip.image
-? '<img src="' + chip.image + '" style="width:24px;height:24px;border-radius:6px;object-fit:cover;" />'
-: '<span class="stc-icon">' + icon + '</span>';
-return '<button class="' + cls + '" data-chip-id="' + chip.id + '" ' + (disabled ? 'disabled' : '') + '>' + iconHtml + '<span>' + label + '</span></button>';
-}).join('') + '<button class="stc-btn stc-btn-add" data-open-chip-settings="1"><span class="stc-icon">＋</span><span>Ekle</span></button>';
+const disabled = chip.type === RECEIVABLE_LEAVE_TYPE && avail <
+RECEIVABLE_LEAVE_HOURS;
+const mediaHtml = chip.image
+? '<div class="stc-media"><img src="' + chip.image + '" alt="" /></div>'
+: '<div class="stc-media">' + (icon || '⭐') + '</div>';
+return '<button class="' + cls + '" data-chip-id="' + chip.id + '" ' + (disabled ? 'disabled' : '') + '>' + mediaHtml + '<div class="stc-label">' + label + '</div></button>';
+}).join('') + '<button class="stc-btn stc-btn-add" data-open-chip-settings="1"><div class="stc-media">＋</div><div class="stc-label">Ekle</div></button>';
 
 const startHStr = m.startHour !== null ? String(m.startHour).padStart(2,'0') : '';
 const startMStr = m.startMinute !== null ? String(m.startMinute).padStart(2,'0') : '';
@@ -2323,12 +2568,14 @@ const pickedSummary = '<div class="picked-summary ' + (m.startHour !== null ? 'h
 '<span class="picked-arrow">→</span>' +
 '<div class="picked-item"><span class="pi-lbl">Çıkış</span><span class="pi-val end">' + endHStr + ':' + endMStr + '</span></div>' +
 '</div>';
-const startVal = (m.startHour !== null && m.startMinute !== null) ? String(m.startHour).padStart(2,'0') + ':' + String(m.startMinute).padStart(2,'0') : '';
-const endVal = (m.endHour !== null && m.endMinute !== null) ? String(m.endHour).padStart(2,'0') + ':' + String(m.endMinute).padStart(2,'0') : '';
+const startVal = (m.startHour !== null && m.startMinute !== null) ?
+String(m.startHour).padStart(2,'0') + ':' + String(m.startMinute).padStart(2,'0') : '';
+const endVal = (m.endHour !== null && m.endMinute !== null) ?
+String(m.endHour).padStart(2,'0') + ':' + String(m.endMinute).padStart(2,'0') : '';
 let body = '';
 if (m.step === 'manual') {
 body = pickedSummary +
-'<div class="shift-section"><div class="shift-section-title" style="justify-content:center;">✏️ Manuel Giriş</div></div>' +
+'<div class="shift-section"><div class="shift-section-title" style="justify-content:center;">✏ Manuel Giriş</div></div>' +
 '<div class="manual-input-row">' +
 '<div class="time-input-group"><div class="time-input-label">Giriş</div><input class="time-input" type="time" id="manStart" value="' + startVal + '" /></div>' +
 '<div class="time-input-group"><div class="time-input-label">Çıkış</div><input class="time-input" type="time" id="manEnd" value="' + endVal + '" /></div>' +
@@ -2336,17 +2583,20 @@ body = pickedSummary +
 '<button class="manual-save-btn" data-go-save-manual="1">💾 Kaydet</button>';
 body += renderAlacakToggle(avail);
 } else {
-if (m.step === 'start-hour') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">GİRİŞ SAATİ</div><div class="hour-grid">' + [8,9,10,11,12,13,14,15,16,17,18,19].map(function(h){return '<button class="hour-btn" data-pick-hour="start" data-hour="' + h + '">' + h + '</button>';}).join('') + '</div></div>';
-else if (m.step === 'start-minute') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">GİRİŞ DAKİKASI</div><div class="minute-grid">' + [0,15,30,45].map(function(mi){return '<button class="minute-btn" data-pick-minute="start" data-minute="' + mi + '">:' + String(mi).padStart(2,'0') + '</button>';}).join('') + '</div></div>';
-else if (m.step === 'end-hour') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">ÇIKIŞ SAATİ</div><div class="hour-grid">' + [11,12,13,14,15,16,17,18,19,20,21,22].map(function(h){return '<button class="hour-btn" data-pick-hour="end" data-hour="' + h + '">' + h + '</button>';}).join('') + '</div></div>';
-else if (m.step === 'end-minute') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">ÇIKIŞ DAKİKASI</div><div class="minute-grid">' + [0,15,30,45].map(function(mi){return '<button class="minute-btn" data-pick-minute="end" data-minute="' + mi + '">:' + String(mi).padStart(2,'0') + '</button>';}).join('') + '</div></div>';
+if (m.step === 'start-hour') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">GİRİŞ SAATİ</div><div class="hour-grid">' +
+[8,9,10,11,12,13,14,15,16,17,18,19].map(function(h){return '<button class="hour-btn" data-pick-hour="start" data-hour="' + h + '">' + h + '</button>';}).join('') + '</div></div>';
+else if (m.step === 'start-minute') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">GİRİŞ DAKİKASI</div><div class="minute-grid">' +
+[0,15,30,45].map(function(mi){return '<button class="minute-btn" data-pick-minute="start" data-minute="' + mi + '">:' + String(mi).padStart(2,'0') + '</button>';}).join('') + '</div></div>';
+else if (m.step === 'end-hour') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">ÇIKIŞ SAATİ</div><div class="hour-grid">' +
+[11,12,13,14,15,16,17,18,19,20,21,22].map(function(h){return '<button class="hour-btn" data-pick-hour="end" data-hour="' + h + '">' + h + '</button>';}).join('') + '</div></div>';
+else if (m.step === 'end-minute') body = pickedSummary + '<div class="shift-section"><div class="shift-section-title">ÇIKIŞ DAKİKASI</div><div class="minute-grid">' +
+[0,15,30,45].map(function(mi){return '<button class="minute-btn" data-pick-minute="end" data-minute="' + mi + '">:' + String(mi).padStart(2,'0') + '</button>';}).join('') + '</div></div>';
 body += renderAlacakToggle(avail);
-body += '<button class="manual-btn" data-go-manual="1">✏️ Manuel Giriş</button>';
+body += '<button class="manual-btn" data-go-manual="1">✏ Manuel Giriş</button>';
 }
 return '<div class="modal-backdrop"><div class="shift-modal" onclick="event.stopPropagation()">' +
 '<div class="shift-modal-head">' +
-(isExisting ? '<button class="shift-modal-delete" data-modal-delete="1">🗑</button>' : '') +
-'<div class="shift-modal-title">' + ((staff && staff.name) || '') + '</div>' +
+(isExisting ? '<button class="shift-modal-delete" data-modal-delete="1">🗑</button>' : '') + '<div class="shift-modal-title">' + ((staff && staff.name) || '') + '</div>' +
 '<div class="shift-modal-sub">' + dateLabel + '</div>' +
 '<button class="shift-modal-close" data-modal-cancel="1">✕</button>' +
 '</div>' +
@@ -2365,11 +2615,13 @@ return '<button class="alacak-quick-btn ' + (active ? 'active' : '') + '" data-a
 }).join('');
 return '<div class="alacak-toggle-row ' + (hasAlacak ? '' : 'disabled') + '">' +
 '<div class="alacak-toggle-left"><span class="alacak-toggle-icon">💰</span>' +
-'<div class="alacak-toggle-text"><span class="alacak-toggle-title">Alacak Saat Kullan</span><span class="alacak-toggle-sub">' + (hasAlacak ? 'Kullanılabilir: ' + fmtNetHoursShort(avail) + ' sa' : 'Alacak saati yok') + '</span></div>' +
+'<div class="alacak-toggle-text"><span class="alacak-toggle-title">Alacak Saat Kullan</span><span class="alacak-toggle-sub">' + (hasAlacak ? 'Kullanılabilir: ' +
+fmtNetHoursShort(avail) + ' sa' : 'Alacak saati yok') + '</span></div>' +
 '</div>' +
 '<button class="alacak-switch ' + (on ? 'on' : '') + '" data-toggle-alacak="1" ' + (hasAlacak ? '' : 'disabled') + '></button>' +
 '</div>' +
-(on ? '<div class="alacak-hours-picker"><div class="alacak-quick-row">' + quickBtns + '</div></div>' : '');
+(on ? '<div class="alacak-hours-picker"><div class="alacak-quick-row">' + quickBtns +
+'</div></div>' : '');
 }
 
 function renderStaffManagerModal() {
@@ -2379,7 +2631,10 @@ const avStyle = sc ? 'background:' + sc.bg + ';color:' + sc.text + ';' : '';
 const avatarContent = s.avatar
 ? '<img src="' + s.avatar + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />'
 : initials(s.name);
-return '<div class="staff-row"><div class="staff-row-avatar" style="' + avStyle + '">' + avatarContent + '</div><div class="staff-row-info"><div class="staff-row-name">' + s.name + '</div><div class="staff-row-role">' + (s.title || '') + ' · ' + roleLabelFor(s) + '</div></div><div class="staff-row-actions"><button class="staff-row-btn edit" data-edit-staff="' + s.id + '">✏️</button><button class="staff-row-btn del" data-del-staff="' + s.id + '">🗑</button></div></div>';
+return '<div class="staff-row"><div class="staff-row-avatar" style="' + avStyle + '">' +
+avatarContent + '</div><div class="staff-row-info"><div class="staff-row-name">' + s.name + '</div><div class="staff-row-role">' + (s.title || '') + ' · ' + roleLabelFor(s) + '</div></div><div class="staff-row-actions"><button class="staff-row-btn edit" data-edit-staff="' + s.id +
+'">✏</button><button class="staff-row-btn del" data-del-staff="' + s.id +
+'">🗑</button></div></div>';
 }).join('');
 return '<div class="modal-backdrop"><div class="modal" onclick="event.stopPropagation()" style="max-width:420px;">' +
 '<div class="modal-icon">👥</div><div class="modal-title">Personel Yönetimi</div><div class="modal-desc">Personel ekle, düzenle veya sil</div>' +
@@ -2397,7 +2652,7 @@ const roleOpts = Object.keys(ROLES).map(function(k){
 return '<option value="' + k + '" ' + (st.role === k ? 'selected' : '') + '>' + ROLES[k].label + '</option>';
 }).join('');
 return '<div class="modal-backdrop"><div class="modal" onclick="event.stopPropagation()" style="max-width:420px;max-height:88vh;display:flex;flex-direction:column;">' +
-'<div class="modal-icon">' + (isNew ? '➕' : '✏️') + '</div>' +
+'<div class="modal-icon">' + (isNew ? '➕' : '✏') + '</div>' +
 '<div class="modal-title">' + (isNew ? 'Yeni Personel' : 'Personeli Düzenle') + '</div>' +
 '<div class="modal-desc">' + (isNew ? 'Ekibinize yeni kişi ekleyin' : st.name + ' bilgilerini düzenle') + '</div>' +
 '<div class="modal-scroll-body" style="flex:1;min-height:0;">' +
@@ -2438,15 +2693,25 @@ return '<div class="modal-backdrop"><div class="modal" onclick="event.stopPropag
 '<div class="field-error" id="emailErr">Geçerli bir e-posta adresi girin</div>' +
 '<label class="form-label">Telefon</label>' +
 '<div class="phone-input-group" id="phoneGroup">' +
-'<span class="phone-prefix">🇹🇷 +90</span>' +
+'<span class="phone-prefix">󰑍 +90</span>' +
 '<input class="form-input" id="profPhone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="13" value="' + phoneDigitsFromStored(p.phone) + '" placeholder="5XX XXX XX XX" />' +
 '</div>' +
-'<div class="field-error" id="phoneErr">Telefon 10 hane olmalı ve 5 ile başlamalı</div>' +
-(p.avatar ? '<button class="profile-remove-avatar" id="profRemoveAvatar">🗑 Profil fotoğrafını kaldır</button>' : '') +
+'<div class="field-error" id="phoneErr">Telefon 10 hane olmalı ve 5 ile başlamalı</div>' + (p.avatar ? '<button class="profile-remove-avatar" id="profRemoveAvatar">🗑 Profil fotoğrafını kaldır</button>' : '') +
 '<div class="modal-actions">' +
 '<button class="modal-btn cancel" data-modal-cancel="1">İptal</button>' +
 '<button class="modal-btn confirm" id="saveProfileBtn">Kaydet</button>' +
 '</div>' +
+'</div></div>';
+}
+
+function renderEmojiPickerModal() {
+if (!state.emojiPickerFor) return '';
+return '<div class="modal-backdrop" data-close-emoji-picker="1" style="z-index:300;"><div class="emoji-picker-modal-inner" onclick="event.stopPropagation()">' +
+'<div style="display:flex;align-items:center;justify-content:space-between;">' +
+'<div style="font-size:15px;font-weight:900;color:#0f172a;">Emoji Seç</div>' +
+'<button class="week-picker-close" data-close-emoji-picker="1" style="width:30px;height:30px;">✕</button>' +
+'</div>' +
+'<emoji-picker id="chipEmojiPicker"></emoji-picker>' +
 '</div></div>';
 }
 
@@ -2458,7 +2723,7 @@ const tabs = [
 { key: 'breaks', label: 'Molalar' }
  ];
 return '<div class="settings-page">' +
-'<div class="settings-header"><div class="settings-header-left"><span class="settings-header-icon">⚙️</span><span class="settings-title">Ayarlar</span></div><button class="settings-close" data-close-settings="1">✕</button></div>' +
+'<div class="settings-header"><div class="settings-header-left"><span class="settings-header-icon">⚙</span><span class="settings-title">Ayarlar</span></div><button class="settings-close" data-close-settings="1">✕</button></div>' +
 '<div class="settings-tabs-bar">' + tabs.map(function(t){return '<button class="settings-tab-btn ' + (state.settingsTab === t.key ? 'active' : '') + '" data-settings-tab="' + t.key + '">' + t.label + '</button>';}).join('') + '</div>' +
 '<div class="settings-body" id="settingsContent"></div>' +
 '</div>';
@@ -2478,111 +2743,131 @@ bindSettingsEvents();
 
 function renderSettingsGeneral(s) {
 const monthOffset = state.selectedMonthOffset || 0;
-const AY = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const AY =
+['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'] ;
 const targetDate = getMonthByOffset(monthOffset);
 const monthTarget = getMonthTarget(monthOffset);
 return '<div class="settings-section-title">Mağaza</div>' +
 '<div class="settings-input-group"><div class="settings-input-label">Mağaza Adı</div><input class="settings-input" id="setStoreName" type="text" value="' + (s.storeName || '') + '" placeholder="Örn: Kadıköy Mağazası" /></div>' +
 '<div class="settings-section-title">Saat Hedefi</div>' +
-'<div class="settings-input-group"><div class="settings-input-label">' + AY[targetDate.getMonth()] + ' ' + targetDate.getFullYear() + ' — Aylık Toplam Hedef</div><input class="settings-input" id="setMonthlyTarget" type="tel" inputmode="numeric" value="' + (monthTarget || '') + '" placeholder="Örn: 180" /></div>' +
-'<div class="settings-section-title">Çalışma Limiti</div>' +
+'<div class="settings-input-group"><div class="settings-input-label">' +
+AY[targetDate.getMonth()] + ' ' + targetDate.getFullYear() + ' — Aylık Toplam Hedef</div><input class="settings-input" id="setMonthlyTarget" type="tel" inputmode="numeric" value="' + (monthTarget || '') + '" placeholder="Örn: 180" /></div>' + '<div class="settings-section-title">Çalışma Limiti</div>' +
 '<div class="settings-hint">Günlük 11 sa, gece 7,5 sa ve FT/Müdür haftalık 45 sa yasal olarak sabittir.</div>' +
-'<div class="settings-input-group"><div class="settings-input-label">PT Haftalık Max Saat</div><input class="settings-input" id="setPTLimit" type="tel" value="' + s.ptMaxWeeklyHours + '" /></div>' +
+'<div class="settings-input-group"><div class="settings-input-label">PT Haftalık Max Saat</div><input class="settings-input" id="setPTLimit" type="tel" value="' +
+s.ptMaxWeeklyHours + '" /></div>' +
 '<button class="save-settings-btn" id="saveGeneralBtn">Kaydet</button>';
 }
 
+/* ============ KART EDİTÖRÜ (ACCORDION) ============ */
 function renderSettingsChips(s) {
 const chips = s.shiftChips || [];
 if (!chips.length) {
 return '<div class="settings-section-title">Vardiya Kartları</div>' +
-'<div class="empty-state">Henüz kart yok</div>' +
+'<div class="empty-state">Henüz kart yok. Aşağıdan ekleyin.</div>' +
 '<button class="add-chip-btn" id="addChipBtn">＋ Yeni Kart Ekle</button>';
 }
 const items = chips.map(function(chip, i){
+const expanded = state.expandedChipId === chip.id;
 const upDisabled = i === 0 ? 'disabled' : '';
 const downDisabled = i === chips.length - 1 ? 'disabled' : '';
 const iconContent = chip.image ? '<img src="' + chip.image + '" alt="" />' : (chip.icon || '⭐');
-const aud = chip.audience || 'all';
+const typeLabel = chip.type === 'full' ? '⏰ Saat'
+  : chip.type === 'izinli' ? '🏖 İzin'
+  : chip.type === RECEIVABLE_LEAVE_TYPE ? '💰 Alacak'
+  : chip.type === PT_OFF_TYPE ? '🚫 PT Yok'
+  : chip.type === 'time' ? '🕐 Saat Seç'
+  : '⏰ Saat';
+const audLabel = chip.audience === 'pt' ? 'Sadece PT' : chip.audience === 'ft' ? 'Sadece FT' : 'Herkes';
+
+let body = '';
+if (expanded) {
 const isFull = chip.type === 'full';
 const isIzin = chip.type === 'izinli';
 const isAlacak = chip.type === RECEIVABLE_LEAVE_TYPE;
 let colorRule = (s.colorRules || []).find(function(x){ return x.chipType === chip.type; });
-const colorHex = colorRule ? colorRule.color : null;
+if (!colorRule && !isFull && chip.type !== 'time') {
+colorRule = { id: 'cr_type_' + chip.type, chipType: chip.type, color:
+CHIP_TYPE_DEFAULTS[chip.type] || '#e2e8f0', name: CHIP_TYPE_LABELS[chip.type] || chip.type, enabled: true };
+s.colorRules.push(colorRule);
+}
+const aud = chip.audience || 'all';
 
-const emojiGrid = EMOJI_LIST.map(function(e){
-return '<button type="button" class="chip-edit-emoji-btn" data-chip-cust-emoji="' + i + '" data-emoji="' + e + '">' + e + '</button>';
-}).join('');
+body = '<div class="chip-card-body">' +
 
-return '<div class="chip-edit-row-v2">' +
-'<div class="chip-edit-header">' +
-'<div class="chip-edit-preview-v2" data-chip-pick-photo="' + i + '" title="Tıkla: fotoğraf veya emoji seç">' + iconContent + '</div>' +
-'<input class="chip-edit-name" type="text" data-chip-name="' + i + '" value="' + (chip.name || '') + '" placeholder="İsim" />' +
-'<div class="chip-edit-sort">' +
-'<button class="chip-sort-btn" data-chip-move-up="' + i + '" ' + upDisabled + '>▲</button>' +
-'<button class="chip-sort-btn" data-chip-move-down="' + i + '" ' + downDisabled + '>▼</button>' +
-'</div>' +
-'<button class="chip-edit-del" data-chip-del="' + i + '">🗑</button>' +
+'<div class="chip-field">' +
+'<label class="chip-field-label">Kart Adı</label>' +
+'<input class="chip-field-input" type="text" data-chip-name="' + i + '" value="' + (chip.name || '') + '" placeholder="Örn: Sabah Vardiyası" />' +
 '</div>' +
 
-'<div>' +
-'<label class="chip-edit-label">Tip</label>' +
-'<div class="chip-edit-seg">' +
-'<button type="button" class="chip-edit-seg-btn ' + (isFull ? 'active' : '') + '" data-chip-type-set="' + i + '" data-type-val="full">⏰ Saat</button>' +
-'<button type="button" class="chip-edit-seg-btn ' + (isIzin ? 'active' : '') + '" data-chip-type-set="' + i + '" data-type-val="izinli">🏖️ İzin</button>' +
-'<button type="button" class="chip-edit-seg-btn ' + (isAlacak ? 'active' : '') + '" data-chip-type-set="' + i + '" data-type-val="' + RECEIVABLE_LEAVE_TYPE + '">💰 Alacak</button>' +
+'<div class="chip-field">' +
+'<label class="chip-field-label">Davranış</label>' +
+'<div class="chip-seg">' +
+'<button type="button" class="chip-seg-btn ' + (isFull ? 'active' : '') + '" data-chip-type-set="' + i + '" data-type-val="full">⏰ Saat</button>' +
+'<button type="button" class="chip-seg-btn ' + (isIzin ? 'active' : '') + '" data-chip-type-set="' + i + '" data-type-val="izinli">🏖 İzin</button>' +
+'<button type="button" class="chip-seg-btn ' + (isAlacak ? 'active' : '') + '" data-chip-type-set="' + i + '" data-type-val="' + RECEIVABLE_LEAVE_TYPE + '">💰 Alacak</button>' +
 '</div>' +
 '</div>' +
 
-'<div>' +
-'<label class="chip-edit-label">Hedef Kitle</label>' +
-'<div class="chip-edit-seg">' +
-'<button type="button" class="chip-edit-seg-btn ' + (aud === 'all' ? 'active' : '') + '" data-chip-audience-set="' + i + '" data-aud-val="all">Herkes</button>' +
-'<button type="button" class="chip-edit-seg-btn ' + (aud === 'pt' ? 'active' : '') + '" data-chip-audience-set="' + i + '" data-aud-val="pt">Sadece PT</button>' +
-'<button type="button" class="chip-edit-seg-btn ' + (aud === 'ft' ? 'active' : '') + '" data-chip-audience-set="' + i + '" data-aud-val="ft">Sadece FT</button>' +
+'<div class="chip-field">' +
+'<label class="chip-field-label">Hedef Kitle</label>' +
+'<div class="chip-seg">' +
+'<button type="button" class="chip-seg-btn ' + (aud === 'all' ? 'active' : '') + '" data-chip-audience-set="' + i + '" data-aud-val="all">Herkes</button>' +
+'<button type="button" class="chip-seg-btn ' + (aud === 'pt' ? 'active' : '') + '" data-chip-audience-set="' + i + '" data-aud-val="pt">Sadece PT</button>' +
+'<button type="button" class="chip-seg-btn ' + (aud === 'ft' ? 'active' : '') + '" data-chip-audience-set="' + i + '" data-aud-val="ft">Sadece FT</button>' +
 '</div>' +
 '</div>' +
 
 (isFull
-? '<div>' +
-'<label class="chip-edit-label">Saat Aralığı</label>' +
-'<div class="chip-edit-times">' +
-'<input class="chip-edit-time" type="time" data-chip-start="' + i + '" value="' + (chip.start || '10:00') + '" />' +
+? '<div class="chip-field">' +
+'<label class="chip-field-label">Saat Aralığı</label>' +
+'<div class="chip-times-row">' +
+'<input type="time" data-chip-start="' + i + '" value="' + (chip.start || '10:00') + '" />' +
 '<span>→</span>' +
-'<input class="chip-edit-time" type="time" data-chip-end="' + i + '" value="' + (chip.end || '22:00') + '" />' +
+'<input type="time" data-chip-end="' + i + '" value="' + (chip.end || '22:00') + '" />' +
 '</div>' +
 '</div>'
 : '') +
 
-'<div>' +
-'<label class="chip-edit-label">Görsel</label>' +
-'<div class="chip-edit-photo-row">' +
-'<button type="button" class="chip-edit-photo-btn" data-chip-pick-camera="' + i + '">📷 Kamera</button>' +
-'<button type="button" class="chip-edit-photo-btn" data-chip-pick-gallery="' + i + '">🖼️ Galeri</button>' +
-'<button type="button" class="chip-edit-photo-btn" data-chip-pick-url="' + i + '">🔗 Link</button>' +
-(chip.image ? '<button type="button" class="chip-edit-photo-btn danger" data-chip-remove-image="' + i + '">🗑</button>' : '') +
+'<div class="chip-field">' +
+'<label class="chip-field-label">Görsel</label>' +
+'<div class="chip-preview-big" data-chip-pick-photo="' + i + '">' + iconContent + '</div>' + '<div class="chip-media-row">' +
+'<button type="button" class="chip-media-btn" data-chip-pick-camera="' + i + '">📷 Kamera</button>' +
+'<button type="button" class="chip-media-btn" data-chip-pick-gallery="' + i + '">🖼 Galeri</button>' +
+'<button type="button" class="chip-media-btn emoji-btn" data-chip-pick-emoji="' + i + '" title="Emoji Seç">😊</button>' +
+'<button type="button" class="chip-media-btn" data-chip-pick-url="' + i + '" title="URL ile ekle">🔗</button>' +
+(chip.image ? '<button type="button" class="chip-media-btn danger" data-chip-remove-image="' + i + '">🗑</button>' : '') +
 '</div>' +
-'</div>' +
-
-'<div>' +
-'<label class="chip-edit-label">Emoji</label>' +
-'<div class="chip-edit-emoji-grid">' + emojiGrid + '</div>' +
 '</div>' +
 
 (colorRule
-? '<div>' +
-'<label class="chip-edit-label">Kart Rengi</label>' +
-'<div class="chip-edit-color-row">' +
-'<div class="chip-edit-color-swatch" id="pickr-chip-' + i + '" style="background:' + colorHex + ';" data-chip-pickr="' + i + '"></div>' +
-'<span class="chip-edit-color-label">' + String(colorHex).toUpperCase() + '</span>' +
+? '<div class="chip-field">' +
+'<label class="chip-field-label">Kart Rengi</label>' +
+'<div class="chip-color-row">' +
+'<div class="chip-color-swatch" id="pickr-chip-' + i + '" style="background:' + colorRule.color + ';" data-chip-pickr="' + i + '"></div>' +
+'<span class="chip-color-label">' + String(colorRule.color).toUpperCase() + '</span>' +
 '</div>' +
 '</div>'
 : '') +
 
 '</div>';
+}
+
+return '<div class="chip-card ' + (expanded ? 'expanded' : '') + '">' +
+'<div class="chip-card-head" data-chip-toggle="' + i + '">' +
+'<div class="chip-card-preview">' + iconContent + '</div>' +
+'<div class="chip-card-info">' +
+'<div class="chip-card-title">' + (chip.name || 'İsimsiz') + '</div>' +
+'<div class="chip-card-sub">' + typeLabel + ' · ' + audLabel + '</div>' +
+'</div>' +
+'<button class="chip-card-toggle" data-chip-toggle-btn="' + i + '">▼</button>' +
+'<button class="chip-card-del" data-chip-del="' + i + '" title="Sil">🗑</button>' +
+'</div>' +
+body +
+'</div>';
 }).join('');
 
 return '<div class="settings-section-title">Vardiya Kartları</div>' +
-'<div class="settings-hint">Her kartın tipini, hedef kitlesini, görselini ve rengini buradan ayarlayın.</div>' +
+'<div class="settings-hint">Karta tıkla → genişlet. İçinden düzenle.</div>' +
 '<div class="chip-editor-list">' + items + '</div>' +
 '<button class="add-chip-btn" id="addChipBtn">＋ Yeni Kart Ekle</button>' +
 '<button class="save-settings-btn" id="saveChipsBtn">Kaydet</button>';
@@ -2610,15 +2895,15 @@ return '<div class="color-rule-row-v2">' +
 }).join('');
 
 const roleRuleItems = Object.keys(ROLES).map(function(roleKey){
-const rule = roleRules.find(function(r){return r.role === roleKey;}) || { bg: '#e2e8f0', text: '#475569' };
+const rule = roleRules.find(function(r){return r.role === roleKey;}) || { bg:
+DEFAULT_STAFF_COLORS[roleKey].bg, text: DEFAULT_STAFF_COLORS[roleKey].text };
 const sampleStaff = s.staff.find(function(x){return x.role === roleKey;});
 const initialsTxt = sampleStaff ? initials(sampleStaff.name) : ROLES[roleKey].short;
 const nameTxt = sampleStaff ? sampleStaff.name : 'rol bazlı';
 const roleShortTxt = (ROLES[roleKey] && ROLES[roleKey].short) || roleKey.toUpperCase();
 
 const miniPreview = '<div class="role-color-preview">' +
-'<div class="role-preview-mini" style="background:' + rule.bg + ';color:' + rule.text + ';">' +
-'<span style="font-weight:900;">' + initialsTxt + '</span>' +
+'<div class="role-preview-mini" style="background:' + rule.bg + ';color:' + rule.text + ';">' + '<span style="font-weight:900;">' + initialsTxt + '</span>' +
 '<span style="opacity:0.85;font-weight:800;">' + roleShortTxt + '</span>' +
 '<span style="margin-left:6px;padding:2px 6px;background:#ffedd5;color:#9a3412;border-radius:4px;font-size:9.5px;">09.00 · 17.00</span>' +
 '</div>' +
@@ -2651,7 +2936,7 @@ return '<div class="settings-card-v2">' +
 '<div class="settings-card-v2-title">⏰ Vardiya Saati Renkleri</div>' +
 '</div>' +
 '<div class="settings-card-v2-body">' +
-(timeRuleItems || '<div class="empty-state">Henüz saat kuralı yok</div>') +
+(timeRuleItems || '<div class="empty-state" style="padding:10px;">Saat rengi kuralı yok</div>') +
 '<button class="add-rule-btn-v2" id="addColorRuleBtn">＋ Yeni Saat Kuralı</button>' +
 '</div>' +
 '</div>' +
@@ -2669,13 +2954,10 @@ roleRuleItems +
 function renderSettingsBreaks(s) {
 const rows = (s.breakRules || []).map(function(r, i){
 return '<div class="break-rule-card"><div class="break-rule-left">' +
-'<input class="brr-input" type="tel" data-break-min-h="' + i + '" value="' + r.minHours + '" />' +
-'<span class="brr-unit">—</span>' +
-'<input class="brr-input" type="tel" data-break-max="' + i + '" value="' + r.maxHours + '" />' +
-'<span class="brr-unit">saat arası</span>' +
+'<input class="brr-input" type="tel" data-break-min-h="' + i + '" value="' + r.minHours + '" />' + '<span class="brr-unit">—</span>' +
+'<input class="brr-input" type="tel" data-break-max="' + i + '" value="' + r.maxHours + '" />' + '<span class="brr-unit">saat arası</span>' +
 '<span style="margin:0 4px;">→</span>' +
-'<input class="brr-input" type="tel" data-break-min="' + i + '" value="' + r.breakMin + '" />' +
-'<span class="brr-unit">dk mola</span>' +
+'<input class="brr-input" type="tel" data-break-min="' + i + '" value="' + r.breakMin + '" />' + '<span class="brr-unit">dk mola</span>' +
 '</div><button class="break-rule-del" data-break-del="' + i + '">🗑</button></div>';
 }).join('');
 return '<div class="settings-section-title">Otomatik Mola Kuralları</div>' +
@@ -2701,7 +2983,8 @@ document.querySelectorAll('[data-ht-month-shift]').forEach(function(e){
 e.onclick = function(){ shiftMonth(parseInt(e.dataset.htMonthShift, 10)); };
 });
 const openMP = el('openMonthPicker'); if (openMP) openMP.onclick = openMonthPicker;
-document.querySelectorAll('[data-close-month-picker]').forEach(function(e){ e.onclick = closeMonthPicker; });
+document.querySelectorAll('[data-close-month-picker]').forEach(function(e){ e.onclick =
+closeMonthPicker; });
 document.querySelectorAll('[data-mp-year]').forEach(function(e){
 e.onclick = function(){ mpChangeYear(parseInt(e.dataset.mpYear, 10)); };
 });
@@ -2714,7 +2997,8 @@ document.querySelectorAll('[data-week-shift]').forEach(function(e){
 e.onclick = function(){ shiftWeek(parseInt(e.dataset.weekShift, 10)); };
 });
 const wpBtn = el('openWeekPicker'); if (wpBtn) wpBtn.onclick = openWeekPicker;
-document.querySelectorAll('[data-close-week-picker]').forEach(function(e){ e.onclick = closeWeekPicker; });
+document.querySelectorAll('[data-close-week-picker]').forEach(function(e){ e.onclick =
+closeWeekPicker; });
 document.querySelectorAll('[data-wp-year]').forEach(function(e){
 e.onclick = function(){ wpChangeYear(parseInt(e.dataset.wpYear, 10)); };
 });
@@ -2729,16 +3013,20 @@ wpPickWeek(new Date(p[0], p[1]-1, p[2]));
 });
 
 // ---- Sıfırla modalı ----
-document.querySelectorAll('[data-close-clear]').forEach(function(e){ e.onclick = closeClearMenu; });
+document.querySelectorAll('[data-close-clear]').forEach(function(e){ e.onclick =
+closeClearMenu; });
 document.querySelectorAll('[data-clear-staff]').forEach(function(e){
 e.onclick = function(){ toggleClearStaff(e.dataset.clearStaff); };
 });
 document.querySelectorAll('[data-clear-day]').forEach(function(e){
 e.onclick = function(){ toggleClearDay(parseInt(e.dataset.clearDay, 10)); };
 });
-document.querySelectorAll('[data-clear-all-staff]').forEach(function(e){ e.onclick = selectAllClearStaff; });
-document.querySelectorAll('[data-clear-all-days]').forEach(function(e){ e.onclick = selectAllClearDays; });
-document.querySelectorAll('[data-apply-clear]').forEach(function(e){ e.onclick = applyClear; });
+document.querySelectorAll('[data-clear-all-staff]').forEach(function(e){ e.onclick =
+selectAllClearStaff; });
+document.querySelectorAll('[data-clear-all-days]').forEach(function(e){ e.onclick =
+selectAllClearDays; });
+document.querySelectorAll('[data-apply-clear]').forEach(function(e){ e.onclick = applyClear;
+});
 
 // ---- Plan hücreleri ----
 document.querySelectorAll('[data-plan-cell]').forEach(function(e){
@@ -2751,11 +3039,13 @@ e.onclick = function(){ goToWarningCell(e.dataset.warningStaff, e.dataset.warnin
 // ---- Saat hedefi (çift tıkla) ----
 const targetDisplay = el('hourTargetDisplay');
 if (targetDisplay) {
-targetDisplay.addEventListener('dblclick', function(ev){ ev.preventDefault(); state.editingHourTarget = true; render(); });
+targetDisplay.addEventListener('dblclick', function(ev){ ev.preventDefault();
+state.editingHourTarget = true; render(); });
 let lastTap = 0;
 targetDisplay.addEventListener('touchend', function(ev){
 const now = Date.now();
-if (now - lastTap < 350) { ev.preventDefault(); state.editingHourTarget = true; render(); lastTap = 0; }
+if (now - lastTap < 350) { ev.preventDefault(); state.editingHourTarget = true; render();
+lastTap = 0; }
 else { lastTap = now; }
 });
 }
@@ -2766,23 +3056,27 @@ targetInput.addEventListener('keydown', function(ev){
 if (ev.key === 'Enter') { ev.preventDefault(); saveHourTarget(); }
 if (ev.key === 'Escape') { state.editingHourTarget = false; render(); }
 });
-targetInput.addEventListener('blur', function(){ if (state.editingHourTarget) saveHourTarget(); });
+targetInput.addEventListener('blur', function(){ if (state.editingHourTarget) saveHourTarget();
+});
 }
 
 // ---- Alacak (çift tıkla düzenle) ----
 document.querySelectorAll('[data-receivable-hours-cell]').forEach(function(e){
-e.ondblclick = function(ev){ ev.stopPropagation(); state.editingReceivableStaffId = e.dataset.receivableHoursCell; render(); };
+e.ondblclick = function(ev){ ev.stopPropagation(); state.editingReceivableStaffId =
+e.dataset.receivableHoursCell; render(); };
 let lastTap = 0;
 e.addEventListener('touchend', function(ev){
 const now = Date.now();
-if (now - lastTap < 350) { ev.preventDefault(); ev.stopPropagation(); state.editingReceivableStaffId = e.dataset.receivableHoursCell; render(); lastTap = 0; }
+if (now - lastTap < 350) { ev.preventDefault(); ev.stopPropagation();
+state.editingReceivableStaffId = e.dataset.receivableHoursCell; render(); lastTap = 0; }
 else { lastTap = now; }
 });
 });
 const mInp = el('manualExtraInput');
 if (mInp) {
 setTimeout(function(){ mInp.focus(); mInp.select(); }, 30);
-const commit = function(){ if (state.editingReceivableStaffId) saveReceivableInput(state.editingReceivableStaffId); };
+const commit = function(){ if (state.editingReceivableStaffId)
+saveReceivableInput(state.editingReceivableStaffId); };
 mInp.addEventListener('keydown', function(ev){
 if (ev.key === 'Enter') { ev.preventDefault(); commit(); }
 if (ev.key === 'Escape') { state.editingReceivableStaffId = null; render(); }
@@ -2790,21 +3084,25 @@ if (ev.key === 'Escape') { state.editingReceivableStaffId = null; render(); }
 mInp.addEventListener('blur', commit);
 }
 
-// ---- Vardiya modalı chip + saat ----
-document.querySelectorAll('[data-chip-id]').forEach(function(e){ e.onclick = function(){ selectChip(e.dataset.chipId); }; });
+// ---- Vardiya modalı ----
+document.querySelectorAll('[data-chip-id]').forEach(function(e){ e.onclick = function(){
+selectChip(e.dataset.chipId); }; });
 document.querySelectorAll('[data-pick-hour]').forEach(function(e){
 e.onclick = function(){ pickHour(e.dataset.pickHour, parseInt(e.dataset.hour, 10)); };
 });
 document.querySelectorAll('[data-pick-minute]').forEach(function(e){
 e.onclick = function(){ pickMinute(e.dataset.pickMinute, parseInt(e.dataset.minute, 10)); };
 });
-document.querySelectorAll('[data-go-manual]').forEach(function(e){ e.onclick = goToManual; });
+document.querySelectorAll('[data-go-manual]').forEach(function(e){ e.onclick = goToManual;
+});
 document.querySelectorAll('[data-go-save-manual]').forEach(function(e){
 e.onclick = function(){
 const m = state.modal; if (!m) return;
 const sEl = el('manStart'); const eEl = el('manEnd');
-if (sEl && sEl.value) { const p = sEl.value.split(':'); m.startHour = parseInt(p[0],10); m.startMinute = parseInt(p[1],10); }
-if (eEl && eEl.value) { const p = eEl.value.split(':'); m.endHour = parseInt(p[0],10); m.endMinute = parseInt(p[1],10); }
+if (sEl && sEl.value) { const p = sEl.value.split(':'); m.startHour = parseInt(p[0],10);
+m.startMinute = parseInt(p[1],10); }
+if (eEl && eEl.value) { const p = eEl.value.split(':'); m.endHour = parseInt(p[0],10);
+m.endMinute = parseInt(p[1],10); }
 autoSaveShift(false);
 };
 });
@@ -2816,13 +3114,14 @@ state.editingProfile = null;
 render();
 };
 });
-document.querySelectorAll('[data-modal-delete]').forEach(function(e){ e.onclick = deleteShiftEdit; });
-document.querySelectorAll('[data-toggle-alacak]').forEach(function(e){ e.onclick = toggleAlacak; });
+document.querySelectorAll('[data-modal-delete]').forEach(function(e){ e.onclick =
+deleteShiftEdit; });
+document.querySelectorAll('[data-toggle-alacak]').forEach(function(e){ e.onclick =
+toggleAlacak; });
 document.querySelectorAll('[data-alacak-quick]').forEach(function(e){
-e.onclick = function(){ if (e.disabled) return; setAlacakHours(parseFloat(e.dataset.alacakQuick)); };
+e.onclick = function(){ if (e.disabled) return;
+setAlacakHours(parseFloat(e.dataset.alacakQuick)); };
 });
-
-// ---- Chip bar "＋ Ekle" → ayarlar/kartlar ----
 document.querySelectorAll('[data-open-chip-settings]').forEach(function(e){
 e.onclick = function(ev){
 ev.stopPropagation();
@@ -2830,16 +3129,45 @@ state.modal = null;
 state.showSettings = true;
 state.editingSettings = JSON.parse(JSON.stringify(data.settings));
 state.settingsTab = 'chips';
+state.expandedChipId = null;
 render();
 };
 });
 
-// ---- Personel yönetimi ----
-document.querySelectorAll('[data-edit-staff]').forEach(function(e){ e.onclick = function(){ openStaffForm(e.dataset.editStaff); }; });
-document.querySelectorAll('[data-del-staff]').forEach(function(e){ e.onclick = function(){ deleteStaff(e.dataset.delStaff); }; });
-const addStaffList = el('addStaffInListBtn'); if (addStaffList) addStaffList.onclick = function(){ openStaffForm(); };
+// ---- Emoji Picker Modal ----
+document.querySelectorAll('[data-close-emoji-picker]').forEach(function(e){
+e.onclick = function(){ state.emojiPickerFor = null; render(); };
+});
+if (state.emojiPickerFor) {
+setTimeout(function(){
+const picker = document.getElementById('chipEmojiPicker');
+if (picker) {
+picker.addEventListener('emoji-click', function(ev){
+const target = state.emojiPickerFor;
+const s = state.editingSettings;
+if (!s) return;
+if (target && target.type === 'chip') {
+const chip = s.shiftChips[target.index];
+if (chip) {
+chip.icon = ev.detail.unicode;
+chip.image = null;
+}
+}
+state.emojiPickerFor = null;
+render();
+}, { once: true });
+}
+}, 100);
+}
 
-// Rol değişince otomatik
+// ---- Personel yönetimi ----
+document.querySelectorAll('[data-edit-staff]').forEach(function(e){ e.onclick = function(){
+openStaffForm(e.dataset.editStaff); }; });
+document.querySelectorAll('[data-del-staff]').forEach(function(e){ e.onclick = function(){
+deleteStaff(e.dataset.delStaff); }; });
+const addStaffList = el('addStaffInListBtn'); if (addStaffList) addStaffList.onclick = function(){
+openStaffForm(); };
+
 const roleSelEl = el('staffRoleSelect');
 if (roleSelEl) {
 roleSelEl.onchange = function(){
@@ -2864,9 +3192,11 @@ saveStaffForm();
 const avatarPick = el('profileAvatarPick');
 if (avatarPick) avatarPick.onclick = pickProfileAvatar;
 const profName = el('profName');
-if (profName) profName.addEventListener('input', function(e){ if (state.editingProfile) state.editingProfile.name = e.target.value; });
+if (profName) profName.addEventListener('input', function(e){ if (state.editingProfile)
+state.editingProfile.name = e.target.value; });
 const profTitle = el('profTitle');
-if (profTitle) profTitle.addEventListener('input', function(e){ if (state.editingProfile) state.editingProfile.title = e.target.value; });
+if (profTitle) profTitle.addEventListener('input', function(e){ if (state.editingProfile)
+state.editingProfile.title = e.target.value; });
 const profEmail = el('profEmail');
 if (profEmail) {
 profEmail.addEventListener('input', function(e){
@@ -2903,11 +3233,13 @@ if (state.editingProfile) state.editingProfile.phone = formatPhoneMask(profPhone
 }
 const saveProfBtn = el('saveProfileBtn'); if (saveProfBtn) saveProfBtn.onclick = saveProfile;
 const removeAv = el('profRemoveAvatar');
-if (removeAv) removeAv.onclick = function(){ if (state.editingProfile) { state.editingProfile.avatar = null; render(); } };
+if (removeAv) removeAv.onclick = function(){ if (state.editingProfile) {
+state.editingProfile.avatar = null; render(); } };
 
 // ---- İsim inline düzenleme ----
 document.querySelectorAll('[data-staff-name-cell]').forEach(function(e){
-e.ondblclick = function(ev){ ev.stopPropagation(); state.editingStaffNameId = e.dataset.staffNameCell; render(); };
+e.ondblclick = function(ev){ ev.stopPropagation(); state.editingStaffNameId =
+e.dataset.staffNameCell; render(); };
 let lastTap = 0;
 e.addEventListener('touchend', function(ev){
 const now = Date.now();
@@ -2939,7 +3271,8 @@ nameInp.addEventListener('blur', commit);
 // ---- Alacak detay modalı ----
 document.querySelectorAll('[data-receivable-staff]').forEach(function(e){
 e.onclick = function(ev){
-if (ev.target.closest('[data-staff-name-cell]') || ev.target.closest('input') || ev.target.closest('[data-receivable-hours-cell]')) return;
+if (ev.target.closest('[data-staff-name-cell]') || ev.target.closest('input') ||
+ev.target.closest('[data-receivable-hours-cell]')) return;
 const sid = e.dataset.receivableStaff;
 const earned = getExtraHours(sid, state.selectedMonthOffset || 0);
 const used = getUsedReceivableHours(sid, state.selectedMonthOffset || 0);
@@ -2951,8 +3284,10 @@ render();
 document.querySelectorAll('[data-close-receivable-detail]').forEach(function(e){ e.onclick = function(){ state.receivableDetailStaffId = null; render(); }; });
 
 // ---- Uyarı onay modalı ----
-document.querySelectorAll('[data-warn-edit]').forEach(function(e){ e.onclick = function(){ state.warnConfirm = null; render(); }; });
-document.querySelectorAll('[data-warn-apply]').forEach(function(e){ e.onclick = function(){ autoSaveShift(true); }; });
+document.querySelectorAll('[data-warn-edit]').forEach(function(e){ e.onclick = function(){
+state.warnConfirm = null; render(); }; });
+document.querySelectorAll('[data-warn-apply]').forEach(function(e){ e.onclick = function(){
+autoSaveShift(true); }; });
 
 if (state.showSettings) renderSettingsContent();
 }
@@ -2964,7 +3299,8 @@ document.querySelectorAll('[data-settings-tab]').forEach(function(el){
 el.onclick = function(){ state.settingsTab = el.dataset.settingsTab; render(); };
 });
 document.querySelectorAll('[data-close-settings]').forEach(function(el){
-el.onclick = function(){ state.showSettings = false; state.editingSettings = null; render(); };
+el.onclick = function(){ state.showSettings = false; state.editingSettings = null;
+state.expandedChipId = null; render(); };
 });
 const s = state.editingSettings;
 if (!s) return;
@@ -2975,7 +3311,8 @@ if (saveGen) saveGen.onclick = function(){
 s.storeName = document.getElementById('setStoreName').value.trim();
 const mtRaw = String(document.getElementById('setMonthlyTarget').value).trim();
 const mt = mtRaw === '' ? 0 : (parseInt(mtRaw.replace(/[^\d]/g, ''), 10) || 0);
-s.ptMaxWeeklyHours = parseFloat(String(document.getElementById('setPTLimit').value).replace(',','.')) || 30;
+s.ptMaxWeeklyHours =
+parseFloat(String(document.getElementById('setPTLimit').value).replace(',','.')) || 30;
 s.weeklyLimitHours = 45;
 s.dailyLimitHours = 11;
 s.nightLimitHours = 7.5;
@@ -2986,35 +3323,44 @@ showToast('✅ Ayarlar kaydedildi', 'success');
 render();
 };
 
-// ---------- CHIPS V2 ----------
-document.querySelectorAll('[data-chip-name]').forEach(function(el){
-el.oninput = function(){ const idx = parseInt(el.dataset.chipName, 10); if (s.shiftChips[idx]) s.shiftChips[idx].name = el.value; };
-});
-document.querySelectorAll('[data-chip-del]').forEach(function(el){
-el.onclick = function(){ s.shiftChips.splice(parseInt(el.dataset.chipDel, 10), 1); renderSettingsContent(); };
-});
-document.querySelectorAll('[data-chip-move-up]').forEach(function(el){
-el.onclick = function(){
-const idx = parseInt(el.dataset.chipMoveUp, 10);
-if (idx <= 0) return;
-const arr = s.shiftChips;
-const tmp = arr[idx - 1]; arr[idx - 1] = arr[idx]; arr[idx] = tmp;
-renderSettingsContent();
-};
-});
-document.querySelectorAll('[data-chip-move-down]').forEach(function(el){
-el.onclick = function(){
-const idx = parseInt(el.dataset.chipMoveDown, 10);
-const arr = s.shiftChips;
-if (idx >= arr.length - 1) return;
-const tmp = arr[idx + 1]; arr[idx + 1] = arr[idx]; arr[idx] = tmp;
+// ---------- CHIPS (ACCORDION) ----------
+// Accordion toggle
+document.querySelectorAll('[data-chip-toggle], [data-chip-toggle-btn]').forEach(function(el){
+el.onclick = function(ev){
+ev.stopPropagation();
+const idx = parseInt(el.dataset.chipToggle || el.dataset.chipToggleBtn, 10);
+const chip = s.shiftChips[idx];
+if (!chip) return;
+state.expandedChipId = (state.expandedChipId === chip.id) ? null : chip.id;
 renderSettingsContent();
 };
 });
 
-// Tip değiştir
+// Name
+document.querySelectorAll('[data-chip-name]').forEach(function(el){
+el.oninput = function(){
+const idx = parseInt(el.dataset.chipName, 10);
+if (s.shiftChips[idx]) s.shiftChips[idx].name = el.value;
+};
+});
+
+// Delete
+document.querySelectorAll('[data-chip-del]').forEach(function(el){
+el.onclick = function(ev){
+ev.stopPropagation();
+const idx = parseInt(el.dataset.chipDel, 10);
+if (!s.shiftChips[idx]) return;
+const chipId = s.shiftChips[idx].id;
+s.shiftChips.splice(idx, 1);
+if (state.expandedChipId === chipId) state.expandedChipId = null;
+renderSettingsContent();
+};
+});
+
+// Type change
 document.querySelectorAll('[data-chip-type-set]').forEach(function(el){
-el.onclick = function(){
+el.onclick = function(ev){
+ev.stopPropagation();
 const idx = parseInt(el.dataset.chipTypeSet, 10);
 const newType = el.dataset.typeVal;
 if (!s.shiftChips[idx]) return;
@@ -3026,7 +3372,7 @@ s.shiftChips[idx].end = s.shiftChips[idx].end || '22:00';
 s.shiftChips[idx].start = '';
 s.shiftChips[idx].end = '';
 }
-if (newType !== 'full') {
+if (newType !== 'full' && newType !== 'time') {
 const hasRule = (s.colorRules || []).some(function(x){ return x.chipType === newType; });
 if (!hasRule) {
 s.colorRules.push({
@@ -3042,9 +3388,10 @@ renderSettingsContent();
 };
 });
 
-// Hedef kitle
+// Audience change
 document.querySelectorAll('[data-chip-audience-set]').forEach(function(el){
-el.onclick = function(){
+el.onclick = function(ev){
+ev.stopPropagation();
 const idx = parseInt(el.dataset.chipAudienceSet, 10);
 const val = el.dataset.audVal;
 if (s.shiftChips[idx]) {
@@ -3054,18 +3401,22 @@ renderSettingsContent();
 };
 });
 
-// Saat alanları
+// Time inputs
 document.querySelectorAll('[data-chip-start]').forEach(function(el){
 el.oninput = function(){ const idx = parseInt(el.dataset.chipStart, 10); if (s.shiftChips[idx]) s.shiftChips[idx].start = el.value; };
 });
 document.querySelectorAll('[data-chip-end]').forEach(function(el){
-el.oninput = function(){ const idx = parseInt(el.dataset.chipEnd, 10); if (s.shiftChips[idx]) s.shiftChips[idx].end = el.value; };
+el.oninput = function(){ const idx = parseInt(el.dataset.chipEnd, 10); if (s.shiftChips[idx])
+s.shiftChips[idx].end = el.value; };
 });
 
-// Fotoğraf
+// Image picker helper
 function setChipImage(idx, dataUrl) {
 const chip = s.shiftChips[idx];
-if (chip) { chip.image = dataUrl; renderSettingsContent(); }
+if (chip) {
+chip.image = dataUrl;
+renderSettingsContent();
+}
 }
 function pickChipImageFromSettings(idx, useCamera) {
 const input = document.createElement('input');
@@ -3080,41 +3431,42 @@ resizeImage(file, 256, function(dataUrl) { setChipImage(idx, dataUrl); });
 input.click();
 }
 document.querySelectorAll('[data-chip-pick-camera]').forEach(function(el){
-el.onclick = function(){ pickChipImageFromSettings(parseInt(el.dataset.chipPickCamera, 10), true); };
+el.onclick = function(ev){ ev.stopPropagation();
+pickChipImageFromSettings(parseInt(el.dataset.chipPickCamera, 10), true); };
 });
 document.querySelectorAll('[data-chip-pick-gallery]').forEach(function(el){
-el.onclick = function(){ pickChipImageFromSettings(parseInt(el.dataset.chipPickGallery, 10), false); };
+el.onclick = function(ev){ ev.stopPropagation();
+pickChipImageFromSettings(parseInt(el.dataset.chipPickGallery, 10), false); };
 });
 document.querySelectorAll('[data-chip-pick-photo]').forEach(function(el){
-el.onclick = function(){ pickChipImageFromSettings(parseInt(el.dataset.chipPickPhoto, 10), false); };
+el.onclick = function(ev){ ev.stopPropagation();
+pickChipImageFromSettings(parseInt(el.dataset.chipPickPhoto, 10), false); };
 });
 document.querySelectorAll('[data-chip-pick-url]').forEach(function(el){
-el.onclick = function(){
+el.onclick = function(ev){
+ev.stopPropagation();
 const idx = parseInt(el.dataset.chipPickUrl, 10);
 const url = prompt('Fotoğraf URL\'si girin:');
 if (url && url.trim()) setChipImage(idx, url.trim());
 };
 });
 document.querySelectorAll('[data-chip-remove-image]').forEach(function(el){
-el.onclick = function(){
+el.onclick = function(ev){
+ev.stopPropagation();
 const idx = parseInt(el.dataset.chipRemoveImage, 10);
 if (s.shiftChips[idx]) { s.shiftChips[idx].image = null; renderSettingsContent(); }
 };
 });
-
-// Emoji seç
-document.querySelectorAll('[data-chip-cust-emoji]').forEach(function(el){
-el.onclick = function(){
-const idx = parseInt(el.dataset.chipCustEmoji, 10);
-if (s.shiftChips[idx]) {
-s.shiftChips[idx].icon = el.dataset.emoji;
-s.shiftChips[idx].image = null;
-renderSettingsContent();
-}
+document.querySelectorAll('[data-chip-pick-emoji]').forEach(function(el){
+el.onclick = function(ev){
+ev.stopPropagation();
+const idx = parseInt(el.dataset.chipPickEmoji, 10);
+state.emojiPickerFor = { type: 'chip', index: idx };
+render();
 };
 });
 
-// Pickr — kart renkleri
+// Pickr for chip colors
 document.querySelectorAll('[data-chip-pickr]').forEach(function(swatch){
 const idx = parseInt(swatch.dataset.chipPickr, 10);
 const chip = s.shiftChips[idx];
@@ -3124,15 +3476,15 @@ if (!rule) return;
 makePickr(swatch.id, rule.color, function(hex){
 rule.color = hex;
 swatch.style.background = hex;
-const lbl = swatch.parentElement.querySelector('.chip-edit-color-label');
+const lbl = swatch.parentElement.querySelector('.chip-color-label');
 if (lbl) lbl.textContent = hex.toUpperCase();
 });
 });
 
-// Yeni kart
+// Add chip
 const addChip = document.getElementById('addChipBtn');
 if (addChip) addChip.onclick = function(){
-s.shiftChips.push({
+const newChip = {
 id: 'chip_' + Date.now(),
 icon: '⭐',
 image: null,
@@ -3141,15 +3493,18 @@ type: 'full',
 start: '09:00',
 end: '18:00',
 audience: 'all'
-});
+};
+s.shiftChips.push(newChip);
+state.expandedChipId = newChip.id;
 renderSettingsContent();
 };
 
-// Kaydet
+// Save chips
 const saveChips = document.getElementById('saveChipsBtn');
 if (saveChips) saveChips.onclick = function(){
 data.settings.shiftChips = s.shiftChips.map(function(c){return Object.assign({}, c);});
-const existingTypes = (data.settings.colorRules || []).filter(function(r){return r.chipType;}).map(function(r){return r.chipType;});
+const existingTypes = (data.settings.colorRules || []).filter(function(r){return
+r.chipType;}).map(function(r){return r.chipType;});
 data.settings.shiftChips.forEach(function(c){
 if (c.type && c.type !== 'time' && c.type !== 'full' && existingTypes.indexOf(c.type) < 0) {
 data.settings.colorRules.push({
@@ -3178,7 +3533,8 @@ document.querySelectorAll('[data-color-name]').forEach(function(el){
 el.oninput = function(){ const idx = parseInt(el.dataset.colorName, 10); if (s.colorRules[idx]) s.colorRules[idx].name = el.value; };
 });
 document.querySelectorAll('[data-color-del]').forEach(function(el){
-el.onclick = function(){ s.colorRules.splice(parseInt(el.dataset.colorDel, 10), 1); renderSettingsContent(); };
+el.onclick = function(){ s.colorRules.splice(parseInt(el.dataset.colorDel, 10), 1);
+renderSettingsContent(); };
 });
 const addColor = document.getElementById('addColorRuleBtn');
 if (addColor) addColor.onclick = function(){
@@ -3195,7 +3551,11 @@ s.colorRules[idx].color = hex;
 document.querySelectorAll('[data-pickr-role-bg]').forEach(function(swatch){
 const roleKey = swatch.dataset.pickrRoleBg;
 let rule = s.roleRules.find(function(r){return r.role === roleKey;});
-if (!rule) { rule = { role: roleKey, bg: '#e2e8f0', text: '#475569' }; s.roleRules.push(rule); }
+if (!rule) {
+rule = { role: roleKey, bg: DEFAULT_STAFF_COLORS[roleKey].bg, text:
+DEFAULT_STAFF_COLORS[roleKey].text };
+s.roleRules.push(rule);
+}
 makePickr(swatch.id, rule.bg, function(hex){
 rule.bg = hex;
 const block = swatch.closest('.role-color-block');
@@ -3210,7 +3570,11 @@ if (mini) { mini.style.background = hex; mini.style.color = rule.text; }
 document.querySelectorAll('[data-pickr-role-text]').forEach(function(swatch){
 const roleKey = swatch.dataset.pickrRoleText;
 let rule = s.roleRules.find(function(r){return r.role === roleKey;});
-if (!rule) return;
+if (!rule) {
+rule = { role: roleKey, bg: DEFAULT_STAFF_COLORS[roleKey].bg, text:
+DEFAULT_STAFF_COLORS[roleKey].text };
+s.roleRules.push(rule);
+}
 makePickr(swatch.id, rule.text, function(hex){
 rule.text = hex;
 const block = swatch.closest('.role-color-block');
@@ -3236,16 +3600,19 @@ render();
 
 // ---------- BREAKS ----------
 document.querySelectorAll('[data-break-min-h]').forEach(function(el){
-el.oninput = function(){ s.breakRules[+el.dataset.breakMinH].minHours = parseFloat(el.value.replace(',','.')) || 0; };
+el.oninput = function(){ s.breakRules[+el.dataset.breakMinH].minHours =
+parseFloat(el.value.replace(',','.')) || 0; };
 });
 document.querySelectorAll('[data-break-max]').forEach(function(el){
-el.oninput = function(){ s.breakRules[+el.dataset.breakMax].maxHours = parseFloat(el.value.replace(',','.')) || 0; };
+el.oninput = function(){ s.breakRules[+el.dataset.breakMax].maxHours =
+parseFloat(el.value.replace(',','.')) || 0; };
 });
 document.querySelectorAll('[data-break-min]').forEach(function(el){
 el.oninput = function(){ s.breakRules[+el.dataset.breakMin].breakMin = parseInt(el.value) || 0; };
 });
 document.querySelectorAll('[data-break-del]').forEach(function(el){
-el.onclick = function(){ s.breakRules.splice(+el.dataset.breakDel, 1); renderSettingsContent(); };
+el.onclick = function(){ s.breakRules.splice(+el.dataset.breakDel, 1);
+renderSettingsContent(); };
 });
 const addBreak = document.getElementById('addBreakRuleBtn');
 if (addBreak) addBreak.onclick = function(){
